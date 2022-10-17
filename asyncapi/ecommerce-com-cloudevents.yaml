@@ -1,0 +1,145 @@
+asyncapi: '2.5.0'
+info:
+  title: Ecommerce
+  version: '1.0.0'
+channels:
+  order-created:
+    publish:
+      tags:
+        - name: ordem
+      description: "Evento gerado quando uma ordem for criada."
+      message:
+        name: order                 
+        $ref: '#/components/messages/order' 
+    subscribe:
+      tags:
+        - name: pagamento
+      description: "Consome esse evento quando for necessário processar uma ordem recém criada."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  payment-approved:
+    publish:
+      tags:
+        - name: pagamento
+      description: "Evento gerado quando um pagamento do pedido for aprovado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: ordem
+      description: "Consome esse evento quando for necessário processar um pedido que teve seu pagamento processado com sucesso."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  payment-denied:
+    publish:
+      tags:
+        - name: pagamento
+      description: "Evento gerado quando um pagamento do pedido for negado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: ordem
+        - name: notification
+      description: "Consome esse evento quando for necessário processar um pedido que teve seu pagamento negado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  order-closed:
+    publish:
+      tags:
+        - name: ordem
+      description: "Evento gerado quando o pedido for finalizado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: analytics        
+      description: "Consome esse evento quando for necessário processar um pedido finalizado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+
+components:
+  
+  messages:
+    order:      
+      payload:
+        $ref: '#/components/schemas/OrderSchema' 
+  
+  schemas:     
+    OrderSchema:
+      type: object      
+      schemaFormat: 'application/cloudevents+json; version=0.2; charset=utf-8'
+      allOf: [{
+        $ref: 'https://raw.githubusercontent.com/cloudevents/spec/v1.0.1/spec.json'
+      }, {  
+        $ref: '#/components/schemas/Data'
+      }]
+
+    Data:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Order'
+    
+    Order:
+      type: object
+      required:
+        - id
+        - name
+        - items        
+        - amount
+      properties:
+        id:
+          type: string
+          format: uuidv4
+          description: Identificador único da ordem.
+          example: "06f256c8-1bbf-42bf-93b4-ce2041bfb87e"
+        name:
+          type: string
+          description: Nome do cliente.
+          example: "João"    
+        items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Item'              
+        amount:
+          type: integer
+          format: int32
+          description: "Valor total do pedido em reais."
+          example: 2000.00    
+
+    Item:
+      type: object
+      required:
+        - id
+        - name
+        - quantity
+        - amount        
+      properties:
+        id:
+          type: string
+          format: uuidv4
+          description: Identificador do item do pedido.
+          example: "06f256c8-1bbf-42bf-93b4-ce2041bfb87e"
+        name:
+          type: string            
+          description: "Nome do item"
+          example: "Short"        
+        quantity:
+          type: integer
+          format: int32
+          description: "Quantidade do item."
+          example: "2"
+        amount:
+          type: integer
+          format: int32
+          description: "Valor do item em reais."
+          example: 20.60   
+     
