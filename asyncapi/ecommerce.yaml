@@ -3,10 +3,10 @@ info:
   title: Ecommerce
   version: '1.0.0'
 channels:
-  order-created:
+  pedido-criado:
     publish:
       tags:
-        - name: ordem
+        - name: pedido
       description: "Evento gerado quando uma ordem for criada."
       message:
         $ref: '#/components/messages/order'
@@ -16,7 +16,7 @@ channels:
       description: "Consome esse evento quando for necessário processar uma ordem recém criada."
       message:
         $ref: '#/components/messages/order'
-  payment-approved:
+  pagamento-aprovado:
     publish:
       tags:
         - name: pagamento
@@ -25,11 +25,11 @@ channels:
         $ref: '#/components/messages/order'
     subscribe:
       tags:
-        - name: ordem
+        - name: pedido
       description: "Consome esse evento quando for necessário processar um pedido que teve seu pagamento processado com sucesso."
       message:
         $ref: '#/components/messages/order'
-  payment-denied:
+  pagamento-negado:
     publish:
       tags:
         - name: pagamento
@@ -38,15 +38,15 @@ channels:
         $ref: '#/components/messages/order'
     subscribe:
       tags:
-        - name: ordem
-        - name: notification
+        - name: pedido
+        - name: notificacao
       description: "Consome esse evento quando for necessário processar um pedido que teve seu pagamento negado."
       message:
         $ref: '#/components/messages/order'
-  order-closed:
+  pedido-fechado:
     publish:
       tags:
-        - name: ordem
+        - name: pedido
       description: "Evento gerado quando o pedido for finalizado."
       message:
         $ref: '#/components/messages/order'
