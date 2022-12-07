@@ -7,13 +7,13 @@ channels:
     publish:
       tags:
         - name: pedido
-      description: "Evento gerado quando uma ordem for criada."
+      description: "Evento gerado quando uma pedido for criado."
       message:
         $ref: '#/components/messages/order'
     subscribe:
       tags:
         - name: pagamento
-      description: "Consome esse evento quando for necessário processar uma ordem recém criada."
+      description: "Consome esse evento quando for necessário processar um pedido recém criado."
       message:
         $ref: '#/components/messages/order'
   pagamento-aprovado:
@@ -76,7 +76,7 @@ components:
         id:
           type: string
           format: uuidv4
-          description: Identificador único da ordem.
+          description: Identificador único do pedido.
           example: "06f256c8-1bbf-42bf-93b4-ce2041bfb87e"
         name:
           type: string
