@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Projeto 1 da parte 4 do livro _Arquitetura Orientada a Eventos - Domine os conceitos, da estratégia à execução_ publicado pela [Casa do Código](https://www.casadocodigo.com.br/).
+Projeto 1 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conceitos, da estratégia à execução** publicado pela [Casa do Código](https://www.casadocodigo.com.br/).
 
 ## Entregáveis
 
