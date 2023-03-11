@@ -5,7 +5,7 @@
   </div>
 </div>
 
-## Cenários - <img src="/cap10/imagens/success_icon.png" width="100" height="18">
+## Cenários de teste
 
 <details>
   <summary>Realizar a compra de um produto com sucesso</summary><br>
@@ -17,8 +17,6 @@
   <b>QUANDO</b> eu confirmo o pedido<br>
   <b>ENTÃO</b> eu devo receber meu pedido com 1 produto na minha residência<br>
 </details>
-
-## Scenarios - <img src="/cap10/imagens/exception_icon.png" width="100" height="18">
 
 <details>
   <summary>Realizar a compra de um produto informando um cartão não autorizado</summary><br>
