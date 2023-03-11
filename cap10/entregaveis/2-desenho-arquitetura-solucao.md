@@ -1,0 +1,1 @@
+<img src="/cap10/imagens/desenho-arquitetura-solucao.png">
