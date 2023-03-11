@@ -1,0 +1,1 @@
+<img src="/cap10/imagens/diagrama-contexto-sistema.png">
