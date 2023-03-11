@@ -24,7 +24,7 @@
   <b>E</b> eu adiciono 1 produto no carrinho de compra<br>
   <b>E</b> eu sigo para o checkout<br>
   <b>E</b> eu informo um endereço de entrega válido<br>
-  <b>E</b> eu informo dados válidos de pagamento de um cartão de crédido não autorizado<br>
+  <b>E</b> eu informo dados válidos de pagamento de um cartão de crédito não autorizado<br>
   <b>QUANDO</b> eu confirmo o pedido<br>
   <b>ENTÃO</b> eu devo receber um e-mail informando que meu pedido foi cancelado por motivo de pagamento não autorizado<br>
 </details>
