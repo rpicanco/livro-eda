@@ -1,0 +1,1 @@
+<img src="/cap10/imagens/diagrama-sequencia-caminho-feliz-compra-um-produto.png">
