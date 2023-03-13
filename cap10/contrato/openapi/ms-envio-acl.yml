@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Envio API
+  version: 1.0.0
+servers:
+  - url: https://api.development.abc.com/v1
+    description: Development server
+  - url: https://api.staging.abc.com/v1
+    description: Staging server
+  - url: https://api.abc.com/v1
+    description: Production server
+paths:
+  /envio-acl/pedidos/entregues:
+    post:
+      tags:
+      - Envio
+      summary: Confirmação da entrega dos pedidos via Webhook.
+      description: Confirmação da entrega dos pedidos pelo sistema de entrega de terceiros.
+      operationId: confirmEntregaPedido
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pedido"
+      responses:
+        "200":
+          description: Confirmação de entrega recebida - O pedido foi entregue pelo sistema de entrega de terceiros.
+        "400":
+          description: Bad Request - Valida os campos de acordo com a definição do contrato.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Não autorizado - O cliente não tem as credenciais necessárias de autenticação.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden - O servidor se recusa a responder. Isso geralmente é causado por escopos de acesso incorretos.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found - O recurso solicitado não foi encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: Unprocessable Entity - O corpo da solicitação contém erros semânticos. Isso geralmente é causado por não atender à regra de negócios do domínio.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error - Ocorreu um erro interno.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: Serviço indisponível - O servidor não está disponível no momento.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "504":
+          description: Gateway Timeout - A solicitação não pôde ser concluída a tempo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+components:
+  
+  schemas:
+    Pedido:
+      type: object
+      required:
+       - orderId
+       - deliveredAt
+      properties:
+        orderId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo do pedido."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+        deliveredAt:
+          type: string
+          format: date
+          description: "A data da entrega do pedido no formato YYYY-MM-DD."
+          example: "2023-05-01"
+    
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "error_required_field"
+          description: O código do erro.
+        message:
+          type: string
+          description: "Mensagem de erro."
+          example: "O identificador do pedido é obrigatório."

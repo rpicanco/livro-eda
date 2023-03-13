@@ -160,7 +160,9 @@ components:
     Pedido:
       type: object
       required:
-       - name
+       - items
+       - customer
+       - payment
       properties:
         orderId:
           type: string
@@ -210,6 +212,10 @@ components:
     
     OrderItem:
       type: object
+      required:
+       - productId
+       - count
+       - itemPrice
       properties:
         productId:
           type: string
@@ -229,6 +235,10 @@ components:
           
     Customer:
       type: object
+      required:
+       - id
+       - email
+       - deliveryAddress
       properties:
         id:
           type: string
@@ -253,6 +263,12 @@ components:
     
     Address:
       type: object
+      required:
+       - street
+       - number
+       - postalCode
+       - city
+       - state
       properties:
         street:
           type: string

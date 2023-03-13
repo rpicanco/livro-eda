@@ -1,0 +1,124 @@
+openapi: 3.0.0
+info:
+  title: Fulfillment API
+  version: 1.0.0
+servers:
+  - url: https://api.development.abc.com/v1
+    description: Development server
+  - url: https://api.staging.abc.com/v1
+    description: Staging server
+  - url: https://api.abc.com/v1
+    description: Production server
+paths:
+  /fulfillments/pedidos/{id}/packaging:
+    patch:
+      tags:
+      - Fulfillment
+      summary: Finalização do preparo (embalagem) do pedido.
+      description: Finalização do preparo (embalagem) do pedido.
+      operationId: updateFulfillmentById
+      parameters:
+        - $ref: '#/components/parameters/PedidoIDParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Fulfillment"
+      responses:
+        "200":
+          description: Atualizado - O pedido foi embalado e está pronto para ser enviado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Fulfillment"
+        "400":
+          description: Bad Request - Valida os campos de acordo com a definição do contrato.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Não autorizado - O cliente não tem as credenciais necessárias de autenticação.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden - O servidor se recusa a responder. Isso geralmente é causado por escopos de acesso incorretos.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found - O recurso solicitado não foi encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: Unprocessable Entity - O corpo da solicitação contém erros semânticos. Isso geralmente é causado por não atender à regra de negócios do domínio.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error - Ocorreu um erro interno.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: Serviço indisponível - O servidor não está disponível no momento.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "504":
+          description: Gateway Timeout - A solicitação não pôde ser concluída a tempo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+components:
+  
+  parameters:
+    PedidoIDParam:
+      name: id
+      in: path
+      description: "Um identificador exclusivo do pedido."
+      example: "06f256c8-1bbf-42bf-93b4-ce2041bfb87e"
+      required: true
+      schema:
+        type: string
+        format: uuidv4
+  
+  schemas:
+    Fulfillment:
+      type: object
+      required:
+       - packagedAt
+      properties:
+        orderId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo do pedido."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+          readOnly: true
+        packagedAt:
+          type: string
+          format: date
+          description: "A data da criação do pedido no formato YYYY-MM-DD."
+          example: "2023-05-01"
+    
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "error_required_field"
+          description: O código do erro.
+        message:
+          type: string
+          description: "Mensagem de erro."
+          example: "A data da finbalização da embalagem é obrigatória."
