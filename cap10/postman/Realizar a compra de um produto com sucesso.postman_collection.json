@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "1d5db571-5ecb-4d08-916d-bd2935be5e90",
+		"name": "Realizar a compra de um produto com sucesso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Realizar pedido",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let dateNow = new Date();\r",
+							"dateNow.setDate(dateNow.getDate() + 90);\r",
+							"\r",
+							"const month = dateNow.getMonth()+1;\r",
+							"const year = dateNow.getYear();\r",
+							"\r",
+							"pm.environment.set(\"expiration_month\", (\"00\" + month).slice(-2));\r",
+							"pm.environment.set(\"expiration_year\", (\"00\" + year).slice(-2));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"orderId\", jsonData.orderId);\r",
+							"\r",
+							"pm.test(\"Status code is 202\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"9b083d56-f8ac-4336-8f26-f68ad1ba35db\",\r\n      \"count\": 2,\r\n      \"itemPrice\": 100\r\n    }\r\n  ],\r\n  \"customer\": {\r\n    \"id\": \"818723c6-eae7-4949-8cbe-87353200dc8c\",\r\n    \"first_name\": \"João\",\r\n    \"last_name\": \"Silva\",\r\n    \"email\": \"fulano@gmail.com\",\r\n    \"deliveryAddress\": {\r\n      \"street\": \"Rua X\",\r\n      \"number\": \"14.85\",\r\n      \"postalCode\": \"24300-000\",\r\n      \"city\": \"Rio de Janeiro\",\r\n      \"state\": \"RJ\"\r\n    }\r\n  },\r\n  \"payment\": {\r\n    \"cardId\": \"1ec20487-0b63-4002-b486-3e583cef7707\",\r\n    \"bin\": \"515590\",\r\n    \"number_token\": \"huhrefurhfuhrufhurhfurhfurhfur\",\r\n    \"cardholder_name\": \"JOAO SILVA\",\r\n    \"security_code\": \"256\",\r\n    \"brand\": \"Mastercard\",\r\n    \"expiration_month\": \"{{expiration_month}}\",\r\n    \"expiration_year\": \"{{expiration_year}}\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_BASE_PEDIDO}}/pedidos",
+					"protocol": "http",
+					"host": [
+						"{{URL_BASE_PEDIDO}}"
+					],
+					"path": [
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valida cenário - Pedido recebido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Valor do pedido', function () {\r",
+							"    pm.expect(jsonData.totalAmount).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Status do pedido recebido', function () {\r",
+							"    pm.expect(jsonData.status).to.eql(\"recebido\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{URL_BASE_PEDIDO}}/pedidos/{{orderId}}",
+					"protocol": "http",
+					"host": [
+						"{{URL_BASE_PEDIDO}}"
+					],
+					"path": [
+						"pedidos",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalizar embalagem do pedido",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Aguarda 10 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 10000)\r",
+							"\r",
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"packagedAt\", moment().format('YYYY-MM-DD'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existe o campo packagedAt na resposta\", function () {    \r",
+							"    pm.response.to.have.jsonBody(\"packagedAt\");});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"packagedAt\": \"{{packagedAt}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_BASE_FULFILLMENT}}/fulfillments/pedidos/{{orderId}}/packaging",
+					"protocol": "http",
+					"host": [
+						"{{URL_BASE_FULFILLMENT}}"
+					],
+					"path": [
+						"fulfillments",
+						"pedidos",
+						"{{orderId}}",
+						"packaging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valida cenário - Pedido embalado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Valor do pedido', function () {\r",
+							"    pm.expect(jsonData.totalAmount).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Status do pedido recebido', function () {\r",
+							"    pm.expect(jsonData.status).to.eql(\"embalado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{URL_BASE_PEDIDO}}/pedidos/{{orderId}}",
+					"protocol": "http",
+					"host": [
+						"{{URL_BASE_PEDIDO}}"
+					],
+					"path": [
+						"pedidos",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Webhook pedido entregue",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.environment.set(\"deliveredAt\", moment().format('YYYY-MM-DD'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"orderId\", jsonData.orderId);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"orderId\": \"{{orderId}}\",\r\n  \"deliveredAt\": \"{{deliveredAt}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_BASE_ENVIO}}/envio-acl/pedidos/entregues",
+					"protocol": "http",
+					"host": [
+						"{{URL_BASE_ENVIO}}"
+					],
+					"path": [
+						"envio-acl",
+						"pedidos",
+						"entregues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valida cenário - Pedido entregue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Status do pedido entregue', function () {\r",
+							"    pm.expect(jsonData.status).to.eql(\"entregue\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Aguarda 10 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 10000)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{URL_BASE_PEDIDO}}/pedidos/{{orderId}}",
+					"protocol": "http",
+					"host": [
+						"{{URL_BASE_PEDIDO}}"
+					],
+					"path": [
+						"pedidos",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
