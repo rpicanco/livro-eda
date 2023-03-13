@@ -1,0 +1,571 @@
+asyncapi: '2.5.0'
+info:
+  title: Ecommerce
+  version: '1.0.0'
+channels:
+  pedido-criado:
+    publish:
+      tags:
+        - name: pedido
+      description: "Evento gerado quando um pedido for recebido e criado."
+      message:
+        name: order                 
+        $ref: '#/components/messages/order' 
+    subscribe:
+      tags:
+        - name: qualificacao
+        - name: inventory
+      description: "Consome esse evento quando for necessário processar um pedido recém criado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-qualificado:
+    publish:
+      tags:
+        - name: qualificacao
+      description: "Evento gerado após a qualificação do endereço de entrega do pedido."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: pedido
+      description: "Consome esse evento quando for necessário confirmar o pedido."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-reservado:
+    publish:
+      tags:
+        - name: inventory
+      description: "Evento gerado quando todos os produtos do pedido tem em estoque."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: pedido
+      description: "Consome esse evento quando for necessário confirmar o pedido."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-recusado:
+    publish:
+      tags:
+        - name: qualificacao
+        - name: inventory
+      description: "Evento gerado quando o pedido for recusado."
+      message:
+        name: order
+        $ref: '#/components/messages/pedidoRecusado'
+    subscribe:
+      tags:
+        - name: pedido
+        - name: notificacao-acl       
+      description: "Consome esse evento quando for necessário processar um pedido recusado."
+      message:
+        name: order
+        $ref: '#/components/messages/pedidoRecusado'
+  pedido-confirmado:
+    publish:
+      tags:
+        - name: pedido
+      description: "Evento gerado quando o pedido for confirmado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: pagamento       
+      description: "Consome esse evento quando for necessário processar um pedido confirmado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pagamento-autorizado:
+    publish:
+      tags:
+        - name: pagamento
+      description: "Evento gerado quando o pedido tiver o pagamento autorizado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: pedido
+        - name: fulfillment       
+      description: "Consome esse evento quando for necessário processar um pedido com pagamento autorizado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pagamento-negado:
+    publish:
+      tags:
+        - name: pagamento
+      description: "Evento gerado quando o pedido tiver o pagamento negado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: pedido
+        - name: notificacao-acl       
+      description: "Consome esse evento quando for necessário processar um pedido com pagamento negado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-embalado:
+    publish:
+      tags:
+        - name: fulfillment
+      description: "Evento gerado quando o pedido for embalado e pronto para envio."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: envio       
+      description: "Consome esse evento quando for necessário processar um pedido já preparado e embalado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-envio-solicitado:
+    publish:
+      tags:
+        - name: envio
+      description: "Evento gerado quando para solicitar o envio de um pedido preparado e embalado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: envio-acl       
+      description: "Consome esse evento quando for necessário enviar um pedido."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-envio-confirmado:
+    publish:
+      tags:
+        - name: envio-acl
+      description: "Evento gerado quando o envio do pedido for recebido pelo sistema de envio de terceiro."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: envio       
+      description: "Consome esse evento quando for necessário a confirmação do envio do pedido pelo sistema de entrega de terceiro."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-enviado:
+    publish:
+      tags:
+        - name: envio
+      description: "Evento gerado quando o envio do pedido for confirmado."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: pedido
+        - name: notificacao-acl       
+      description: "Consome esse evento quando for necessário a confirmação do envio do pedido."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-entregue:
+    publish:
+      tags:
+        - name: envio-acl
+      description: "Evento gerado quando o pedido for entregue na residência do cliente."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+    subscribe:
+      tags:
+        - name: pedido       
+      description: "Consome esse evento quando for necessário a confirmação da entrega do pedido na residência do cliente."
+      message:
+        name: order
+        $ref: '#/components/messages/order'
+  pedido-processing-error:
+    publish:
+      tags:
+        - name: pedido
+      description: "Evento gerado quando ocorrer algum erro no microserviço de pedido."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  qualificacao-processing-error:
+    publish:
+      tags:
+        - name: qualificacao
+      description: "Evento gerado quando ocorrer algum erro no microserviço de qualificação."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  inventory-processing-error:
+    publish:
+      tags:
+        - name: inventory
+      description: "Evento gerado quando ocorrer algum erro no microserviço de inventory."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  pagamento-processing-error:
+    publish:
+      tags:
+        - name: pagamento
+      description: "Evento gerado quando ocorrer algum erro no microserviço de pagamento."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  fulfillment-processing-error:
+    publish:
+      tags:
+        - name: fulfillment
+      description: "Evento gerado quando ocorrer algum erro no microserviço de fulfillment."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  envio-processing-error:
+    publish:
+      tags:
+        - name: envio
+      description: "Evento gerado quando ocorrer algum erro no microserviço de envio."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  envio-acl-processing-error:
+    publish:
+      tags:
+        - name: envio-acl
+      description: "Evento gerado quando ocorrer algum erro no microserviço de envio-acl."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  notificacao-acl-processing-error:
+    publish:
+      tags:
+        - name: notificacao-acl
+      description: "Evento gerado quando ocorrer algum erro no microserviço de notificacao-acl."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+  pagamento-acl-processing-error:
+    publish:
+      tags:
+        - name: pagamento-acl
+      description: "Evento gerado quando ocorrer algum erro no microserviço de pagamento-acl."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+    subscribe:
+      tags:
+        - name: manutencao       
+      description: "Consome esse evento de erro para resolução de problema."
+      message:
+        name: erroProcessamento
+        $ref: '#/components/messages/erroProcessamento'
+
+components:
+  
+  messages:
+    order:      
+      payload:
+        $ref: '#/components/schemas/PedidoSchema'
+    pedidoRecusado:
+      payload:
+        $ref: '#/components/schemas/PedidoRecusadoSchema'
+    erroProcessamento:
+      payload:
+        $ref: '#/components/schemas/ErroProcessamentoSchema' 
+  
+  schemas:     
+    PedidoSchema:
+      type: object
+      required:
+       - orderId
+      properties:
+        orderId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o pedido."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+        totalAmount:
+          type: number
+          format: double
+          description: "O valor total do pedido"
+          example: "200.00" 
+        status:
+          type: string
+          enum:
+            - recebido
+            - cancelado
+            - confirmado
+            - em_preparacao
+            - enviado
+            - entregue
+          description: >-
+            Status do pedido: <br>recebido - O cliente realizou um pedido e recebeu uma mensagem que ele será notificado quando o pedido for enviado.  <br>cancelado - O endereço do cliente não é elegível ou o produto não tem em estoque. <br>confirmado - O endereço do cliente é elegível e o produto tem em estoque. <br>em_preparacao - O pagamento foi autorizado.
+                <br>enviado - O pedido foi enviado pela transportadora. <br>entregue - O pedido foi entregue no endereço do cliente.
+        items:
+         type: array
+         items:
+           $ref: "#/components/schemas/OrderItem"
+        customer:
+         $ref: "#/components/schemas/Customer"
+        payment:
+          $ref: "#/components/schemas/Payment"
+        createdAt:
+          type: string           
+          format: date
+          description: "A data da criação do pedido no formato YYYY-MM-DD."
+          example: "2023-05-01"
+        updatedAt:
+          type: string
+          format: date
+          description: "A data da atualização do pedido no formato YYYY-MM-DD."
+          example: "2023-05-10"          
+     
+    OrderItem:
+      type: object
+      required:
+       - productId
+       - count
+       - itemPrice
+      properties:
+        productId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o produto."
+          example: "9b083d56-f8ac-4336-8f26-f68ad1ba35db"
+        count:
+          type: integer
+          format: int32
+          example: 2
+          description: "A quantidade do item do produto"
+        itemPrice:
+          type: number
+          format: double
+          description: "O valor do item do produto"
+          example: "100.00"
+
+    Customer:
+      type: object
+      required:
+       - id
+       - email
+       - deliveryAddress
+      properties:
+        id:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o cliente."
+          example: "818723c6-eae7-4949-8cbe-87353200dc8c"
+        first_name:
+          type: string
+          description: "O nome do cliente."
+          example: "João"
+        last_name:
+          type: string
+          description: "O sobrenome do cliente."
+          example: "Silva"
+        email:
+          type: string
+          format: email
+          description: "O email do do cliente."
+          example: "fulano@gmail.com"
+        deliveryAddress:
+          $ref: "#/components/schemas/Address"
+
+    Address:
+      type: object
+      required:
+       - street
+       - number
+       - postalCode
+       - city
+       - state
+      properties:
+        street:
+          type: string
+          format: int32
+          example: Rua X
+          description: "O nome da rua do cliente."
+        number:
+          type: string
+          format: int32
+          example: 14.850
+          description: "O número da casa do cliente."
+        postalCode:
+          type: string
+          example: "24300-000"
+          description: "O CEP do endereço de entrega."
+        city:
+          type: string
+          example: "Rio de Janeiro"
+          description: "A cidade onde o pedido será entregue."
+        state:
+          type: string
+          example: "RJ"
+          description: "O estado onde o pedido será entregue."
+
+    Payment:
+      type: object
+      required:
+        - card_id
+        - number_token
+      properties:
+        cardId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo do cartão."
+          example: "1ec20487-0b63-4002-b486-3e583cef7707"
+        bin:
+          type: string
+          description: "Os seis primeiros digitos do cartão - BIN (Número de Identificação Bancária)."
+          example: "515590"
+        number_token:
+          type: string
+          description: "Número do cartão tokenizado."
+        cardholder_name:
+          type: string
+          description: "Nome do comprador impresso no cartão."
+        security_code:
+          type: string
+          description: "Código de segurança. CVV ou CVC."
+        brand:
+          type: string
+          enum:
+            - Mastercard
+            - Visa
+            - Amex
+            - Elo
+            - Hipercard
+        expiration_month:
+          type: string
+          description: "Mês de expiração do cartão com dois dígitos."
+          example: "10"
+        expiration_year:
+          type: string
+          description: "Ano de expiração do cartão com dois dígitos."
+          example: "26"
+
+    PedidoRecusadoSchema:
+      type: object
+      required:
+       - orderId
+       - reason       
+      properties:        
+        orderId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o pedido."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+        reason:
+          type: string
+          description: "Motivo do pedido ser recusado."
+          example: [            
+            "endereço de entrega não elegível",
+            "produto(s) sem estoque"
+           ]
+        customer:
+            $ref: "#/components/schemas/Customer"   
+
+    ErroProcessamentoSchema:
+      type: object
+      required:
+       - metadata
+       - errors       
+      properties:        
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+        errors:
+         type: array
+         items:
+           $ref: "#/components/schemas/Error"
+
+    Metadata:
+      type: object
+      required:
+       - orderId
+       - reason       
+      properties:        
+        original_message:
+          $ref: "#/components/schemas/PedidoSchema"
+
+    Error:
+      type: object
+      required:
+       - message       
+      properties:        
+        errorCode:
+          type: string          
+          description: "O código do erro."
+          example: "001"
+        description:
+          type: string          
+          description: "A descrição do erro."
+          example: "erro ao contectar no banco de dados"
+        message:
+          type: string          
+          description: "Detalhe do erro."
+          example: "detalhe do erro para resolução de problema."
