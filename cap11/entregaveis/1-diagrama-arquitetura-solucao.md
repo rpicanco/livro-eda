@@ -1,0 +1,1 @@
+<img src="/cap11/imagens/diagrama-arquitetura-solucao.png">
