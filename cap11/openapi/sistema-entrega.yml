@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  title: Sistema de entrega API
+  version: 1.0.0
+servers:
+  - url: https://api.development.xyz.com/v1
+    description: Development server
+  - url: https://api.staging.xyz.com/v1
+    description: Staging server
+  - url: https://api.xyz.com/v1
+    description: Production server
+paths:
+  /webhooks:
+    post:
+      tags:
+       - Webhook
+      summary: Registra um endpoint HTTPS.
+      description: Registra um endpoint HTTPS para um comerciante.
+      operationId: addWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Webhook"
+        description: Os dados do pedido.
+      responses:
+        "200":
+          description: Aceito - O pedido foi recebido.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Webhook"
+        "400":
+          description: Bad Request - Valida os campos de acordo com a definição do contrato.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Não autorizado - O cliente não tem as credenciais necessárias de autenticação.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden - O servidor se recusa a responder. Isso geralmente é causado por escopos de acesso incorretos.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found - O recurso solicitado não foi encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: Unprocessable Entity - O corpo da solicitação contém erros semânticos. Isso geralmente é causado por não atender à regra de negócios do domínio.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error - Ocorreu um erro interno.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: Serviço indisponível - O servidor não está disponível no momento.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "504":
+          description: Gateway Timeout - A solicitação não pôde ser concluída a tempo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /pedidos/entregas:
+    post:
+      tags:
+       - Envio
+      summary: Solicita a entrega de um pedido.
+      description: Solicita a entrega de um pedido.
+      operationId: entregaPedido
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pedido"
+        description: Os dados do pedido.
+      responses:
+        "202":
+          description: Aceito - A solicitação da entrega do pedido foi recebida.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pedido"
+        "400":
+          description: Bad Request - Valida os campos de acordo com a definição do contrato.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Não autorizado - O cliente não tem as credenciais necessárias de autenticação.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden - O servidor se recusa a responder. Isso geralmente é causado por escopos de acesso incorretos.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found - O recurso solicitado não foi encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: Unprocessable Entity - O corpo da solicitação contém erros semânticos. Isso geralmente é causado por não atender à regra de negócios do domínio.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error - Ocorreu um erro interno.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: Serviço indisponível - O servidor não está disponível no momento.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "504":
+          description: Gateway Timeout - A solicitação não pôde ser concluída a tempo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+components:
+  
+ schemas:
+    
+    Webhook:
+      type: object
+      required:
+       - merchantId
+       - endpoint
+      properties:
+        merchantId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o comerciante."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+        endpoint:
+          type: string
+          description: "O endpoint HTTPS que receberá a notificação quando um pedido for entregue. O método utilizado é POST"
+          example: "https://comerciante-xpto/pedidos/entregues"
+        createdAt:
+          type: string
+          readOnly: true
+          format: date
+          description: "A data da criação do webhook no formato YYYY-MM-DD."
+          example: "2023-05-01"
+        updatedAt:
+          type: string
+          readOnly: true
+          format: date
+          description: "A data da atualização do webhook no formato YYYY-MM-DD."
+          example: "2023-05-10"  
+          
+    Pedido:
+      type: object
+      required:
+       - merchantId
+       - orderId
+       - phone
+       - deliveryAddress
+      properties:
+        merchantId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o comerciante."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+        orderId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o pedido."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+          readOnly: true
+        documentNumber:
+          type: string
+          description: "O CPF do cliente."
+          example: "20392562022"
+        name:
+          type: string
+          description: "O nome do cliente do comerciante."
+          example: "João"
+        phone:
+          type: string
+          description: "O telefone do cliente com DDD"
+          example: "21999368989"
+        deliveryAddress:
+          $ref: "#/components/schemas/Address"
+        createdAt:
+          type: string
+          readOnly: true
+          format: date
+          description: "A data do envio da solicitação da entrega do pedido no formato YYYY-MM-DD."
+          example: "2023-05-01"
+        updatedAt:
+          type: string
+          readOnly: true
+          format: date
+          description: "A data da atualização do envio da solicitação da entrega do pedido no formato YYYY-MM-DD."
+          example: "2023-05-10"
+    
+    Address:
+      type: object
+      required:
+       - street
+       - number
+       - postalCode
+       - city
+       - state
+      properties:
+        street:
+          type: string
+          format: int32
+          example: Rua X
+          description: "O nome da rua do cliente."
+        number:
+          type: string
+          format: int32
+          example: 14.850
+          description: "O número da casa do cliente."
+        postalCode:
+          type: string
+          example: "24300-000"
+          description: "O CEP do endereço de entrega."
+        city:
+          type: string
+          example: "Rio de Janeiro"
+          description: "A cidade onde o pedido será entregue."
+        state:
+          type: string
+          example: "RJ"
+          description: "O estado onde o pedido será entregue."
+    
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "error_required_field"
+          description: O código do erro.
+        message:
+          type: string
+          description: "Mensagem de erro."
+          example: "O identificador do pedido é obrigatório."
