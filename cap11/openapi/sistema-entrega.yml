@@ -197,7 +197,6 @@ components:
           format: uuidv4
           description: "Um identificador exclusivo para o pedido."
           example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
-          readOnly: true
         documentNumber:
           type: string
           description: "O CPF do cliente."

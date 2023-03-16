@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "71b97224-43c7-46c5-9ec9-b9cce653877e",
+		"name": "Notificar a entrega do pedido para um comerciante com sucesso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cria webhook site token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"token\", jsonData.uuid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"default_status\": 200,\r\n  \"default_content\": \"\",\r\n  \"default_content_type\": \"application/json\",\r\n  \"timeout\": 0,\r\n  \"cors\": false,\r\n  \"expiry\": true,\r\n  \"alias\": \"my-webhook\",\r\n  \"actions\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{URL_WEBHOOK_SITE}}/token",
+					"protocol": "https",
+					"host": [
+						"{{URL_WEBHOOK_SITE}}"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registra um endpoint HTTPS (webhook)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"merchant_id\", \"6e444fb5-f5c8-4d55-91eb-04b3abadf64b\");\r",
+							"\r",
+							"const endpoint = \"https://\" + pm.environment.get(\"URL_WEBHOOK_SITE\") + \"/\" + pm.environment.get(\"token\");\r",
+							"pm.environment.set(\"endpoint\", endpoint);\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Merchant ID válido', function () {\r",
+							"    pm.expect(jsonData.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('Endpoint válido', function () {\r",
+							"    pm.expect(jsonData.endpoint).to.eql(pm.environment.get(\"endpoint\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"endpoint\": \"{{endpoint}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{URL_BASE_WEBHOOK}}//webhooks",
+					"protocol": "https",
+					"host": [
+						"{{URL_BASE_WEBHOOK}}"
+					],
+					"path": [
+						"",
+						"webhooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicita a entrega de um pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Status code is 202\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});\r",
+							"\r",
+							"pm.test('Merchant ID válido', function () {\r",
+							"    pm.expect(jsonData.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"order_id\", \"a0f9798e-7458-41a8-9861-7082267a5df9\");\r",
+							"\r",
+							"//Endereço de entrega enviado\r",
+							"pm.environment.set(\"street\", \"Rua 16 de março\");\r",
+							"pm.environment.set(\"number\", \"1485\");\r",
+							"pm.environment.set(\"postalCode\", \"24300-000\");\r",
+							"pm.environment.set(\"city\", \"Rio de Janeiro\");\r",
+							"pm.environment.set(\"state\", \"RJ\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"orderId\": \"{{order_id}}\",\r\n  \"documentNumber\": \"20392562022\",\r\n  \"name\": \"João\",\r\n  \"phone\": \"21999368989\",\r\n  \"deliveryAddress\": {\r\n    \"street\": \"{{street}}\",\r\n    \"number\": \"{{number}}\",\r\n    \"postalCode\": \"{{postalCode}}\",\r\n    \"city\": \"{{city}}\",\r\n    \"state\": \"{{state}}\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_BASE_ENVIO}}/pedidos/entregas",
+					"protocol": "http",
+					"host": [
+						"{{URL_BASE_ENVIO}}"
+					],
+					"path": [
+						"pedidos",
+						"entregas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valida cenário - notificação recebida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"const jsonReponseNotificacao = JSON.parse(jsonData.data[0].content);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Número do pedido valido', function () {\r",
+							"    pm.expect(jsonReponseNotificacao.orderId).to.eql(pm.environment.get(\"order_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test('Endereço de entrega valido', function () {\r",
+							"    pm.expect(jsonReponseNotificacao.deliveryAddress.street).to.eql(pm.environment.get(\"street\"));\r",
+							"    pm.expect(jsonReponseNotificacao.deliveryAddress.number).to.eql(pm.environment.get(\"number\"));\r",
+							"    pm.expect(jsonReponseNotificacao.deliveryAddress.postalCode).to.eql(pm.environment.get(\"postalCode\"));\r",
+							"    pm.expect(jsonReponseNotificacao.deliveryAddress.city).to.eql(pm.environment.get(\"city\"));\r",
+							"    pm.expect(jsonReponseNotificacao.deliveryAddress.state).to.eql(pm.environment.get(\"state\"));\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Aguarda 10 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 10000)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{URL_WEBHOOK_SITE}}/token/{{token}}/requests",
+					"protocol": "https",
+					"host": [
+						"{{URL_WEBHOOK_SITE}}"
+					],
+					"path": [
+						"token",
+						"{{token}}",
+						"requests"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
