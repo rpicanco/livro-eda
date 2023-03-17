@@ -1,4 +1,4 @@
-asyncapi: '2.5.0'
+asyncapi: '2.6.0'
 info:
   title: Ecommerce
   version: '1.0.0'
@@ -6,15 +6,15 @@ channels:
   order-created:
     publish:
       tags:
-        - name: ordem
-      description: "Evento gerado quando uma ordem for criada."
+        - name: pedido
+      description: "Evento gerado quando um pedido for criado."
       message:
         name: order                 
         $ref: '#/components/messages/order' 
     subscribe:
       tags:
         - name: pagamento
-      description: "Consome esse evento quando for necessário processar uma ordem recém criada."
+      description: "Consome esse evento quando for necessário processar um pedido recém criado."
       message:
         name: order
         $ref: '#/components/messages/order'
@@ -28,7 +28,7 @@ channels:
         $ref: '#/components/messages/order'
     subscribe:
       tags:
-        - name: ordem
+        - name: pedido
       description: "Consome esse evento quando for necessário processar um pedido que teve seu pagamento processado com sucesso."
       message:
         name: order
@@ -43,7 +43,7 @@ channels:
         $ref: '#/components/messages/order'
     subscribe:
       tags:
-        - name: ordem
+        - name: pedido
         - name: notification
       description: "Consome esse evento quando for necessário processar um pedido que teve seu pagamento negado."
       message:
@@ -52,7 +52,7 @@ channels:
   order-closed:
     publish:
       tags:
-        - name: ordem
+        - name: pedido
       description: "Evento gerado quando o pedido for finalizado."
       message:
         name: order
@@ -70,17 +70,19 @@ components:
   messages:
     order:      
       payload:
-        $ref: '#/components/schemas/OrderSchema' 
+        $ref: '#/components/schemas/OrderSchema'
   
   schemas:     
     OrderSchema:
       type: object      
       schemaFormat: 'application/cloudevents+json; version=0.2; charset=utf-8'
-      allOf: [{
-        $ref: 'https://raw.githubusercontent.com/cloudevents/spec/v1.0.1/spec.json'
-      }, {  
-        $ref: '#/components/schemas/Data'
-      }]
+      allOf: [
+        {
+          $ref: 'https://raw.githubusercontent.com/cloudevents/spec/v1.0.1/spec.json'
+        }, 
+        {  
+          $ref: '#/components/schemas/Data'
+        }]
 
     Data:
       type: object
@@ -99,7 +101,7 @@ components:
         id:
           type: string
           format: uuidv4
-          description: Identificador único da ordem.
+          description: Identificador único do pedido.
           example: "06f256c8-1bbf-42bf-93b4-ce2041bfb87e"
         name:
           type: string
