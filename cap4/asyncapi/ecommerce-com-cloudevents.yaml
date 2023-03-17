@@ -3,7 +3,7 @@ info:
   title: Ecommerce
   version: '1.0.0'
 channels:
-  order-created:
+  pedido-criado:
     publish:
       tags:
         - name: pedido
@@ -18,7 +18,7 @@ channels:
       message:
         name: order
         $ref: '#/components/messages/order'
-  payment-approved:
+  pagamento-aprovado:
     publish:
       tags:
         - name: pagamento
@@ -33,7 +33,7 @@ channels:
       message:
         name: order
         $ref: '#/components/messages/order'
-  payment-denied:
+  pagamento-negado:
     publish:
       tags:
         - name: pagamento
@@ -44,12 +44,12 @@ channels:
     subscribe:
       tags:
         - name: pedido
-        - name: notification
+        - name: notificacao
       description: "Consome esse evento quando for necessário processar um pedido que teve seu pagamento negado."
       message:
         name: order
         $ref: '#/components/messages/order'
-  order-closed:
+  pedido-fechado:
     publish:
       tags:
         - name: pedido
@@ -143,5 +143,4 @@ components:
           type: integer
           format: int32
           description: "Valor do item em reais."
-          example: 20.60   
-     
+          example: 20.60    

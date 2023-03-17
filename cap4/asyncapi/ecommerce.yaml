@@ -3,7 +3,7 @@ info:
   title: Ecommerce
   version: 1.0.0
 channels:
-  order-created:
+  pedido-criado:
     publish:
       tags:
         - name: pedido
@@ -18,7 +18,7 @@ channels:
         criado.
       message:
         $ref: '#/components/messages/order'
-  payment-approved:
+  pagamento-aprovado:
     publish:
       tags:
         - name: pagamento
@@ -33,7 +33,7 @@ channels:
         seu pagamento processado com sucesso.
       message:
         $ref: '#/components/messages/order'
-  payment-denied:
+  pagamento-negado:
     publish:
       tags:
         - name: pagamento
@@ -43,13 +43,13 @@ channels:
     subscribe:
       tags:
         - name: pedido
-        - name: notification
+        - name: notificacao
       description: >-
         Consome esse evento quando for necessário processar um pedido que teve
         seu pagamento negado.
       message:
         $ref: '#/components/messages/order'
-  order-closed:
+  pedido-fechado:
     publish:
       tags:
         - name: pedido
