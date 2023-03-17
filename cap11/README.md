@@ -23,7 +23,7 @@ Projeto 2 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
       <a href="/cap11/entregaveis/4-terraform.md">Terraform</a>	   
     </li>      
     <li>
-      <a href="/cap10/entregaveis/5-postman.md">Postman</a>
+      <a href="/cap11/entregaveis/5-postman.md">Postman</a>
     </li>
   </ol>
 </details>
