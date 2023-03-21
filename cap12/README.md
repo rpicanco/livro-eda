@@ -22,5 +22,8 @@ Projeto 3 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
     <li>
       <a href="/cap12/entregaveis/5-postman.md">Postman</a>
     </li>
+	<li>
+      <a href="/cap12/entregaveis/6-visualizando-manualmente-trajeto-de-um-caminhao-no-mapa.md">Visualizando manualmente o trajeto de um caminhão no mapa</a>
+    </li>
   </ol>
 </details>
