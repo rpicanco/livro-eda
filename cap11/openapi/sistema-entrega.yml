@@ -3,11 +3,11 @@ info:
   title: Sistema de entrega API
   version: 1.0.0
 servers:
-  - url: https://api.development.xyz.com/v1
+  - url: https://api.development.cargapesada.com/v1
     description: Development server
-  - url: https://api.staging.xyz.com/v1
+  - url: https://api.staging.cargapesada.com/v1
     description: Staging server
-  - url: https://api.xyz.com/v1
+  - url: https://api.cargapesada.com/v1
     description: Production server
 paths:
   /webhooks:

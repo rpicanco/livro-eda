@@ -103,13 +103,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{URL_BASE_WEBHOOK}}//webhooks",
+					"raw": "https://{{URL_BASE_WEBHOOK}}/webhooks",
 					"protocol": "https",
 					"host": [
 						"{{URL_BASE_WEBHOOK}}"
 					],
 					"path": [
-						"",
 						"webhooks"
 					]
 				}
