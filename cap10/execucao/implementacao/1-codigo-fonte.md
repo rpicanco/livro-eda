@@ -1,1 +1,1 @@
-<h2>Toda a estrutura do código fonte entra aqui!!!</h2>
+<h2>Toda a estrutura do código fonte entra aqui junto com o passo a passo para o leitor executar na máquina local!!!</h2>
