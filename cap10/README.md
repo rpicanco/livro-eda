@@ -8,16 +8,49 @@ Projeto 1 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary>Execução</summary>
+  <summary>Índice</summary>
   <ol>    
     <li>
-      <a href="/cap10/execucao/especificacao.md">Especificação</a>
+       <a>Especificação</a>
     </li>
-    <li>
-      <a href="/cap10/execucao/teste.md">Teste</a>
-    </li>
-    <li>
-      <a href="/cap10/execucao/implementacao.md">Implementação</a>
-    </li>
+    <ul>
+      <li>
+        <a href="/cap10/execucao/especificacao/1-diagrama-contexto-sistema.md">Diagrama de contexto do sistema</a>
+      </li>
+      <li>
+        <a href="/cap10/execucao/especificacao/2-desenho-arquitetura-solucao.md">Desenho da arquitetura da solução</a>
+      </li>
+      <li>
+        <a href="/cap10/execucao/especificacao/3-diagrama-coreografia-eventos.md">Diagrama da coreografia de eventos (The Big Picture)</a>
+      </li>
+	  <li>
+        <a href="/cap10/execucao/especificacao/4-diagrama-maquina-estado-pedido.md">Diagrama de máquina de estado do pedido</a>
+      </li>      
+	  <li>
+        <a href="/cap10/execucao/especificacao/5-diagrama-sequencia-caminho-feliz-compra-um-produto.md">Diagrama de sequência do caminho feliz da compra de um produto</a>
+      </li>
+	  <li>
+        <a href="/cap10/execucao/especificacao/6-openapi-e-asyncapi.md">OpenAPI e AsyncAPI</a>
+      </li>	  
+    </ul>
+	<li>
+       <a>Teste</a>
+	</li>
+	<ul>
+      <li>
+        <a href="/cap10/execucao/teste/1-cenarios-de-teste.md">Cenários de teste</a>
+      </li>
+	  <li>
+        <a href="/cap10/execucao/teste/2-postman.md">Postman</a>
+      </li>
+	</ul>
+	<li>
+       <a>Implementação</a>
+	</li>
+	<ul>
+      <li>
+        <a href="/cap10/execucao/implementacao/1-codigo-fonte.md">Código fonte</a>
+      </li>	  
+	</ul>
   </ol>
 </details>
