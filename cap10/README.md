@@ -18,7 +18,7 @@ Projeto 1 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
         <a href="/cap10/execucao/especificacao/1-diagrama-contexto-sistema.md">Diagrama de contexto do sistema</a>
       </li>
       <li>
-        <a href="/cap10/execucao/especificacao/2-desenho-arquitetura-solucao.md">Desenho da arquitetura da solução</a>
+        <a href="/cap10/execucao/especificacao/2-diagrama-arquitetura-solucao.md">Diagrama da arquitetura da solução</a>
       </li>
       <li>
         <a href="/cap10/execucao/especificacao/3-diagrama-coreografia-eventos.md">Diagrama da coreografia de eventos (The Big Picture)</a>
