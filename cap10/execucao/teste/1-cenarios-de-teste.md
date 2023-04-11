@@ -15,9 +15,10 @@
   <b>E</b> eu informo um endereço de entrega elegível<br>
   <b>E</b> eu informo dados válidos de pagamento<br>
   <b>QUANDO</b> eu confirmo o pedido<br>
-  <b>ENTÃO</b> eu devo receber meu pedido com 1 produto na minha residência<br>  
+  <b>ENTÃO</b> eu devo receber meu pedido com 1 produto na minha residência<br>
+  <p><a href="/cap10/postman/" rel="some text"><img src="/cap10/imagens/icone-postman.png" alt="Postman" width="80" height="50" /></a></p>
 </details>
-<a href="/cap10/postman/" rel="some text"><img src="/cap10/imagens/icone-postman.png" alt="Postman" width="100" height="30" /></a>
+
 
 <details>
   <summary>Realizar a compra de um produto informando um cartão não autorizado</summary><br>
