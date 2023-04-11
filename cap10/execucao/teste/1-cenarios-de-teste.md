@@ -18,6 +18,8 @@
   <b>ENTÃO</b> eu devo receber meu pedido com 1 produto na minha residência<br>
 </details>
 
+<a href="/cap10/postman/" rel="some text"><img src="/cap10/imagens/icone-postman.png" alt="Postman" /></a>
+
 <details>
   <summary>Realizar a compra de um produto informando um cartão não autorizado</summary><br>
   <b>DADO QUE</b> eu sou um cliente do <i>e-commerce</i> da empresa ABC<br>  

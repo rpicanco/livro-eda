@@ -8,7 +8,7 @@ Projeto 1 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary>Índice</summary>
+  <summary>Conteúdo</summary>
   <ol>    
     <li>
        <a>Design da solução</a>
@@ -38,11 +38,8 @@ Projeto 1 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
 	</li>
 	<ul>
       <li>
-        <a href="/cap10/execucao/teste/1-cenarios-de-teste.md">Cenários de teste</a>
-      </li>
-	  <li>
-        <a href="/cap10/execucao/teste/2-postman.md">Postman</a>
-      </li>
+        <a href="/cap10/execucao/teste/1-cenarios-de-teste.md">Execução do cenário de teste</a>
+      </li>	  
 	</ul>
 	<li>
        <a>Implementação</a>
