@@ -18,4 +18,5 @@
   <b>E</b> o horário de saída do Rio de janeiro foi ás 09 da manhã do dia 15 de março<br>
   <b>E</b> o horário de chegada em São Paulo foi às 10:15h da manhã do dia 15 de março<br>
   <b>E</b> eu devo receber o nome do motorista João da Silva<br>
+  <a href="/cap12/postman/" rel="some text"><img src="/cap12/imagens/icone-postman.png" alt="Postman" width="80" height="50" /></a>
 </details>
