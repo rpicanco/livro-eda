@@ -31,8 +31,10 @@ Projeto 3 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
 	</li>
 	<ul>
       <li>
-        <a href="/cap12/execucao/implementacao/1-passo-a-passo.md">Passo a passo</a>
-		<a href="/cap12/execucao/implementacao/2-visualizando-manualmente-trajeto-de-um-caminhao-no-mapa.md">Visualizando manualmente o trajeto de um caminhão no mapa</a>
+        <a href="/cap12/execucao/implementacao/1-passo-a-passo.md">Passo a passo</a>		
+      </li>
+	  <li>
+        <a href="/cap12/execucao/implementacao/2-visualizando-manualmente-trajeto-de-um-caminhao-no-mapa.md">Visualizando manualmente o trajeto de um caminhão no mapa</a>
       </li>	  
 	</ul>
   </ol>
