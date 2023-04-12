@@ -16,4 +16,5 @@
   <b>E</b> eu informo o endereço de entrega válido do meu cliente<br>
   <b>QUANDO</b> eu solicito a entrega do pedido<br>
   <b>ENTÃO</b> eu devo receber uma notificação no meu endpoint HTTPS registrado informando que o pedido do meu cliente foi entregue na sua residência<br>
+  <a href="/cap11/postman/" rel="some text"><img src="/cap11/imagens/icone-postman.png" alt="Postman" width="80" height="50" /></a>
 </details>
