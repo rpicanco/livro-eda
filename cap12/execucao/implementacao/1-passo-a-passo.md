@@ -4,10 +4,10 @@
 
 ### Passos
 
-:one: <a href="pre-requisitos.md" target="_blank">Pré-requisitos</a>
+:one: <p><a href="pre-requisitos.md" target="_blank" rel="noopener noreferrer">Pré-requisitos</a></p>
 
-:two: <a href="mongodb-atlas.md" target="_blank">MongoDB Atlas</a>
+:two: <p><a href="mongodb-atlas.md" target="_blank" rel="noopener noreferrer">MongoDB Atlas</a></p>
 
-:three: <a href="confluent-cloud.md" target="_blank">Confluent Cloud</a>
+:three: <p><a href="confluent-cloud.md" target="_blank" rel="noopener noreferrer">Confluent Cloud</a></p>
 
-:four: <a href="apache-pinot.md" target="_blank">Apache Pinot</a>
+:four: <p><a href="apache-pinot.md" target="_blank" rel="noopener noreferrer">Apache Pinot</a></p>
