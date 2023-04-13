@@ -2,7 +2,9 @@
 
 <figure>
   <img src="/cap12/imagens/ambiente-execucao.png">
-  <figcaption>Ambiente de execução</figcaption>
+  <figcaption>
+	<p style="text-align:center">Ambiente de execução</p>
+  </figcaption>
 </figure>
 
 <img >
