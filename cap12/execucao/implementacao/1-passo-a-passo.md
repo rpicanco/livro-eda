@@ -40,7 +40,7 @@ $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 $ confluent
 ```  
 
-:point_right: <h3>Para usuários do _Windows_<h3>
+:point_right: Para usuários do _Windows_
 
 <details>
   <summary>Passo a passo</summary><br>

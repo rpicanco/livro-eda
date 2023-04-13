@@ -45,13 +45,13 @@ $ confluent
 <details>
   <summary>Passo a passo</summary><br>
 
-Caso você esteja usando o sistema operacional _Windows_, você pode criar uma instância gratuita do EC2 da _AWS_ para executar os comandos no Linux. 
+Caso você esteja usando o sistema operacional _Windows_, você pode criar uma instância gratuita do EC2 da _AWS_ para executar os comandos no _Linux_. 
 
-Para acessar o terminal do Linux do EC2 via `SSH`, utilizei o cliente `SSH` _MobaXterm_.
+Para acessar o terminal do _Linux_ do EC2 via `SSH`, utilizei o cliente `SSH` _MobaXterm_.
 
 ### Sistema operacional Linux na AWS
 
-1. Utilize uma instância gratuita do EC2 da AWS do Amazon Linux 2 AMI
+1. Utilize uma instância gratuita do EC2 da AWS do Amazon _Linux_ 2 AMI
 	* A instância tem que ser acessível publicamente; Exemplo: Public IPv4 DNS: **ec2-100-26-222-398.compute-1.amazonaws.com**
 	* A instância tem que estar associada a um security group com entrada SSH no Inbound rules
 		* **Type**: SSH
