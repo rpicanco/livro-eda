@@ -40,17 +40,18 @@ $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 $ confluent
 ```  
 
-```
+:point_right: <h3>Para usuários do _Windows_<h3>
+
 <details>
-  <summary>Para usuários do Windows</summary><br>
+  <summary>Passo a passo</summary><br>
 
-Caso você esteja usando o sistema operacional _Windows_, você pode criar uma instância gratuita do EC2 da _AWS_ para executar os comandos no Linux. 
+Caso você esteja usando o sistema operacional _Windows_, você pode criar uma instância gratuita do EC2 da _AWS_ para executar os comandos no _Linux_. 
 
-Para acessar o terminal do Linux do EC2 via `SSH`, utilizei o cliente `SSH` _MobaXterm_.
+Para acessar o terminal do _Linux_ do EC2 via `SSH`, utilizei o cliente `SSH` _MobaXterm_.
 
 ### Sistema operacional Linux na AWS
 
-1. Utilize uma instância gratuita do EC2 da AWS do Amazon Linux 2 AMI
+1. Utilize uma instância gratuita do EC2 da AWS do Amazon _Linux_ 2 AMI
 	* A instância tem que ser acessível publicamente; Exemplo: Public IPv4 DNS: **ec2-100-26-222-398.compute-1.amazonaws.com**
 	* A instância tem que estar associada a um security group com entrada SSH no Inbound rules
 		* **Type**: SSH
@@ -92,7 +93,6 @@ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 	
 4. Acesse o terminal. Na linha de comando, verifique se o _Mongosh_ e o _Confluent Cloud CLI_ foram instalados corretamente.  
 </details>
-```
 
 :heavy_check_mark: Uma conta gratuita no MongoDB Atlas 
 
@@ -114,7 +114,7 @@ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 * Crie sua conta gratuita seguindo o passo a passo da StarTree em https://startree.ai/saas-signup
 
 :loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
-:loudspeaker: O teste gratuito (trial) é de 30 dias (mais que o suficiente para o nosso projeto).
+:loudspeaker: O teste gratuito (_trial_) é de 30 dias (mais que o suficiente para o nosso projeto).
 
 ## Ambiente 
 
