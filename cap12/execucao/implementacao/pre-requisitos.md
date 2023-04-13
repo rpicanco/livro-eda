@@ -1,12 +1,19 @@
 <h1>Pré-requisitos</h1>
 
-:one: [Sistema operacional Linux](#sistema-operacional-linux)
+<figure>
+  <img src="/cap12/imagens/ambiente-execucao.png">
+  <figcaption>Ambiente de execução</figcaption>
+</figure>
 
-:two: [Uma conta gratuita no MongoDB Atlas](#uma-conta-gratuita-no-mongodb-atlas)
+<img >
 
-:three: [Uma conta gratuita no Confluent Cloud](#uma-conta-gratuita-no-confluent-cloud)
+:heavy_check_mark: [Sistema operacional Linux](#sistema-operacional-linux)
 
-:four: [Uma conta gratuita na starTree](#uma-conta-gratuita-na-startree)
+:heavy_check_mark: [Uma conta gratuita no MongoDB Atlas](#uma-conta-gratuita-no-mongodb-atlas)
+
+:heavy_check_mark: [Uma conta gratuita no Confluent Cloud](#uma-conta-gratuita-no-confluent-cloud)
+
+:heavy_check_mark: [Uma conta gratuita na starTree](#uma-conta-gratuita-na-startree)
 
 ### Sistema operacional Linux 
 
@@ -64,6 +71,3 @@ $ confluent
 :loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
 :loudspeaker: O teste gratuito (_trial_) é de 30 dias (mais que o suficiente para o nosso projeto).
 
-### Ambiente de execução
-
-<img src="/cap12/imagens/ambiente-execucao.png">
