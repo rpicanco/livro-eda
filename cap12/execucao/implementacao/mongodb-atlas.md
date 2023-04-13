@@ -3,7 +3,7 @@
 ## Objetivo 
 
 <p align="justify">
-  Armazenar quem está dirigindo o caminhão. 
+  Armazenar o motorista que está dirigindo o caminhão. 
 </p>
 
 ## Passo a passo
@@ -67,9 +67,9 @@ $ db.veiculos.insertOne( { veiculo_id: 30, nome_motorista: "Maria Aparecida" } )
 
 ```
 $ db.veiculos.find({}, {veiculo_id:1, nome_motorista:1, _id:0})
-**[
+[
   { veiculo_id: 10, nome_motorista: 'João da Silva' },
   { veiculo_id: 20, nome_motorista: 'José Duarte' },
   { veiculo_id: 30, nome_motorista: 'Maria Aparecida' }
-]** 
+] 
 ```
