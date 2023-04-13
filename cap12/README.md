@@ -15,7 +15,7 @@ Projeto 3 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
     </li>
     <ul>
       <li>
-        <a href="/cap12/execucao/design-solucao/1-diagrama-arquitetura-solucao.md">Diagrama da arquitetura da solução</a>
+        <a href="/cap12/execucao/design-solucao/diagrama-arquitetura-solucao.md">Diagrama da arquitetura da solução</a>
       </li>            	  
     </ul>
 	<li>
@@ -23,7 +23,7 @@ Projeto 3 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
 	</li>
 	<ul>
       <li>
-        <a href="/cap12/execucao/teste/1-cenarios-de-teste.md">Execução do cenário de teste</a>
+        <a href="/cap12/execucao/teste/cenarios-de-teste.md">Execução do cenário de teste</a>
       </li>	  
 	</ul>
 	<li>
@@ -31,10 +31,10 @@ Projeto 3 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
 	</li>
 	<ul>
       <li>
-        <a href="/cap12/execucao/implementacao/1-passo-a-passo.md">Passo a passo</a>		
+        <a href="/cap12/execucao/implementacao/passo-a-passo.md">Passo a passo</a>		
       </li>
 	  <li>
-        <a href="/cap12/execucao/implementacao/2-visualizando-manualmente-trajeto-de-um-caminhao-no-mapa.md">Visualizando manualmente o trajeto de um caminhão no mapa</a>
+        <a href="/cap12/execucao/implementacao/visualizando-manualmente-trajeto-de-um-caminhao-no-mapa.md">Visualizando manualmente o trajeto de um caminhão no mapa</a>
       </li>	  
 	</ul>
   </ol>

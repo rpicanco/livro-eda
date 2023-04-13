@@ -16,7 +16,7 @@ $ yum install -y mongodb-mongosh
 $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 ```
 
-3. No terminal. verifique se o _Mongosh_ e o _Confluent Cloud CLI_ foram instalados corretamente.
+3. No terminal, verifique se o _Mongosh_ e o _Confluent Cloud CLI_ foram instalados corretamente.
 
 **Verifica Mongosh**
 ```
