@@ -14,12 +14,12 @@ $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 
 3. No terminal. verifique se o _Mongosh_ e o _Confluent Cloud CLI_ foram instalados corretamente.
 
-**Verifica a instalação**
+**Verifica Mongosh**
 ```
 $ mongosh
 ```
 
-**Verifica a instalação**
+**Verifica Confluent Cloud CLI**
 ```
 $ confluent
 ```
@@ -27,7 +27,7 @@ $ confluent
 >
 > **Note**:
 > 
-> Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do Windows
+> Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do sistema operacional _Windows_
 > 
 
 ### Uma conta gratuita no MongoDB Atlas 
@@ -36,7 +36,7 @@ $ confluent
 
 * Crie sua conta gratuita seguindo o passo a passo do MongoDB Atlas em https://www.mongodb.com/cloud/atlas/register
 
-:heavy_check_mark: Uma conta gratuita no Confluent Cloud 
+### Uma conta gratuita no Confluent Cloud 
 
 **Ecossistema Kafka**
 

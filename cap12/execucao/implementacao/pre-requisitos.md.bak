@@ -1,6 +1,6 @@
 <h2>Pré-requisitos</h2>
 
-:heavy_check_mark: Sistema operacional Linux
+### Sistema operacional Linux 
 
 1. Instale o MongoSH
 ```
@@ -14,12 +14,12 @@ $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 
 3. No terminal. verifique se o _Mongosh_ e o _Confluent Cloud CLI_ foram instalados corretamente.
 
-**Verifica a instalação**
+**Verifica Mongosh**
 ```
 $ mongosh
 ```
 
-**Verifica a instalação**
+**Verifica Confluent Cloud CLI**
 ```
 $ confluent
 ```
@@ -27,10 +27,10 @@ $ confluent
 >
 > **Note**:
 > 
-> Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do Windows
+> Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do sistema operacional _Windows_
 > 
 
-:heavy_check_mark: Uma conta gratuita no MongoDB Atlas 
+### Uma conta gratuita no MongoDB Atlas 
 
 **MongoDB Cloud**
 
@@ -43,7 +43,7 @@ $ confluent
 * Crie sua conta gratuita seguindo o passo a passo da Confluent em https://confluent.cloud/signup
 * Crie uma organização.
 
-:heavy_check_mark: Uma conta gratuita na starTree
+### Uma conta gratuita na starTree
 
 **Apache Pinot**
 
@@ -52,4 +52,4 @@ $ confluent
 :loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
 :loudspeaker: O teste gratuito (_trial_) é de 30 dias (mais que o suficiente para o nosso projeto).
 
-## Ambiente
+### Ambiente
