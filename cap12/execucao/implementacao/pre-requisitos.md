@@ -2,12 +2,12 @@
 
 ### Sistema operacional Linux 
 
-1. Instale o MongoSH
+1. Instale o _MongoSH_
 ```
 $ yum install -y mongodb-mongosh
 ```
 
-2. Instale o Confluent Cloud CLI
+2. Instale o _Confluent Cloud CLI_
 ```
 $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 ```
@@ -34,22 +34,24 @@ $ confluent
 
 **MongoDB Cloud**
 
-* Crie sua conta gratuita seguindo o passo a passo do MongoDB Atlas em https://www.mongodb.com/cloud/atlas/register
+* Crie sua conta gratuita seguindo o passo a passo do MongoDB Atlas em https://www.mongodb.com/cloud/atlas/register.
 
 ### Uma conta gratuita no Confluent Cloud 
 
 **Ecossistema Kafka**
 
-* Crie sua conta gratuita seguindo o passo a passo da Confluent em https://confluent.cloud/signup
+* Crie sua conta gratuita seguindo o passo a passo da Confluent em https://confluent.cloud/signup;
 * Crie uma organização.
 
 ### Uma conta gratuita na starTree
 
 **Apache Pinot**
 
-* Crie sua conta gratuita seguindo o passo a passo da StarTree em https://startree.ai/saas-signup
+* Crie sua conta gratuita seguindo o passo a passo da StarTree em https://startree.ai/saas-signup.
 
 :loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
 :loudspeaker: O teste gratuito (_trial_) é de 30 dias (mais que o suficiente para o nosso projeto).
 
 ### Ambiente
+
+<img src="/cap12/imagens/ambiente-execucao.png">
