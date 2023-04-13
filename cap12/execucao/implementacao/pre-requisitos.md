@@ -1,27 +1,9 @@
-<h1>Rastreamento da frota de caminhões em tempo real</h1>
-
-> :watch: Tempo estimado de execução: 15 minutos.
-
-### Tópicos
-
-:small_blue_diamond: [Pré-requisitos](#pré-requisitos)
-
-:small_blue_diamond: [Ambiente](#ambiente)
-
-:small_blue_diamond: [MongoDB Atlas](#mongodb-atlas)
-
-:small_blue_diamond: [Confluent Cloud](#confluent-cloud)
-
-:small_blue_diamond: [Apache Pinot](#apache-pinot)
-
-:small_blue_diamond: [Visualizando manualmente o trajeto de um caminhão no mapa](#visualizando-em-mapa)
-
-## Pré-requisitos 
+<h2>Pré-requisitos</h2>
 
 :heavy_check_mark: Sistema operacional Linux
 
-<details>
-  <summary style="color: red; font-size: 40px;>Para usuários do Windows</summary><br>
+<details style="background-color: #8ebc42; font-size: 40px;">
+ <summary>Para usuários do Windows</summary><br>
 
 Caso você esteja usando o sistema operacional _Windows_, você pode criar uma instância gratuita do EC2 da _AWS_ para executar os comandos no _Linux_. 
 
@@ -90,7 +72,7 @@ $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 **Verifica a instalação**
 ```
 $ confluent
-```  
+```
 
 :heavy_check_mark: Uma conta gratuita no MongoDB Atlas 
 
@@ -114,5 +96,4 @@ $ confluent
 :loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
 :loudspeaker: O teste gratuito (_trial_) é de 30 dias (mais que o suficiente para o nosso projeto).
 
-## Ambiente 
-
+## Ambiente
