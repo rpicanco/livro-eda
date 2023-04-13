@@ -2,14 +2,12 @@
 
 > :watch: Tempo estimado de execução: 15 minutos.
 
-### Tópicos
+### Passos
 
-:small_blue_diamond: <a href="pre-requisitos.md">Pré-requisitos</a>
+:one: <a href="pre-requisitos.md">Pré-requisitos</a>
 
-:small_blue_diamond: <a href="mongodb-atlas.md">MongoDB Atlas</a>
+:two: <a href="mongodb-atlas.md">MongoDB Atlas</a>
 
-:small_blue_diamond: <a href="confluent-cloud.md">Confluent Cloud</a>
+:three: <a href="confluent-cloud.md">Confluent Cloud</a>
 
-:small_blue_diamond: <a href="apache-pinot.md">Apache Pinot</a>
-
-:small_blue_diamond: <a href="visualizando-em-mapa.md">Visualizando manualmente o trajeto de um caminhão no mapa</a>
+:four: <a href="apache-pinot.md">Apache Pinot</a>
