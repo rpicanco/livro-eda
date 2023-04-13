@@ -2,8 +2,6 @@
 
 :heavy_check_mark: Sistema operacional Linux
 
-:point_right: Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do Windows
-
 1. Instale o MongoSH
 ```
 $ yum install -y mongodb-mongosh
@@ -25,6 +23,12 @@ $ mongosh
 ```
 $ confluent
 ```
+
+>
+> **Note**:
+> 
+> Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do Windows
+> 
 
 :heavy_check_mark: Uma conta gratuita no MongoDB Atlas 
 
