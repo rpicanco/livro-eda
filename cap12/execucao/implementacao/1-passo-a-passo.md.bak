@@ -21,7 +21,7 @@
 :heavy_check_mark: Sistema operacional Linux
 
 <details>
-  <summary>Para usuários do Windows</summary><br>
+  <summary style="color: red; font-size: 40px;>Para usuários do Windows</summary><br>
 
 Caso você esteja usando o sistema operacional _Windows_, você pode criar uma instância gratuita do EC2 da _AWS_ para executar os comandos no _Linux_. 
 
