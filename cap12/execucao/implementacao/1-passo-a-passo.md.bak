@@ -113,7 +113,7 @@ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 
 * Crie sua conta gratuita seguindo o passo a passo da StarTree em https://startree.ai/saas-signup
 
-:loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
+:loudspeaker: É permitido apenas o cadastro com email corporativo;
 :loudspeaker: O teste gratuito (trial) é de 30 dias (mais que o suficiente para o nosso projeto).
 
 ## Ambiente 
