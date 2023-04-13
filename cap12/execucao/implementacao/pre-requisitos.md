@@ -1,14 +1,5 @@
 <h1>Pré-requisitos</h1>
 
-<figure>
-  <img src="/cap12/imagens/ambiente-execucao.png">
-  <figcaption>
-	<p style="text-align:center">Ambiente de execução</p>
-  </figcaption>
-</figure>
-
-<img >
-
 :heavy_check_mark: [Sistema operacional Linux](#sistema-operacional-linux)
 
 :heavy_check_mark: [Uma conta gratuita no MongoDB Atlas](#uma-conta-gratuita-no-mongodb-atlas)
@@ -73,3 +64,6 @@ $ confluent
 :loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
 :loudspeaker: O teste gratuito (_trial_) é de 30 dias (mais que o suficiente para o nosso projeto).
 
+### Ambiente de execução
+
+<img src="/cap12/imagens/ambiente-execucao.png">
