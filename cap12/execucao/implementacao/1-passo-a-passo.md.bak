@@ -20,26 +20,6 @@
 
 :heavy_check_mark: Sistema operacional Linux
 
-1. Instale o MongoSH
-```
-$ yum install -y mongodb-mongosh
-```
-
-**Verifica a instalação**
-```
-$ mongosh
-```
-
-2. Instale o Confluent Cloud CLI
-```
-$ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
-```
-
-**Verifica a instalação**
-```
-$ confluent
-```  
-
 <details>
   <summary>Para usuários do Windows</summary><br>
 
@@ -91,6 +71,26 @@ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 	
 4. Acesse o terminal. Na linha de comando, verifique se o _Mongosh_ e o _Confluent Cloud CLI_ foram instalados corretamente.  
 </details>
+
+1. Instale o MongoSH
+```
+$ yum install -y mongodb-mongosh
+```
+
+**Verifica a instalação**
+```
+$ mongosh
+```
+
+2. Instale o Confluent Cloud CLI
+```
+$ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
+```
+
+**Verifica a instalação**
+```
+$ confluent
+```  
 
 :heavy_check_mark: Uma conta gratuita no MongoDB Atlas 
 
