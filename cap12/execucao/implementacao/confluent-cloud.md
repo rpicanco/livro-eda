@@ -10,11 +10,11 @@
 confluent login --save --no-browser
 ```
 
-1. Coloque seu _email_ usado na criação da conta do _Confluent Cloud_;
-2. Abra a URL gerada no _browser_;
-3. Copie o código gerado no _browser_ e cole no terminal.
+:pencil2: Coloque seu _email_ usado na criação da conta do _Confluent Cloud_;
+:pencil2: Abra a URL gerada no _browser_;
+:pencil2: Copie o código gerado no _browser_ e cole no terminal.
 
-Aparecerá uma mensagem: **Logged in as "<<seu email>>" for organization "<<id da sua organização>>"**.
+Aparecerá uma mensagem: **Logged in as <<seu email>> for organization <<id da sua organização>>**.
 
 ### Kafka Broker
 
@@ -24,13 +24,11 @@ Aparecerá uma mensagem: **Logged in as "<<seu email>>" for organization "<<id d
 
 <img src="/cap12/imagens/cluster-kafka.png">
 
-2. No cluster, crie o tópico **localizacoes** com 1 partição no menu à esquerda **Topics**.
+2. Entre no cluster. Vá em **Topics** do menu à esquerda e crie o tópico **localizacoes** com 1 partição
 	
 	* **Define a data contract**: skip
-	
-<p align="justify">
-   Agora, vamos simular o envio das informações do _GPS_ dos caminhões produzindo eventos no tópico **localizacoes**. Para o nosso projeto simplificado, vamos adicionar apenas algumas informações de localização. Mas imagine o _GPS_ dos caminhões publicando fluxo contínuo de eventos de localização (a cada 5 segundos, por exemplo) de cada caminhão.
-</p>
+
+Agora, vamos simular o envio das informações do _GPS_ dos caminhões produzindo eventos no tópico **localizacoes**. Para o nosso projeto simplificado, vamos adicionar apenas algumas informações de localização. Mas imagine o _GPS_ dos caminhões publicando fluxo contínuo de eventos de localização (a cada 5 segundos, por exemplo) de cada caminhão.
 
 3. No terminal, crie uma _API Key_ para podermos produzir os eventos simulando _GPS_ dos caminhões.
 
@@ -78,7 +76,7 @@ TODO: Colocar imagem
 
 :point_right: Caso não consiga visualizar as mensagens, busque no filtro:
 
-	**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
+**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
 	
 ### Connect
 
@@ -93,7 +91,7 @@ TODO: Colocar imagem
 4. Escolha a opção **Use an existing API Key**
 	
 	* Coloque a _API key_ criada anteriormente;
-	* Coloque a _API secret_ criada anteriormente
+	* Coloque a _API secret_ criada anteriormente.
 	
 5. Preencha os seguintes valores do formulário **MongoDB Atlas database details**
 
@@ -112,6 +110,7 @@ TODO: Colocar imagem
 	* Altere o valor **Copy existing data** para true;
 	* Em **Transforms** -> **Single Message Transform**, clique em _Add SMT_
 	* Adicione 4 **Single Message Transform**
+	
 	
 	```
 	Transform type: ExtractField$Value
@@ -148,7 +147,7 @@ TODO: Colocar imagem
 	
 :point_right: Caso não consiga visualizar as mensagens, busque no filtro:
 
-	**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
+**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
 	
 ### kSQLDB
 
@@ -181,16 +180,16 @@ WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'localizacoes');
 
 :point_right: O stream **localizacoes_stream** é onde iremos armazenar todos os eventos publicados no tópico **localizacao**.
 
-:point_right: Observe os dois campos no resultado:
-	* **status**: SUCCESS,
+:point_right: Observe os dois campos no resultado:<br>
+	* **status**: SUCCESS,<br>
 	* **message**: Stream created
 	
 7. Para testar, busque as informações no stream recém criado
 
 ```
-select * from LOCALIZACOES_STREAM EMIT CHANGES;
+select * from LOCALIZACOES_STREAM EMIT CHANGES;<br>
 ```
-	* **auto.offset.reset**: Earliest
+* **auto.offset.reset**: Earliest
 
 :point_right: Se publicarmos um evento no tópico **localizacoes**, o stream **localizacoes_stream** será notificado em tempo real.
 
@@ -203,8 +202,8 @@ CREATE TABLE veiculos (veiculo_id VARCHAR PRIMARY KEY, nome_motorista VARCHAR) W
 :point_right: A tabela _veiculos_ é onde iremos armazenar o nome do motorista que está dirigindo o caminhão naquele momento.
 
 :point_right: Observe os dois campos no resultado:
-	* **status**: SUCCESS,
-	* **message**: Table created
+* **status**: SUCCESS,
+* **message**: Table created
 	
 9. Para testar, busque as informações na tabela recém criada
 
@@ -213,11 +212,9 @@ select * from VEICULOS EMIT CHANGES;
 ```
 	* **auto.offset.reset**: Earliest
 
-<p align="justify">
 Diferentemente do comportamento do _stream_, as informações na tabela são atualizadas, e não anexadas no final do log (_append-only_). Sempre veremos o estado atual do veículo em relação ao motorista que está dirigindo. Por exemplo, se atualizarmos o nome do motorista do veículo com ID 10 para _Roberto_ na tabela do _MongoDB_, será anexada no tópico _db.trackerja-db.veiculos_ o evento dessa atualização, entretanto, na tabela de _veículos_ do _ksqlDB_, o registro do veículo com ID 10 não será mais o _João da Silva_ e sim, o motorista _Roberto_.
 
-Com as informações das localizações no _stream_ _localizacoes_stream_ e a associação do veículo com o nome do motorista na tabela _veiculos_, podemos criar um novo tópico chamado _localizacoes_enriquecidas_ com as informações das localizações dos caminhões enviados pelo _GPS_ com o nome do motorista que está dirigindo. 
-</p>
+Com as informações das localizações no _stream_ _localizacoes_stream_ e a associação do veículo com o nome do motorista na tabela _veiculos_, podemos criar um novo tópico chamado _localizacoes_enriquecidas_ com as informações das localizações dos caminhões enviados pelo _GPS_ com o nome do motorista que está dirigindo.
 
 10. Na aba **Editor**, vamos criar o _stream_ _localizacoes_enriquecidas_stream_ no _ksqlDB_ e criar/associar ao tópico _localizacoes_enriquecidas_ no Kafka. Se o tópico não existir, ele será criado automaticamente no Kafka.
 
@@ -234,9 +231,9 @@ CREATE STREAM localizacoes_enriquecidas_stream WITH (kafka_topic = 'localizacoes
       JOIN veiculos ve ON lo.veiculo_id = ve.veiculo_id;
 ```
 
-:point_right: Observe os dois campos no resultado:
-	* **status**: SUCCESS,
-	* **message**: Stream created
+:point_right: Observe os dois campos no resultado:<br>
+* **status**: SUCCESS,<br>
+* **message**: Stream created
 	
 11. Vá em **Topics** do menu à esquerda para verificar se o tópico _localizacoes_enriquecidas_ foi criado corretamente com os devidos valores.
 
@@ -244,4 +241,4 @@ TODO: Colocar imagem
 
 :point_right: Caso não consiga visualizar as mensagens, busque no filtro:
 
-	**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
+**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
