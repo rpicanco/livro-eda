@@ -40,10 +40,8 @@ $ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 $ confluent
 ```  
 
-:point_right: Para usuários do _Windows_
-
 <details>
-  <summary>Passo a passo</summary><br>
+  <summary>Para usuários do Windows</summary><br>
 
 Caso você esteja usando o sistema operacional _Windows_, você pode criar uma instância gratuita do EC2 da _AWS_ para executar os comandos no _Linux_. 
 
