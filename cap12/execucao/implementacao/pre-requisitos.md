@@ -4,6 +4,10 @@
 
 1. Instale o _MongoSH_
 ```
+$ yum update -y
+$ touch /etc/yum.repos.d/mongodb-org-5.0.repo
+$ chmod 746 /etc/yum.repos.d/mongodb-org-5.0.repo
+$ echo "[mongodb-org-5.0] name=MongoDB Repository baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/5.0/x86_64/gpgcheck=1enabled=1 gpgkey=https://pgp.mongodb.com/server-5.0.asc" >> /etc/yum.repos.d/mongodb-org-5.0.repo
 $ yum install -y mongodb-mongosh
 ```
 
@@ -52,6 +56,6 @@ $ confluent
 :loudspeaker: É permitido apenas o cadastro com email corporativo;<br>
 :loudspeaker: O teste gratuito (_trial_) é de 30 dias (mais que o suficiente para o nosso projeto).
 
-### Ambiente
+### Ambiente de execução
 
 <img src="/cap12/imagens/ambiente-execucao.png">
