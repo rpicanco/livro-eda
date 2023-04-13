@@ -210,7 +210,7 @@ CREATE TABLE veiculos (veiculo_id VARCHAR PRIMARY KEY, nome_motorista VARCHAR) W
 ```
 select * from VEICULOS EMIT CHANGES;
 ```
-	* **auto.offset.reset**: Earliest
+* **auto.offset.reset**: Earliest
 
 Diferentemente do comportamento do _stream_, as informações na tabela são atualizadas, e não anexadas no final do log (_append-only_). Sempre veremos o estado atual do veículo em relação ao motorista que está dirigindo. Por exemplo, se atualizarmos o nome do motorista do veículo com ID 10 para _Roberto_ na tabela do _MongoDB_, será anexada no tópico _db.trackerja-db.veiculos_ o evento dessa atualização, entretanto, na tabela de _veículos_ do _ksqlDB_, o registro do veículo com ID 10 não será mais o _João da Silva_ e sim, o motorista _Roberto_.
 
