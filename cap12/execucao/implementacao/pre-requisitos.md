@@ -1,5 +1,13 @@
 <h1>Pré-requisitos</h1>
 
+:one: [Sistema operacional Linux](#sistema-operacional-linux)
+
+:two: [Uma conta gratuita no MongoDB Atlas](#uma-conta-gratuita-no-mongodb-atlas)
+
+:three: [Uma conta gratuita no Confluent Cloud](#uma-conta-gratuita-no-confluent-cloud)
+
+:four: [Uma conta gratuita na starTree](#uma-conta-gratuita-na-startree)
+
 ### Sistema operacional Linux 
 
 1. Instale o _MongoSH_
