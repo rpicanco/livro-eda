@@ -1,4 +1,4 @@
-<h2>Pré-requisitos</h2>
+<h1>Pré-requisitos</h1>
 
 ### Sistema operacional Linux 
 
