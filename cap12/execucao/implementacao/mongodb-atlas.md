@@ -40,7 +40,7 @@
 4. Conecte ao cluster **RastreamentoFrota** via _mongosh_
 
 	* Na Interface gráfica em **Deployment** -> **Database**, clique em _Connect_ no **RastreamentoFrota**;
-	* Expande a primeira opção **Connect with the MongoDB Shell**
+	* Expande a **Shell**
 	* Copie a _Connection String_
 		* Substitue _myFirstDatabase_ por **trackerja-db** (será criado o banco de dados nesse momento) e adicione a opção `--password mongo`
 	* Execute no terminal do seu sistema operacional:
@@ -58,18 +58,28 @@ $ db.veiculos.createIndex( { "veiculo_id": 1 }, { unique: true } )
 6. Crie a coleção de _veículos_ e insere com o nome dos motoristas
 
 ```
-$ db.veiculos.insertOne( { veiculo_id: 10, nome_motorista: "João da Silva" } );
-$ db.veiculos.insertOne( { veiculo_id: 20, nome_motorista: "José Duarte" } );
-$ db.veiculos.insertOne( { veiculo_id: 30, nome_motorista: "Maria Aparecida" } );
+db.veiculos.insertOne( { veiculo_id: 10, nome_motorista: "João da Silva" } );
+```
+
+```
+db.veiculos.insertOne( { veiculo_id: 20, nome_motorista: "José Duarte" } );
+```
+
+```
+db.veiculos.insertOne( { veiculo_id: 30, nome_motorista: "Maria Aparecida" } );
 ```
 
 7. Lista a coleção de _veículos_ para verificar se tudo está OK.
 
 ```
-$ db.veiculos.find({}, {veiculo_id:1, nome_motorista:1, _id:0})
+$ db.veiculos.find({}, {veiculo_id:1, nome_motorista:1, _id:0}) 
+```
+
+Resultado esperado:
 [
   { veiculo_id: 10, nome_motorista: 'João da Silva' },
   { veiculo_id: 20, nome_motorista: 'José Duarte' },
   { veiculo_id: 30, nome_motorista: 'Maria Aparecida' }
-] 
-```
+]
+
+:point_right: Para sair da linha de comando do mongosh: `ctrl+z`
