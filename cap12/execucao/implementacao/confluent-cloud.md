@@ -1,8 +1,16 @@
 <h1>Confluent Cloud</h1>
 
+:heavy_check_mark: [Configuração do Confluent CLI](#configuracao-do-confluent-cli)
+
+:heavy_check_mark: [Kafka Broker](#kafka-broker)
+
+:heavy_check_mark: [Connect](#Connect)
+
+:heavy_check_mark: [KSQLDB](#ksqldb)
 
 
-### Configuração do Confluent CLI
+
+## Configuração do Confluent CLI
 
 1. No terminal, execute o comando
 
@@ -11,12 +19,12 @@ confluent login --save --no-browser
 ```
 
 :pencil2: Coloque seu _email_ usado na criação da conta do _Confluent Cloud_;<br>
-:pencil2: Abra a URL gerada no _browser_;<br>
-:pencil2: Copie o código gerado no _browser_ e cole no terminal.<br>
+:pencil2: Abra a URL gerada no navegador;<br>
+:pencil2: Copie o código gerado no navegador e cole no terminal.<br>
 
 Aparecerá uma mensagem: **Logged in as <<seu email>> for organization <<id da sua organização>>**.
 
-### Kafka Broker
+## Kafka Broker
 
 **Objetivo**: Configurar um _cluster_ Kafka para criar os tópicos necessários para nossa solução. Iremos simular o envio das informações de _GPS_ dos caminhões publicando eventos diretamente no tópico de _localizacoes_.
 
@@ -28,7 +36,7 @@ Aparecerá uma mensagem: **Logged in as <<seu email>> for organization <<id da s
 	
 	* **Define a data contract**: skip
 
-Agora, vamos simular o envio das informações do _GPS_ dos caminhões produzindo eventos no tópico **localizacoes**. Para o nosso projeto simplificado, vamos adicionar apenas algumas informações de localização. Mas imagine o _GPS_ dos caminhões publicando fluxo contínuo de eventos de localização (a cada 5 segundos, por exemplo) de cada caminhão.
+Agora, vamos simular o envio das informações do _GPS_ dos caminhões produzindo eventos no tópico **localizacoes**. Para o nosso projeto simplificado, vamos adicionar apenas algumas informações de localização. Mas imagine o sistema do _GPS_ dos caminhões publicando fluxo contínuo de eventos de localização (a cada 5 segundos, por exemplo) de cada caminhão.
 
 3. No terminal, crie uma _API Key_ para podermos produzir os eventos simulando _GPS_ dos caminhões.
 
@@ -38,7 +46,7 @@ $ confluent api-key create --resource <<id do cluster>>
 
 :point_right: Para copiar o ID do cluster, vá na interface gráfica do _Confluent Cloud_, em **Cluster Overview** -> **Cluster settings**.
 
-:point_right: Copie a _API Key_ e _API secret_ gerada, pois iremos utilizá-las mais pra frente.
+:pencil2: Copie a _API Key_ e _API secret_ gerada, pois iremos utilizá-las mais pra frente.
 
 4. Associe a _API Key_ gerada ao cluster
 
@@ -52,19 +60,19 @@ $ confluent api-key use <<api key>> --resource <<id do cluster>>
 	* localizacao_veiculo_20.json;
 	* localizacao_veiculo_30.json.
 	
-6. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do caminhão, através do _GPS_ do caminhão com _veiculo_id_ 10.
+6. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do sistema do _GPS_ do caminhão com o identificador 10.
 
 ```
 $ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_10.json
 ```
 
-7. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do caminhão, através do _GPS_ do caminhão com _veiculo_id_ 20.
+7. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do sistema do _GPS_ do caminhão com o identificador 20.
 
 ```
 $ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_20.json
 ```
 
-8. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do caminhão, através do _GPS_ do caminhão com _veiculo_id_ 30.
+8. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do sistema do _GPS_ do caminhão com o identificador 30.
 
 ```
 $ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_30.json
@@ -74,11 +82,9 @@ $ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --clust
 
 TODO: Colocar imagem
 
-:point_right: Caso não consiga visualizar as mensagens, busque no filtro:
-
-**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
+:point_right: Caso não consiga visualizar as mensagens, busque no filtro: **Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
 	
-### Connect
+## Connect
 
 **Objetivo**: Criar um _source conector_ do _MongoDB_ para conectar na coleção de _veículos_. O conector irá alimentar um tópico gerado automaticamente com os dados existentes na coleção no _MongoDB_. E a cada inserção do nome do motorista associado ao veículo no _MongoDB_, irá gerar um evento neste tópico em tempo real.
 
@@ -143,11 +149,9 @@ TODO: Colocar imagem
 	* **trackerja-db**: o banco de dados em questão
 	* **veiculos**: a coleção criada no MongoDB
 	
-:point_right: Caso não consiga visualizar as mensagens, busque no filtro:
-
-**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
+:point_right: Caso não consiga visualizar as mensagens, busque no filtro: **Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
 	
-### kSQLDB
+## KSQLDB
 
 **Objetivo**: Publicar no tópico **localizacoes_enriquecidas** a junção das informações das localizações enviadas pelo _GPS_ dos caminhões através do tópico de **localizacoes** com os nomes dos motoristas que foram recuperados da coleção de _veículos_ do banco de dados através do conector do _MongoDB_ para tópico **db.trackerja-db.veiculos**.
 
@@ -179,8 +183,8 @@ WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'localizacoes');
 :point_right: O stream **localizacoes_stream** é onde iremos armazenar todos os eventos publicados no tópico **localizacao**.
 
 :point_right: Observe os dois campos no resultado:<br>
-	* **status**: SUCCESS,<br>
-	* **message**: Stream created
+* **status**: SUCCESS,<br>
+* **message**: Stream created
 	
 7. Para testar, busque as informações no stream recém criado
 
@@ -237,6 +241,4 @@ CREATE STREAM localizacoes_enriquecidas_stream WITH (kafka_topic = 'localizacoes
 
 TODO: Colocar imagem
 
-:point_right: Caso não consiga visualizar as mensagens, busque no filtro:
-
-**Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
+:point_right: Caso não consiga visualizar as mensagens, busque no filtro: **Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
