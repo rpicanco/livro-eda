@@ -10,9 +10,9 @@
 confluent login --save --no-browser
 ```
 
-:pencil2: Coloque seu _email_ usado na criação da conta do _Confluent Cloud_;
-:pencil2: Abra a URL gerada no _browser_;
-:pencil2: Copie o código gerado no _browser_ e cole no terminal.
+:pencil2: Coloque seu _email_ usado na criação da conta do _Confluent Cloud_;<br>
+:pencil2: Abra a URL gerada no _browser_;<br>
+:pencil2: Copie o código gerado no _browser_ e cole no terminal.<br>
 
 Aparecerá uma mensagem: **Logged in as <<seu email>> for organization <<id da sua organização>>**.
 
@@ -109,9 +109,7 @@ TODO: Colocar imagem
 	
 	* Altere o valor **Copy existing data** para true;
 	* Em **Transforms** -> **Single Message Transform**, clique em _Add SMT_
-	* Adicione 4 **Single Message Transform**
-	
-	
+	* Adicione 4 **Single Message Transform**<br>	
 	```
 	Transform type: ExtractField$Value
 	Field: fullDocument
