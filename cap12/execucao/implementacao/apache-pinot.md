@@ -25,8 +25,8 @@ Integrar o _cluster_ do _Apache Pinot_ com o tópico **localizacoes_enriquecidas
 
 	Clique no Botão _Add new dataset_
 
-		* **Dataset name**: localizacoes
-		* **Which data do you want to use?**: Provide my own data
+	* **Dataset name**: localizacoes
+	* **Which data do you want to use?**: Provide my own data
 	
 	Clique em _Next_.
 	
