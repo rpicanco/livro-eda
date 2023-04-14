@@ -11,35 +11,48 @@
 ### Sistema operacional Linux 
 
 1. Instale o _MongoSH_
+
 ```
-$ yum update -y
-$ touch /etc/yum.repos.d/mongodb-org-5.0.repo
-$ chmod 746 /etc/yum.repos.d/mongodb-org-5.0.repo
-$ echo "[mongodb-org-5.0]
+yum update -y
+```
+
+```
+touch /etc/yum.repos.d/mongodb-org-5.0.repo
+```
+
+```
+chmod 746 /etc/yum.repos.d/mongodb-org-5.0.repo
+```
+
+```
+echo "[mongodb-org-5.0]
 name=MongoDB Repository
 baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/5.0/x86_64/
 gpgcheck=1
 enabled=1
 gpgkey=https://pgp.mongodb.com/server-5.0.asc
 " >> /etc/yum.repos.d/mongodb-org-5.0.repo
-$ yum install -y mongodb-mongosh
+```
+
+```
+yum install -y mongodb-mongosh
 ```
 
 2. Instale o _Confluent Cloud CLI_
 ```
-$ curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
+curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
 ```
 
 3. No terminal, verifique se o _Mongosh_ e o _Confluent Cloud CLI_ foram instalados corretamente.
 
 **Verifica Mongosh**
 ```
-$ mongosh
+mongosh
 ```
 
 **Verifica Confluent Cloud CLI**
 ```
-$ confluent
+confluent
 ```
 
 >

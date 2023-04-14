@@ -46,13 +46,13 @@
 	* Execute no terminal do seu sistema operacional:
 	
 	```
-	$ mongosh "mongodb+srv://rastreamentofrota.<<ID>>.mongodb.net/trackerja-db" --apiVersion 1 --username mongo --password mongo
+	mongosh "mongodb+srv://rastreamentofrota.<<ID>>.mongodb.net/trackerja-db" --apiVersion 1 --username mongo --password mongo
 	```
 	
 5. Crie um índice para o campo _veiculo_id_ na coleção de _veículos_;
 
 ```
-$ db.veiculos.createIndex( { "veiculo_id": 1 }, { unique: true } )
+db.veiculos.createIndex( { "veiculo_id": 1 }, { unique: true } )
 ```
 
 6. Crie a coleção de _veículos_ e insere com o nome dos motoristas
@@ -72,7 +72,7 @@ db.veiculos.insertOne( { veiculo_id: 30, nome_motorista: "Maria Aparecida" } );
 7. Lista a coleção de _veículos_ para verificar se tudo está OK.
 
 ```
-$ db.veiculos.find({}, {veiculo_id:1, nome_motorista:1, _id:0}) 
+db.veiculos.find({}, {veiculo_id:1, nome_motorista:1, _id:0}) 
 ```
 
 Resultado esperado:

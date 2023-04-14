@@ -41,7 +41,7 @@ Agora, vamos simular o envio das informações do _GPS_ dos caminhões produzind
 3. No terminal, crie uma _API Key_ para podermos produzir os eventos simulando _GPS_ dos caminhões.
 
 ```
-$ confluent api-key create --resource <<id do cluster>>
+confluent api-key create --resource <<id do cluster>>
 ```
 
 :point_right: Para copiar o ID do cluster, vá na interface gráfica do _Confluent Cloud_, em **Cluster Overview** -> **Cluster settings**.
@@ -51,7 +51,7 @@ $ confluent api-key create --resource <<id do cluster>>
 4. Associe a _API Key_ gerada ao cluster
 
 ```
-$ confluent api-key use <<api key>> --resource <<id do cluster>>
+confluent api-key use <<api key>> --resource <<id do cluster>>
 ```
 
 5. Faça o download dos três arquivos disponíveis em https://github.com/rpicanco/livro-eda/tree/main/cap12/arquivos.
@@ -63,19 +63,19 @@ $ confluent api-key use <<api key>> --resource <<id do cluster>>
 6. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do sistema do _GPS_ do caminhão com o identificador 10.
 
 ```
-$ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_10.json
+confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_10.json
 ```
 
 7. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do sistema do _GPS_ do caminhão com o identificador 20.
 
 ```
-$ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_20.json
+confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_20.json
 ```
 
 8. No terminal, gere eventos no tópico **localizacoes** simulando o envio da localização do sistema do _GPS_ do caminhão com o identificador 30.
 
 ```
-$ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_30.json
+confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster <<id do cluster>> < localizacao_veiculo_30.json
 ```
 
 9. Verifique na interface gráfica do _Confluent Cloud_ se os eventos foram publicados com sucesso no tópico **localizacoes**.
