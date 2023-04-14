@@ -23,27 +23,45 @@ Integrar o _cluster_ do _Apache Pinot_ com o tópico **localizacoes_enriquecidas
 	
 3. Entre no **Data Manager** para configurar o **Data Source** a partir do tópico **localizacoes_enriquecidas** do _Apache Kafka_
 
-	Clique no Botão _Add new dataset_
+	Clique no Botão _Create a dataset_
 
-	* **Dataset name**: localizacoes
-	* **Which data do you want to use?**: Provide my own data
+	* **Select Connection Type**: Kafka
 	
-	Clique em _Next_.
+4. Clique no botão _Create a new connection_
 	
-4. Em **Data Source**, escolha _Streaming_;
-
-5. Escolha o _Kafka_
-
-	* **Select connection**: New connection
 	* **Connection name**: conexao-kafka-demo
 	* **Broker Url**: XXXX.confluent.cloud:9092 
 	* **Authentication Type**: SASL
 		* **Security Protocol**: SASL_SSL
 		* **SASL Mechanism**: PLAIN
 		* **Username**: _api-key_
-		* **Password**: _api-secret_
-		
+		* **Password**: _api-secret_	
+
 :point_right: Para pegar o _Broker Url_, vá na interface gráfica do _Confluent Cloud_ no menu à esquerda em **Cluster overview** -> **Cluster Settings** -> **Endpoints** -> **Bootstrap server**.
+	
+	Clique em _Create connection_ e em seguida, _next_.
+	
+4. Em **Data Details**
+
+	* **Dataset Description - name**: localizacoes
+	* **Kafka input format - Topic name**: localizacoes_enriquecidas
+	* **Kafka input format - Data format**: JSON
+	
+	Clique em _next_.
+	
+	Será exibido uma pré vissualização dos dados
+	
+<img src="/cap12/imagens/apache-pinot-pre-visualizacao.png">
+
+Clique em _next_.
+
+5. Em **Data Modeling**, deixa como está
+
+	Clique em _next_.
+
+	
+		
+
 
 6. Clique em _Test connection_ para testar a conexão com o _Apache Kafka_.
 
@@ -79,3 +97,13 @@ Clique em _Run Query_.
 Aparecerá a lista de localizações do veículo com ID 10.
 	
 TODO: imagem da querylista
+
+
+
+
+**ATUALIZAR**
+
+Select Connection Type
+	Kafka
+	
+Create new Conn
