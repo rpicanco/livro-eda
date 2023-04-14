@@ -80,7 +80,7 @@ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster
 
 9. Verifique na interface gráfica do _Confluent Cloud_ se os eventos foram publicados com sucesso no tópico **localizacoes**.
 
-TODO: Colocar imagem
+<img src="/cap12/imagens/topico-localizacoes.png">
 
 :point_right: Caso não consiga visualizar as mensagens, busque no filtro: **Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
 	
@@ -123,7 +123,7 @@ TODO: Colocar imagem
 	
 	```
 	Transform type: ReplaceField$Value
-	Field: _id
+	Field (exclude): _id
 	(deixe em branco os outros campos) 
 	```
 	
@@ -148,8 +148,10 @@ TODO: Colocar imagem
 	* **db**: o prefixo adicionado
 	* **trackerja-db**: o banco de dados em questão
 	* **veiculos**: a coleção criada no MongoDB
-	
+
 :point_right: Caso não consiga visualizar as mensagens, busque no filtro: **Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
+
+<img src="/cap12/imagens/topico-db-trackerja-db-veiculos.png">
 	
 ## KSQLDB
 
@@ -189,7 +191,7 @@ WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'localizacoes');
 7. Para testar, busque as informações no stream recém criado
 
 ```
-select * from LOCALIZACOES_STREAM EMIT CHANGES;<br>
+select * from LOCALIZACOES_STREAM EMIT CHANGES;
 ```
 * **auto.offset.reset**: Earliest
 
@@ -230,7 +232,7 @@ CREATE STREAM localizacoes_enriquecidas_stream WITH (kafka_topic = 'localizacoes
       lo.localizacao->longitude as longitude,
       lo.timestamp as timestamp
    FROM localizacoes_stream lo
-      JOIN veiculos ve ON lo.veiculo_id = ve.veiculo_id;
+      JOIN veiculos ve ON lo.veiculo_id = ve.veiculo_id emit changes;
 ```
 
 :point_right: Observe os dois campos no resultado:<br>
@@ -239,6 +241,6 @@ CREATE STREAM localizacoes_enriquecidas_stream WITH (kafka_topic = 'localizacoes
 	
 11. Vá em **Topics** do menu à esquerda para verificar se o tópico _localizacoes_enriquecidas_ foi criado corretamente com os devidos valores.
 
-TODO: Colocar imagem
+<img src="/cap12/imagens/topico-localizacoes-enriquecidas.png">
 
 :point_right: Caso não consiga visualizar as mensagens, busque no filtro: **Jump to offset**: digite 0 para aparecer a opção "0 / Partition: 0" para mostrar todas as mensagens geradas desde o início do log.
