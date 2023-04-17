@@ -18,7 +18,7 @@ Projeto 2 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
         <a href="/cap11/execucao/design-solucao/1-diagrama-arquitetura-solucao.md">Diagrama da arquitetura da solução</a>
       </li>
       <li>
-        <a href="/cap11/execucao/design-solucao/2-openapi.md">OpenAPI</a>
+        <a href="/cap11/contrato/openapi">OpenAPI</a>
       </li>      	  
     </ul>
 	<li>
