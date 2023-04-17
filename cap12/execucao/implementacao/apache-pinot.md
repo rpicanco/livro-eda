@@ -39,7 +39,7 @@ Integrar o _cluster_ do _Apache Pinot_ com o tópico **localizacoes_enriquecidas
 
 :point_right: Para pegar o _Broker Url_, vá na interface gráfica do _Confluent Cloud_ no menu à esquerda em **Cluster overview** -> **Cluster Settings** -> **Endpoints** -> **Bootstrap server**.
 	
-	Clique em _Create connection_ e em seguida, _next_.
+Clique em _Create connection_ e em seguida, _next_.
 	
 4. Em **Data Details**
 
@@ -58,35 +58,18 @@ Clique em _next_.
 5. Em **Data Modeling**, deixa como está
 
 	Clique em _next_.
-
 	
-		
+6. Em **Index & additional Config**, XXXX
 
-
-6. Clique em _Test connection_ para testar a conexão com o _Apache Kafka_.
-
-<img src="/cap12/imagens/apache-pinot-teste-conexao.png">
-
-Clique em _Next_.
-
-7. Em **Data Modeling**
-
-	* **Topic Name**: localizacoes_enriquecidas
-	* **Data Format**: JSON
+	Clique em _next_.
 	
-	Clique em _Next_.
-	
-8. Em **Additional Configuration**, não precisa fazer nada. Clica em _Next_
+7. Em **Review**, verifique as informações e clique em _Submit_
 
-9. Pode habilitar o **Preview Data** para verificar se os valores estão de acordo com as respectivas colunas.
+8. Entre no **My Apps** da interface gráfica da _StarTree_, vá em **Apache Pinot Console**
 
-	Clique em _Submit_.
-	
-10. No **My Apps** da interface gráfica da _StarTree_, vá em **Apache Pinot Console**
+9. Vá em **Query Console** e clique na tabela **localizacoes**
 
-11. Vá em **Query Console** e clique na tabela **localizacoes**
-
-12. Busque informações apenas do veículo com ID 10
+10. Busque informações apenas do veículo com ID 10
 
 ```
 select * from localizacoes where VEICULO_ID = 10
@@ -97,13 +80,3 @@ Clique em _Run Query_.
 Aparecerá a lista de localizações do veículo com ID 10.
 	
 TODO: imagem da querylista
-
-
-
-
-**ATUALIZAR**
-
-Select Connection Type
-	Kafka
-	
-Create new Conn
