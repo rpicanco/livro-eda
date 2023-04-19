@@ -65,9 +65,9 @@ Clique em _next_.
 	
 7. Em **Review**, verifique as informações e clique em _Create Dataset_
 
-8. Em **Dataset Summary**, clique em _Query console_
+8. Entre no **My Apps** da interface gráfica da _StarTree_, vá em **Apache Pinot Console**
 
-9. No **Query Console**, clique na tabela **localizacoes**
+9. Vá em **Query Console** e clique na tabela **localizacoes**
 
 10. Busque informações apenas do veículo com ID 10
 
@@ -80,7 +80,3 @@ Clique em _Run Query_.
 Aparecerá a lista de localizações do veículo com ID 10.
 	
 TODO: imagem da querylista
-
-
-
-curl -X POST "https://proxy.broker.pinot.rastreamentofrota.trackerja.startree.cloud/query/sql" -H "accept: application/json" -H "Content-Type: application/json" -d "select * from localizacoes where VEICULO_ID = 10"
