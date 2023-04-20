@@ -178,7 +178,7 @@ confluent kafka topic produce localizacoes --parse-key --delimiter ":" --cluster
 6. Na aba **Editor**, vamos criar nosso primeiro _stream_ **localizacoes_stream** no _ksqlDB_
 
 ```
-CREATE STREAM localizacoes_stream (veiculo_id VARCHAR, localizacao STRUCT<latitude DOUBLE, longitude DOUBLE>, timestamp BIGINT) 
+CREATE STREAM localizacoes_stream (veiculo_id VARCHAR, localizacao STRUCT<latitude DOUBLE, longitude DOUBLE>, datahora BIGINT) 
 WITH (VALUE_FORMAT = 'JSON', KAFKA_TOPIC = 'localizacoes');
 ```
 
@@ -227,7 +227,7 @@ Com as informações das localizações no _stream_ _localizacoes_stream_ e a as
 10. Na aba **Editor**, vamos criar o _stream_ _localizacoes_enriquecidas_stream_ no _ksqlDB_ e criar/associar ao tópico _localizacoes_enriquecidas_ no Kafka. Se o tópico não existir, ele será criado automaticamente no Kafka.
 
 ```
-CREATE STREAM localizacoes_enriquecidas_stream WITH (kafka_topic = 'localizacoes_enriquecidas', VALUE_FORMAT = 'JSON') AS SELECT lo.veiculo_id as id, AS_VALUE(lo.veiculo_id) as veiculo_id, ve.nome_motorista as motorista, lo.localizacao->latitude as latitude, lo.localizacao->longitude as longitude, lo.timestamp as timestamp FROM localizacoes_stream lo JOIN veiculos ve ON lo.veiculo_id = ve.veiculo_id emit changes;
+CREATE STREAM localizacoes_enriquecidas_stream WITH (kafka_topic = 'localizacoes_enriquecidas', VALUE_FORMAT = 'JSON') AS SELECT lo.veiculo_id as id, AS_VALUE(lo.veiculo_id) as veiculo_id, ve.nome_motorista as motorista, lo.localizacao->latitude as latitude, lo.localizacao->longitude as longitude, lo.datahora as datahora FROM localizacoes_stream lo JOIN veiculos ve ON lo.veiculo_id = ve.veiculo_id emit changes;
 ```
 
 Clique em _Run query_ (se tiver executado uma query antes, clique em _Stop_ para o botão voltar a ficar visivel)
