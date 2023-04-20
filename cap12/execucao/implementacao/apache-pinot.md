@@ -79,8 +79,4 @@ Clique em _Run Query_.
 	
 Aparecerá a lista de localizações do veículo com ID 10.
 	
-TODO: imagem da querylista
-
-
-
-curl -X POST "https://proxy.broker.pinot.rastreamentofrota.trackerja.startree.cloud/query/sql" -H "accept: application/json" -H "Content-Type: application/json" -d "select * from localizacoes where VEICULO_ID = 10"
+<img src="/cap12/imagens/resultado_query_result.png">

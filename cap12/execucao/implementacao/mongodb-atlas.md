@@ -21,8 +21,10 @@
 	
 	Clique em _Create_
 	
+	Em How would you like to authenticate your connection?, escolha **Username and password**
+	
 	* Crie um usuário
-		* **User**: mongo
+		* **Username**: mongo
 		* **Password**: mongo
 		
 	Clique em _Create User_
