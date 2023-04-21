@@ -10,7 +10,7 @@
 
 1. Salve a pesquisa das coordenadas geográficas (latitude e longitude) realizada através do console do _Apache Pinot_ no formato `CSC`.
 
-![Apache Pinot Query Result csv {w=70%}](/cap12/imagens/apache-pinot-query-result-csv.png)
+<img src="/cap12/imagens/apache-pinot-query-result-csv.png" alt="Botão CSV no resultado da pesquisa do Apache Pinot" width="200" height="100">
 
 2. Por algum motivo, o _Apache Pinot_ adicina alguns caracteres no nome das colunas no arquivo `CSC`. Remova-os e save o arquivo.
 
