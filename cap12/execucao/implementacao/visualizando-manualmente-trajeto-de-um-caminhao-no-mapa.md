@@ -34,6 +34,6 @@
 
 9. Arraste o marcador (destacado em azul na imagem anterior) para a primeira data e hora percorrida.
 
-<img src="/cap12/imagens/primeira-data-hora-percorrida.png" alt="Primeira data e hora percorrida" width="500" height="600">
+<img src="/cap12/imagens/primeira-data-hora-percorrida.png" alt="Primeira data e hora percorrida" width="600" height="300">
 
 10. Clique no botão _play_
