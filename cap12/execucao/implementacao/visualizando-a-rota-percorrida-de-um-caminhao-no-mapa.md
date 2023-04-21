@@ -38,4 +38,4 @@
 
 10. Clique no botão _play_
 
-<img src="/cap12/imagens/visualizando-o-trajeto-no-mapa.gif">
+![Visualizando o trajeto no mapa](/cap12/imagens/visualizando-o-trajeto-no-mapa.gif)
