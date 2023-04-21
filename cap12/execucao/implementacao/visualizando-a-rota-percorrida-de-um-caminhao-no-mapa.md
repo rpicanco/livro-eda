@@ -8,11 +8,11 @@
 
 ## Passo a passo
 
-1. Salve a pesquisa das coordenadas geográficas (latitude e longitude) realizada através do console do _Apache Pinot_ no formato `CSC`.
+1. Salve a pesquisa das coordenadas geográficas (latitude e longitude) realizada através do console do _Apache Pinot_ no formato `CSV`.
 
 <img src="/cap12/imagens/apache-pinot-query-result-csv.png" alt="Botão CSV no resultado da pesquisa do Apache Pinot" width="700" height="400">
 
-2. Por algum motivo, o _Apache Pinot_ adicina alguns caracteres no nome das colunas no arquivo `CSC`. Remova-os e save o arquivo.
+2. Por algum motivo, o _Apache Pinot_ adicina alguns caracteres no nome das colunas no arquivo `CSV`. Remova-os e save o arquivo.
 
 <img src="/cap12/imagens/query-result-csv-header.png" alt="Cabeçalho do arquivo CSV gerado">
 
@@ -37,5 +37,7 @@
 <img src="/cap12/imagens/primeira-data-hora-percorrida.png" alt="Primeira data e hora percorrida" width="600" height="200">
 
 10. Clique no botão _play_
+
+## O GIF
 
 ![Visualizando o trajeto no mapa](/cap12/imagens/visualizando-o-trajeto-no-mapa.gif)
