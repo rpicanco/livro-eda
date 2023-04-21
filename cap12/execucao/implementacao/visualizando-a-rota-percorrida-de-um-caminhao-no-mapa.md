@@ -38,6 +38,4 @@
 
 10. Clique no botão _play_
 
-<img src="/cap12/imagens/visualizando-a-rota-percorrida-de-um-caminhao-no-mapa.png">
-
-
+<img src="/cap12/imagens/visualizando-o-trajeto-no-mapa.gif">
