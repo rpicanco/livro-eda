@@ -230,7 +230,7 @@ Com as informações das localizações no _stream_ _localizacoes_stream_ e a as
 CREATE STREAM localizacoes_enriquecidas_stream WITH (kafka_topic = 'localizacoes_enriquecidas', VALUE_FORMAT = 'JSON') AS SELECT lo.veiculo_id as id, AS_VALUE(lo.veiculo_id) as veiculo_id, ve.nome_motorista as motorista, lo.localizacao->latitude as latitude, lo.localizacao->longitude as longitude, lo.datahora as datahora FROM localizacoes_stream lo JOIN veiculos ve ON lo.veiculo_id = ve.veiculo_id emit changes;
 ```
 
-Clique em _Run query_ (se tiver executado uma query antes, clique em _Stop_ para o botão voltar a ficar visivel)
+Clique em _Run query_ (se tiver executado uma query antes, clique em _Stop_ para o botão voltar a ficar habilitado)
 
 :point_right: Observe os dois campos no resultado:<br>
 * **status**: SUCCESS,<br>

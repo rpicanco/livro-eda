@@ -55,8 +55,11 @@ Clique em _Create connection_ e em seguida, _next_.
 
 Clique em _next_.
 
-5. Em **Data Modeling**, deixa como está
+5. Em **Data Modeling**, alterar o tipo da coluna DATAHORA
 
+	* **Column name**: DATAHORA
+	* **Field type**: DATETIME	
+	
 	Clique em _next_.
 	
 6. Em **Index & additional Config**, deixa como está
@@ -72,7 +75,7 @@ Clique em _next_.
 10. Busque informações apenas do veículo com ID 10
 
 ```
-select * from localizacoes where VEICULO_ID = 10
+select VEICULO_ID, MOTORISTA, LATITUDE, LONGITUDE, DATAHORA from localizacoes where VEICULO_ID = 10 limit 50
 ```
 
 Clique em _Run Query_.
