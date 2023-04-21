@@ -22,7 +22,7 @@
 
 5. Em **browse your files**, importe o arquivo com as coordenadas para visualizar a rota percorrida do caminhão com número de identificação 10 no mapa.
 
-<img src="/cap12/imagens/visualizacao-trajeto-caminhao-dez-no-mapa.png" alt="Visualização do trajeto do caminhão no mapa" width="600" height="300">
+<img src="/cap12/imagens/visualizacao-trajeto-caminhao-dez-no-mapa.png" alt="Visualização do trajeto do caminhão no mapa" width="600" height="200">
 
 6. Para adicionar o efeito para simular o caminhão percorrendo o trajeto, vá em **Filters**.
 
@@ -34,6 +34,6 @@
 
 9. Arraste o marcador (destacado em azul na imagem anterior) para a primeira data e hora percorrida.
 
-<img src="/cap12/imagens/primeira-data-hora-percorrida.png" alt="Primeira data e hora percorrida" width="600" height="300">
+<img src="/cap12/imagens/primeira-data-hora-percorrida.png" alt="Primeira data e hora percorrida" width="600" height="200">
 
 10. Clique no botão _play_
