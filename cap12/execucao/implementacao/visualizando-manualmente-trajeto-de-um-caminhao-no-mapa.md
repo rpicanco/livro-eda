@@ -3,14 +3,14 @@
 ## Objetivo 
 
 <p align="justify">
-  Visualizar a rota percorrida por um determinado caminhão em um mapa. Vamos também um efeito para simular o caminhão percorrendo o trajeto Rio de janeiro a São Paulo em tempo real.
+  Visualizar a rota percorrida por um determinado caminhão em um mapa. Vamos também criar um efeito para simular o caminhão percorrendo a rota Rio de janeiro X São Paulo em tempo real.
 </p>
 
 ## Passo a passo
 
 1. Salve a pesquisa das coordenadas geográficas (latitude e longitude) realizada através do console do _Apache Pinot_ no formato `CSC`.
 
-<img src="/cap12/imagens/apache-pinot-query-result-csv.png">
+![Apache Pinot Query Result csv {w=70%}](/cap12/imagens/apache-pinot-query-result-csv.png)
 
 2. Por algum motivo, o _Apache Pinot_ adicina alguns caracteres no nome das colunas no arquivo `CSC`. Remova-os e save o arquivo.
 
