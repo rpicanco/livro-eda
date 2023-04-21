@@ -55,8 +55,17 @@ Clique em _Create connection_ e em seguida, _next_.
 
 Clique em _next_.
 
-5. Em **Data Modeling**, alterar o tipo da coluna DATAHORA
+5. Em **Data Modeling**, vamos criar uma nova coluna de data e hora e alterar o tipo da coluna DATAHORA
 
+	Clique em _Add New Column_
+	
+	* **Column name**: TIMESTAMP
+	* **Field type**: DATETIME
+	
+	Clique em _Test transformation_ e em seguida em _Create Column_
+	
+	Na tabela das colunas, altere o tipo da coluna DATAHORA para DATETIME
+	
 	* **Column name**: DATAHORA
 	* **Field type**: DATETIME	
 	
@@ -82,4 +91,4 @@ Clique em _Run Query_.
 	
 Aparecerá a lista de localizações do veículo com ID 10.
 	
-<img src="/cap12/imagens/resultado_query_result.png">
+<img src="/cap12/imagens/apache-pinot-query-result.png">
