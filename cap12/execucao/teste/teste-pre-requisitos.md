@@ -3,9 +3,9 @@
 ## Objetivo 
 
 <p align="justify">
-  Para conseguirmos testar a solução através da coleção do _Postman_, é necessário definir os valores das variáveis de ambiente no postman correspondente a URL e o token da API do Apache Pinot.  
+  Para conseguirmos testar a solução através da coleção do Postman, é necessário definir os valores das variáveis de ambiente no postman correspondente a URL e o token da API do Apache Pinot.  
   
-  **URL_APACHE_PINOT**: a URL
+  **URL_APACHE_PINOT**: a URL<br>
   **API_KEY_APACHE_PINOT**: o token
 </p> 
 
@@ -21,7 +21,7 @@
 
 3. Na aba **services**, copia o conteúdo da coluna **URL** da linha do cluster com o nome **pinot**.
 
-> O padrão do nome é: proxy.broker.<<nome_do_cluster>>.<<nome_organização>>.<<nome_do_workspace>>.startree.cloud
+> O padrão do nome é: proxy.broker.**<<nome_do_cluster>>**.**<<nome_do_workspace>>**.**<<nome_organização>>**.startree.cloud
 
 ### Gerar API Token para utilizar o Pinot Rest API
 
