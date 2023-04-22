@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "184febdb-2c2e-4a9e-b02d-8ccfab132efb",
+		"name": "Consultar a rota percorrida de um determinado caminhão da minha frota com sucesso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Apache Pinot Query",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const arrayResult = jsonData.resultTable.rows;\r",
+							"\r",
+							"let firstElement = arrayResult[0];\r",
+							"let lastElement = arrayResult[arrayResult.length - 1];\r",
+							"\r",
+							"let firstDataHora = firstElement[firstElement.length - 1]; \r",
+							"let lastDataHora = lastElement[lastElement.length - 1];\r",
+							"\r",
+							"pm.test('Saída as 6h do Rio de Janeiro', function () {\r",
+							"    pm.expect(firstDataHora).to.eql(1681981200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Chegada as 8:55h em São Paulo', function () {\r",
+							"    pm.expect(lastDataHora).to.eql(1681991700);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic {{API_KEY_APACHE_PINOT}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"sql\":\"select VEICULO_ID, MOTORISTA, LATITUDE, LONGITUDE, DATAHORA from localizacoes where VEICULO_ID = 10 limit 50\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{URL_APACHE_PINOT}}/query/sql",
+					"protocol": "https",
+					"host": [
+						"{{URL_APACHE_PINOT}}"
+					],
+					"path": [
+						"query",
+						"sql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
