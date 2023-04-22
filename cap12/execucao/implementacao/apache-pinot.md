@@ -92,16 +92,3 @@ Clique em _Run Query_.
 Aparecerá a lista de localizações do veículo com ID 10.
 	
 <img src="/cap12/imagens/apache-pinot-query-result.png">
-
-## Gerar API Token para utilizar o Pinot Rest API
-
-1. No _Startree_ **MyApps**, selecione a opção **Cloud Portal**
-
-2. Clique na organização **trackerja** e em seguida workspace **rastreamentofrota**
-
-3. Na aba **services**, clique no nome do cluster **pinot**
-
-4. Clique na aba **Pinot API Tokens**
-
-5. Clica no botão _Create Pinot API Token_ e save o token gerado para utilizar na variável de ambiente do _Postman_.
-
