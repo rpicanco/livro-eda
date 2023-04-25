@@ -1,6 +1,6 @@
 <h1>Rastreamento da frota de caminhões em tempo real</h1>
 
-> :watch: Tempo estimado de execução: 15 minutos.
+> :watch: Tempo estimado de execução: 45 minutos.
 
 ### Passos
 
