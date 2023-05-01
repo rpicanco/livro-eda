@@ -8,15 +8,15 @@
 
 :heavy_check_mark: [Lambda](#lambda)
 
-## Usuário IAM como Administrador
+## Usuário IAM
 
 **Objetivo**: Criar um usuário no _IAM_ com perfil de administrador para criar a chave de acesso _Access key_ e _Secret access key_ para configurar o _AWS CLI_.
 
-:point_right: Para criar o usuário IAM que será utilizado no projeto, você precisa logar com seu usuário _root_
+:point_right: Para criar o usuário IAM que será utilizado no projeto, você precisa logar com seu usuário _root_.
 
-:point_right: Como boa prática, você deve criar um usuário IAM para logar no console e _CLI_ ao invés de usar o seu usuário _root_
+:point_right: Como boa prática, você deve criar um usuário IAM para logar no console e _CLI_ ao invés de usar o seu usuário _root_.
 
-1. No console da AWS (https://console.aws.amazon.com), entre no serviço de _IAM_
+1. No console da AWS (https://console.aws.amazon.com), entre no serviço do _IAM_
 
 2. No menu a esquerda, entre em **Users**
 

@@ -1,0 +1,61 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CloudWatchLogGroupCreation",
+			"Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:<<região>>:<<ID da conta>>:*"
+        },
+        {
+            "Sid": "CloudWatchLogActions",
+			"Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:<<região>>:<<ID da conta>>:log-group:/aws/lambda/registro-webhook:*"
+            ]
+        },
+		{
+            "Sid": "EventBridgeActions",
+			"Effect": "Allow",
+            "Action": [
+                "events:CreateConnection",
+                "events:CreateApiDestination",
+				"events:PutRule",
+				"events:PutTargets"				
+            ],
+            "Resource": "arn:aws:events:<<região>>:<<ID da conta>>:*"
+        },
+		{
+            "Sid": "IAMActions",
+			"Effect": "Allow",
+            "Action": [
+                "iam:CreatePolicy",
+                "iam:CreateRole",
+				"iam:GetRole",
+				"iam:AttachRolePolicy"				
+            ],
+            "Resource": "arn:aws:iam::<<ID da conta>>:*"
+        },
+		{
+            "Sid": "IAMPassRoleActions",
+			"Effect": "Allow",
+            "Action": [                
+				"iam:PassRole"				
+            ],
+            "Resource": "arn:aws:iam::<<ID da conta>>:role/Merchant-*-invocationRole"
+        },
+		{
+		  "Sid": "SecretManagerActions",
+		  "Effect": "Allow",
+		  "Action": [
+			"secretsmanager:CreateSecret",
+			"secretsmanager:ListSecrets"
+		  ],
+		  "Resource": "*"
+		}
+    ]
+}
