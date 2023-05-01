@@ -13,23 +13,13 @@ Para acessar o terminal do _Linux_ do EC2 via `SSH`, utilizei o cliente `SSH` _M
 		* **Source**: 0.0.0.0/0
 	* Crie um Key pair
 	* Utilizar a configuração do **User Data** para instalar:
-		* **Mongosh** (Para criar a coleção de veículo)
-		* **Confluent Cloud CLI** (Para criar os tópicos, conector do mongoDB atlas e executar comandos kSQL via linha de comando)
+		* **awscliv2** (Para criar os recursos na sua conta AWS)
 		
 ```
 #!/bin/sh
-yum update -y
-touch /etc/yum.repos.d/mongodb-org-5.0.repo
-chmod 746 /etc/yum.repos.d/mongodb-org-5.0.repo
-echo "[mongodb-org-5.0]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/5.0/x86_64/
-gpgcheck=1
-enabled=1
-gpgkey=https://pgp.mongodb.com/server-5.0.asc
-" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-yum install -y mongodb-mongosh
-curl -sL --http1.1 https://cnfl.io/cli | sh -s -- latest
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install
 ```
 
 ### MobaXterm
