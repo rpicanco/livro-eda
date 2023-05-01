@@ -4,9 +4,9 @@
 
 :heavy_check_mark: [Configuração do AWS CLI](#configuracao-do-aws-cli)
 
-:heavy_check_mark: [API Gateway](#api-gateway)
-
 :heavy_check_mark: [Lambda](#lambda)
+
+:heavy_check_mark: [API Gateway](#api-gateway)
 
 ## Usuário IAM
 
@@ -67,7 +67,8 @@ aws configure
 
 :loudspeaker: Você pode alterar a região de sua preferência. Quando for conferir os serviços/componentes (específicos de região) criados pelo _AWS CLI_ no console, certifique-se que a região selecionada no console é a mesma configurada no _AWS CLI_. 
 
+## Lambda
+
 ## API Gateway
 
 
-## Lambda
