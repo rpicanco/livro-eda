@@ -69,6 +69,76 @@ aws configure
 
 ## Lambda
 
+**Objetivo**: Criar a função lambda _javascript_ utilizando o _SDK_ da AWS para criar os componentes/serviços necessários para ativar a comerciante no sistema de entrega.
+
+### Role
+
+**Objetivo**: Criar a _role_ que dará as devidas permissões para a função lambda criar os componentes/serviços.
+
+1. Criar a política de permissão
+
+```
+aws iam create-policy \
+	--policy-name LambdaEventBridgeExecutionPolicy \
+	--policy-document file://LambdaEventBridgeExecutionPolicy.json
+```
+
+:point_right: Você precisa editar o arquivo _LambdaEventBridgeExecutionPolicy.json_ da pasta _src_ no github do projeto para colocar a região e o ID da sua conta AWS:
+
+* **REGIAO**: us-east-1
+* **ID_CONTA**: <<Account ID>>
+
+:loudspeaker: Para saber o ID da sua conta, entre no console. No canto superior a direita, expande o seu usuário. Copia o _Account ID_.
+
+2. Criar a _role_
+
+```
+aws iam create-role \
+	--role-name LambdaEventBridgeExecutionRole \
+	--assume-role-policy-document '{"Version": "2012-10-17","Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'
+```
+
+3. Associar a politica de permissão a _role_ recém criada
+
+```
+aws iam attach-role-policy \
+	--role-name LambdaEventBridgeExecutionRole \ 
+	--policy-arn arn:aws:iam::ID_CONTA:policy/LambdaEventBridgeExecutionPolicy
+```
+
+:point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
+
+:loudspeaker: Entre no console e pesquise pela _role_ criada no serviço do _IAM_.
+
+### Função lambda registro-webhook
+
+1. Criar a função lambda registro-webhook
+
+```
+aws lambda create-function \
+    --function-name registro-webhook \
+    --runtime nodejs18.x \
+    --zip-file fileb://registro-webhook.zip \
+    --handler index.handler \
+    --role arn:aws:iam::ID_CONTA:role/LambdaEventBridgeExecutionRole	
+```
+	
+:point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
+
+:loudspeaker: O arquivo _registro-webhook.zip_ está disponível no nosso projeto do github com os arquivos _javascript_ necessários. 
+
+2. Adiciona a variável de ambiente referente ao ID da conta na função lambda
+
+```
+aws lambda update-function-configuration \
+	--function-name registro-webhook \
+	--environment "Variables={AWS_ACCOUNT_NUMBER=ID_CONTA}"
+```
+
+:point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
+
+:loudspeaker: Entre no console e entre na função _registro-webhook_ no serviço _Lambda_.
+
 ## API Gateway
 
 

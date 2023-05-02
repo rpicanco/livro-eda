@@ -5,7 +5,7 @@
             "Sid": "CloudWatchLogGroupCreation",
 			"Effect": "Allow",
             "Action": "logs:CreateLogGroup",
-            "Resource": "arn:aws:logs:<<região>>:<<ID da conta>>:*"
+            "Resource": "arn:aws:logs:REGIAO:ID_CONTA:*"
         },
         {
             "Sid": "CloudWatchLogActions",
@@ -15,7 +15,7 @@
                 "logs:PutLogEvents"
             ],
             "Resource": [
-                "arn:aws:logs:<<região>>:<<ID da conta>>:log-group:/aws/lambda/registro-webhook:*"
+                "arn:aws:logs:REGIAO:ID_CONTA:log-group:/aws/lambda/registro-webhook:*"
             ]
         },
 		{
@@ -27,7 +27,7 @@
 				"events:PutRule",
 				"events:PutTargets"				
             ],
-            "Resource": "arn:aws:events:<<região>>:<<ID da conta>>:*"
+            "Resource": "arn:aws:events:REGIAO:ID_CONTA:*"
         },
 		{
             "Sid": "IAMActions",
@@ -38,7 +38,7 @@
 				"iam:GetRole",
 				"iam:AttachRolePolicy"				
             ],
-            "Resource": "arn:aws:iam::<<ID da conta>>:*"
+            "Resource": "arn:aws:iam::ID_CONTA:*"
         },
 		{
             "Sid": "IAMPassRoleActions",
@@ -46,7 +46,7 @@
             "Action": [                
 				"iam:PassRole"				
             ],
-            "Resource": "arn:aws:iam::<<ID da conta>>:role/Merchant-*-invocationRole"
+            "Resource": "arn:aws:iam::ID_CONTA:role/Merchant-*-invocationRole"
         },
 		{
 		  "Sid": "SecretManagerActions",
