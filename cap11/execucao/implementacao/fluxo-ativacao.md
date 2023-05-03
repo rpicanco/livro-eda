@@ -102,8 +102,8 @@ aws iam create-role \
 
 ```
 aws iam attach-role-policy \
-	--role-name LambdaEventBridgeExecutionRole \ 
-	--policy-arn arn:aws:iam::{ID_CONTA}:policy/LambdaEventBridgeExecutionPolicy
+	--role-name LambdaEventBridgeExecutionRole \
+	--policy-arn arn:aws:iam::ID_CONTA:policy/LambdaEventBridgeExecutionPolicy
 ```
 
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
@@ -125,7 +125,7 @@ aws lambda create-function \
 	
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
 
-:loudspeaker: O arquivo ativacao-comerciante.zip_ está disponível no nosso projeto do github com os arquivos _javascript_ necessários. 
+:loudspeaker: O arquivo _ativacao-comerciante.zip_ está disponível no nosso projeto do github com os arquivos _javascript_ necessários. 
 
 2. Adiciona a variável de ambiente referente ao ID da conta na função lambda
 

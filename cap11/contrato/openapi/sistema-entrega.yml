@@ -20,7 +20,7 @@ paths:
               $ref: "#/components/schemas/Merchant"
         description: Os dados da ativação do comerciante.
       responses:
-        "201":
+        "200":
           description: A ativação do comerciante foi realizada.
         "400":
           description: Bad Request - Valida os campos de acordo com a definição do contrato.
