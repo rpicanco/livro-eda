@@ -112,7 +112,7 @@ aws iam attach-role-policy \
 
 ### Função lambda ativacao-comerciante
 
-1. Criar a função lambda ativacao-comerciante_
+1. Criar a função lambda _ativacao-comerciante_
 
 ```
 aws lambda create-function \
