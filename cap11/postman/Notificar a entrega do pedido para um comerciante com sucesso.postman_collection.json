@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3236215d-0668-4dab-af2b-8232f9d7dfdf",
+		"_postman_id": "3ee87bb6-30ec-4ad8-b712-1391462a7c25",
 		"name": "Notificar a entrega do pedido para um comerciante com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -40,10 +40,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{URL_WEBHOOK_SITE}}/token",
+							"raw": "https://{{URL_BASE_WEBHOOK}}/token",
 							"protocol": "https",
 							"host": [
-								"{{URL_WEBHOOK_SITE}}"
+								"{{URL_BASE_WEBHOOK}}"
 							],
 							"path": [
 								"token"
@@ -106,13 +106,13 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{URL_BASE_WEBHOOK}}/registros",
+							"raw": "https://{{URL_GATEWAY}}/ativacoes",
 							"protocol": "https",
 							"host": [
-								"{{URL_BASE_WEBHOOK}}"
+								"{{URL_GATEWAY}}"
 							],
 							"path": [
-								"registros"
+								"ativacoes"
 							]
 						}
 					},
@@ -219,10 +219,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{URL_WEBHOOK_SITE}}/token/{{token}}/requests",
+							"raw": "https://{{URL_BASE_WEBHOOK}}/token/{{token}}/requests",
 							"protocol": "https",
 							"host": [
-								"{{URL_WEBHOOK_SITE}}"
+								"{{URL_BASE_WEBHOOK}}"
 							],
 							"path": [
 								"token",

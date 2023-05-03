@@ -85,7 +85,7 @@ aws iam create-policy \
 
 :point_right: Você precisa editar o arquivo _LambdaEventBridgeExecutionPolicy.json_ da pasta _src_ no github do projeto para colocar a região e o ID da sua conta AWS:
 
-* **REGIAO**: us-east-1
+* **REGIAO**: us-east-1 (exemplo)
 * **ID_CONTA**: [Seu ID_CONTA]
 
 :loudspeaker: Para saber o ID da sua conta, entre no console. No canto superior a direita, expande o seu usuário. Copia o _Account ID_.
@@ -110,40 +110,40 @@ aws iam attach-role-policy \
 
 :loudspeaker: Entre no console e pesquise pela _role_ criada no serviço do _IAM_.
 
-### Função lambda registro-webhook
+### Função lambda aticavao-comerciante
 
-1. Criar a função lambda registro-webhook
+1. Criar a função lambda _aticavao-comerciante_
 
 ```
 aws lambda create-function \
-    --function-name registro-webhook \
+    --function-name aticavao-comerciante \
     --runtime nodejs18.x \
-    --zip-file fileb://registro-webhook.zip \
+    --zip-file fileb://aticavao-comerciante.zip \
     --handler index.handler \
-    --role arn:aws:iam::ID_CONTA:role/LambdaEventBridgeExecutionRole	
+    --role arn:aws:iam::ID_CONTA:role/LambdaEventBridgeExecutionRole
 ```
 	
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
 
-:loudspeaker: O arquivo _registro-webhook.zip_ está disponível no nosso projeto do github com os arquivos _javascript_ necessários. 
+:loudspeaker: O arquivo _aticavao-comerciante.zip_ está disponível no nosso projeto do github com os arquivos _javascript_ necessários. 
 
 2. Adiciona a variável de ambiente referente ao ID da conta na função lambda
 
 ```
 aws lambda update-function-configuration \
-	--function-name registro-webhook \
+	--function-name aticavao-comerciante \
 	--environment "Variables={AWS_ACCOUNT_NUMBER=ID_CONTA}"
 ```
 
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
 
-:loudspeaker: Entre no console e entre na função _registro-webhook_ no serviço _Lambda_.
+:loudspeaker: Entre no console e entre na função _aticavao-comerciante_ no serviço _Lambda_.
 
 ## API Gateway
 
-**Objetivo**: Criar a API do sistema de entrega de acordo com o contrato OpenAPI. A URL gerada pelo gateway será utilizado no _postman_ para ativação do comerciante. 
+**Objetivo**: Criar a API do sistema de entrega de acordo com o contrato _OpenAPI_. A URL gerada pelo gateway será utilizado no _postman_ para ativação do comerciante. 
 
-1. Criar a API importando o OpenAPI do sistema de entrega disponivel no nosso projeto do Github
+1. Criar a API importando o _OpenAPI_ do sistema de entrega disponivel no nosso projeto do Github
 
 ```
 aws apigateway import-rest-api \
@@ -155,17 +155,17 @@ aws apigateway import-rest-api \
 
 3. Na lista de APIs, entre na API _Sistema de entrega API_ recém criada
 
-4. No menu a esquerda, em **resources**, clique no método `POST` do recurso _/registros_
+4. No menu a esquerda, em **resources**, clique no método `POST` do recurso _/ativacoes_
 
-5. Na tela **/registros - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre a rota (route) **POST /registros** com a função lambda _registro-webhook_
+5. Na tela **/ativacoes - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre a rota (_route_) **POST /ativacoes** com a função lambda _aticavao-comerciante_
 
 	* **Integration type**: Lambda Function
 	* **Lambda Region**: Deixe a mesma região configurada no _AWS CLI_
-	* **Lambda Function**: Adicione o nome da função _registro-webhook_
+	* **Lambda Function**: Adicione o nome da função _aticavao-comerciante_
 	
 	Clique em _Save_
 	
-6. Na janela de Pop-up **Add Permission to Lambda Function**, clique no botão _OK_ para confirmar a adição da permissão da execução da função lambda pelo API Gateway.
+6. Na janela de Pop-up **Add Permission to Lambda Function**, clique no botão _OK_ para confirmar a adição da permissão da execução da função lambda pelo _API Gateway_.
 
 7. Ainda em **Resources**, Clique em **Action** e em seguida _Deploy API_
 
@@ -178,6 +178,6 @@ aws apigateway import-rest-api \
 
 9. Copie a URL gerada do **Invoke URL**.
 	
-:point_right: Copie a URL gerada pelo API Gateway e utilize-a na variável de ambiente _URL_GATEWAY_ do _postman_, disponível no nosso projeto do Github, para testar o fluxo de ativação. Exemplo de URL:  https://{ID_API_REST}.execute-api.{REGIAO}.amazonaws.com/prd/{RECURSO}
+:point_right: Copie a URL gerada pelo _API Gateway_ e utilize-a na variável de ambiente _URL_GATEWAY_ do _postman_, disponível no nosso projeto do Github, para testar o fluxo de ativação do comerciante. Exemplo de URL:  https://{ID_API_REST}.execute-api.{REGIAO}.amazonaws.com/prd/{RECURSO}
 
-:loudspeaker: O valor do {RECURSO} é o mesmo definido no OpenAPI: **registros**
+:loudspeaker: O valor do {RECURSO} é o mesmo definido no _OpenAPI_: **ativacoes**

@@ -6,10 +6,10 @@ servers:
   - url: https://api.cargapesada.com/v1
     description: Production server
 paths:
-  /registros:
+  /ativacoes:
     post:
       tags:
-       - Registro
+       - Ativação
       summary: Ativa o comerciante no sistema de entrega.
       description: O endpoint HTTPS do comerciante é registrado no sistema de entrega para que o mesmo receba a notificação dos pedidos entregues dos seus clientes.
       operationId: ativaComerciante
@@ -85,20 +85,20 @@ components:
           type: string
           format: uuidv4
           description: "Um identificador exclusivo para o comerciante."
-          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+          example: "1234"
         endpoint:
           type: string
           description: "O endpoint HTTPS que receberá a notificação quando um pedido for entregue. O método utilizado é POST"
-          example: "https://comerciante-xpto/pedidos/entregues"
+          example: "https://webhook.site/XXXX"
     
     Error:
       type: object
       properties:
         code:
           type: string
-          example: "error_required_field"
+          example: "400"
           description: O código do erro.
         message:
           type: string
           description: "Mensagem de erro."
-          example: "O identificador do pedido é obrigatório."
+          example: "O identificador do comerciante é obrigatório."

@@ -15,7 +15,7 @@
                 "logs:PutLogEvents"
             ],
             "Resource": [
-                "arn:aws:logs:REGIAO:ID_CONTA:log-group:/aws/lambda/registro-webhook:*"
+                "arn:aws:logs:REGIAO:ID_CONTA:log-group:/aws/lambda/aticavao-comerciante:*"
             ]
         },
 		{
