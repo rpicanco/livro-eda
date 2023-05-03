@@ -174,4 +174,4 @@ aws apigateway import-rest-api \
 	
 	Clique em _Deploy_
 	
-:point_right: Copie a URL gerada pelo API Gateway e utilize-a na variável de ambiente _URL_GATEWAY_ do projeto do _postman_ disponível no nosso projeto do Github para testar o fluxo de ativação. Exemplo de URL:  https://ID_API_NO_GATEWAY.execute-api.us-east-1.amazonaws.com/prd
+:point_right: Copie a URL gerada pelo API Gateway e utilize-a na variável de ambiente _URL_GATEWAY_ do _postman_, disponível no nosso projeto do Github, para testar o fluxo de ativação. Exemplo de URL:  https://ID_API_NO_GATEWAY.execute-api.us-east-1.amazonaws.com/prd
