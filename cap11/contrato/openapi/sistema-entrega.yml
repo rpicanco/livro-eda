@@ -22,6 +22,10 @@ paths:
       responses:
         "200":
           description: A ativação do comerciante foi realizada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantResponse"
         "400":
           description: Bad Request - Valida os campos de acordo com a definição do contrato.
           content:
@@ -83,22 +87,42 @@ components:
       properties:
         merchantId:
           type: string
-          format: uuidv4
           description: "Um identificador exclusivo para o comerciante."
           example: "1234"
         endpoint:
           type: string
           description: "O endpoint HTTPS que receberá a notificação quando um pedido for entregue. O método utilizado é POST"
           example: "https://webhook.site/XXXX"
+          
+    MerchantResponse:
+      type: object
+      required:
+       - statusCode
+       - body
+      properties:
+        statusCode:
+          type: string
+          description: "O status code retornado."
+          example: "200"
+        body:
+          type: string
+          description: "O conteúdo do corpo da resposta."
+          example: "Ativação do comerciante <<merchant_id>> realizado com sucesso."
     
     Error:
       type: object
       properties:
-        code:
+        errorType:
           type: string
           example: "400"
           description: O código do erro.
-        message:
+        errorMessage:
           type: string
           description: "Mensagem de erro."
           example: "O identificador do comerciante é obrigatório."
+        trace:
+          type: array
+          items:
+            type: string
+            description: "Mensagem de erro."
+            example: "O trace do erro"
