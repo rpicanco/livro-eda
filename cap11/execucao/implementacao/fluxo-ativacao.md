@@ -132,7 +132,7 @@ aws lambda create-function \
 ```
 aws lambda update-function-configuration \
 	--function-name registro-webhook \
-	--environment "Variables={AWS_ACCOUNT_NUMBER=<ID_CONTA}"
+	--environment "Variables={AWS_ACCOUNT_NUMBER=ID_CONTA}"
 ```
 
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.

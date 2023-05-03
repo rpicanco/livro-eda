@@ -10,22 +10,18 @@ paths:
     post:
       tags:
        - Registro
-      summary: Registra um endpoint HTTPS para o comerciante.
-      description: Registra um endpoint HTTPS para um comerciante.
-      operationId: addWebhook
+      summary: Ativa o comerciante no sistema de entrega.
+      description: O endpoint HTTPS do comerciante é registrado no sistema de entrega para que o mesmo receba a notificação dos pedidos entregues dos seus clientes.
+      operationId: ativaComerciante
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Registro"
-        description: Os dados do pedido.
+              $ref: "#/components/schemas/Merchant"
+        description: Os dados da ativação do comerciante.
       responses:
-        "200":
-          description: Aceito - O pedido foi recebido.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Registro"
+        "201":
+          description: A ativação do comerciante foi realizada.
         "400":
           description: Bad Request - Valida os campos de acordo com a definição do contrato.
           content:
@@ -79,7 +75,7 @@ components:
   
  schemas:
     
-    Registro:
+    Merchant:
       type: object
       required:
        - merchantId
@@ -94,18 +90,6 @@ components:
           type: string
           description: "O endpoint HTTPS que receberá a notificação quando um pedido for entregue. O método utilizado é POST"
           example: "https://comerciante-xpto/pedidos/entregues"
-        createdAt:
-          type: string
-          readOnly: true
-          format: date
-          description: "A data da criação do webhook no formato YYYY-MM-DD."
-          example: "2023-05-01"
-        updatedAt:
-          type: string
-          readOnly: true
-          format: date
-          description: "A data da atualização do webhook no formato YYYY-MM-DD."
-          example: "2023-05-10" 
     
     Error:
       type: object
