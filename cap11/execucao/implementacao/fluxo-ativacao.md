@@ -86,7 +86,7 @@ aws iam create-policy \
 :point_right: Você precisa editar o arquivo _LambdaEventBridgeExecutionPolicy.json_ da pasta _src_ no github do projeto para colocar a região e o ID da sua conta AWS:
 
 * **REGIAO**: us-east-1
-* **ID_CONTA**: <<Account ID>>
+* **ID_CONTA**: [Seu ID_CONTA]
 
 :loudspeaker: Para saber o ID da sua conta, entre no console. No canto superior a direita, expande o seu usuário. Copia o _Account ID_.
 
@@ -132,7 +132,7 @@ aws lambda create-function \
 ```
 aws lambda update-function-configuration \
 	--function-name registro-webhook \
-	--environment "Variables={AWS_ACCOUNT_NUMBER=ID_CONTA}"
+	--environment "Variables={AWS_ACCOUNT_NUMBER=<ID_CONTA}"
 ```
 
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
@@ -141,4 +141,37 @@ aws lambda update-function-configuration \
 
 ## API Gateway
 
+**Objetivo**: Criar a API do sistema de entrega de acordo com o contrato OpenAPI. O endpoint gerado pelo gateway será utilizado no _postman_ para ativação do comerciante. 
 
+1. Criar a API importando o OpenAPI do sistema de entrega
+
+```
+aws apigateway import-rest-api \
+	--parameters endpointConfigurationTypes=REGIONAL \
+	--body "fileb://sistema-entrega.yml"
+```
+
+2. No console, entre no serviço API Gateway
+
+3. Na lista de APIs, entre na API _Sistema de entrega API_ recém criada
+
+4. Em **resources**, clique no método `POST` do recurso _/registros_
+
+5. Na tela **/registros - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre o _endpoint_ **POST /registros** com a função _registro-webhook_
+
+	* **Integration type**: Lambda Function
+	* **Lambda Region**: Deixe a mesma região configurada no AWS CLI
+	* **Lambda Function**: Adicione o nome da função _registro-webhook_
+	
+	Clique em _Save_
+	
+6. No popup **Add Permission to Lambda Function**, clique no botão _OK_ para confirmar a adição da permissão da execução da função pelo API Gateway.
+
+7. Ainda em **Resources**, Clique em **Action** e em seguida _Deploy API_
+
+	* **Deployment stage**: [New Stage]
+	* **Stage name**: prd
+	
+	Clique em _Deploy_
+	
+:point_right: Copie a URL gerada pelo API Gateway e cole nas variáveis de ambiente do _postman_ para testar o fluxo de ativação. Exemplo:  https://ID_API_NO_GATEWAY.execute-api.us-east-1.amazonaws.com/prd
