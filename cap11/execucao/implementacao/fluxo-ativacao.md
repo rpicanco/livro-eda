@@ -103,7 +103,7 @@ aws iam create-role \
 ```
 aws iam attach-role-policy \
 	--role-name LambdaEventBridgeExecutionRole \ 
-	--policy-arn arn:aws:iam::ID_CONTA:policy/LambdaEventBridgeExecutionPolicy
+	--policy-arn arn:aws:iam::{ID_CONTA}:policy/LambdaEventBridgeExecutionPolicy
 ```
 
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
@@ -155,7 +155,7 @@ aws apigateway import-rest-api \
 
 3. Na lista de APIs, entre na API _Sistema de entrega API_ recém criada
 
-4. Em **resources**, clique no método `POST` do recurso _/registros_
+4. No menu a esquerda, em **resources**, clique no método `POST` do recurso _/registros_
 
 5. Na tela **/registros - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre a rota (route) **POST /registros** com a função lambda _registro-webhook_
 
@@ -174,4 +174,10 @@ aws apigateway import-rest-api \
 	
 	Clique em _Deploy_
 	
-:point_right: Copie a URL gerada pelo API Gateway e utilize-a na variável de ambiente _URL_GATEWAY_ do _postman_, disponível no nosso projeto do Github, para testar o fluxo de ativação. Exemplo de URL:  https://ID_API_NO_GATEWAY.execute-api.REGIAO.amazonaws.com/prd
+8. No menu a esquerda, em **Stages**, entre no método `POST` dentro do _stage_ **prd** recém criado.
+
+9. Copie a URL gerada do **Invoke URL**.
+	
+:point_right: Copie a URL gerada pelo API Gateway e utilize-a na variável de ambiente _URL_GATEWAY_ do _postman_, disponível no nosso projeto do Github, para testar o fluxo de ativação. Exemplo de URL:  https://{ID_API_REST}.execute-api.{REGIAO}.amazonaws.com/prd/{RECURSO}
+
+:loudspeaker: O valor do {RECURSO} é o mesmo definido no OpenAPI: **registros**
