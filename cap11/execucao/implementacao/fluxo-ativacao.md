@@ -141,9 +141,9 @@ aws lambda update-function-configuration \
 
 ## API Gateway
 
-**Objetivo**: Criar a API do sistema de entrega de acordo com o contrato OpenAPI. O endpoint gerado pelo gateway será utilizado no _postman_ para ativação do comerciante. 
+**Objetivo**: Criar a API do sistema de entrega de acordo com o contrato OpenAPI. A URL gerada pelo gateway será utilizado no _postman_ para ativação do comerciante. 
 
-1. Criar a API importando o OpenAPI do sistema de entrega
+1. Criar a API importando o OpenAPI do sistema de entrega disponivel no nosso projeto do Github
 
 ```
 aws apigateway import-rest-api \
@@ -151,21 +151,21 @@ aws apigateway import-rest-api \
 	--body "fileb://sistema-entrega.yml"
 ```
 
-2. No console, entre no serviço API Gateway
+2. No console, entre no serviço _API Gateway_
 
 3. Na lista de APIs, entre na API _Sistema de entrega API_ recém criada
 
 4. Em **resources**, clique no método `POST` do recurso _/registros_
 
-5. Na tela **/registros - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre o _endpoint_ **POST /registros** com a função _registro-webhook_
+5. Na tela **/registros - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre a rota (route) **POST /registros** com a função lambda _registro-webhook_
 
 	* **Integration type**: Lambda Function
-	* **Lambda Region**: Deixe a mesma região configurada no AWS CLI
+	* **Lambda Region**: Deixe a mesma região configurada no _AWS CLI_
 	* **Lambda Function**: Adicione o nome da função _registro-webhook_
 	
 	Clique em _Save_
 	
-6. No popup **Add Permission to Lambda Function**, clique no botão _OK_ para confirmar a adição da permissão da execução da função pelo API Gateway.
+6. Na janela de Pop-up **Add Permission to Lambda Function**, clique no botão _OK_ para confirmar a adição da permissão da execução da função lambda pelo API Gateway.
 
 7. Ainda em **Resources**, Clique em **Action** e em seguida _Deploy API_
 
@@ -174,4 +174,4 @@ aws apigateway import-rest-api \
 	
 	Clique em _Deploy_
 	
-:point_right: Copie a URL gerada pelo API Gateway e cole nas variáveis de ambiente do _postman_ para testar o fluxo de ativação. Exemplo:  https://ID_API_NO_GATEWAY.execute-api.us-east-1.amazonaws.com/prd
+:point_right: Copie a URL gerada pelo API Gateway e utilize-a na variável de ambiente _URL_GATEWAY_ do projeto do _postman_ disponível no nosso projeto do Github para testar o fluxo de ativação. Exemplo de URL:  https://ID_API_NO_GATEWAY.execute-api.us-east-1.amazonaws.com/prd
