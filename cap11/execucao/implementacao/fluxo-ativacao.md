@@ -110,34 +110,34 @@ aws iam attach-role-policy \
 
 :loudspeaker: Entre no console e pesquise pela _role_ criada no serviço do _IAM_.
 
-### Função lambda aticavao-comerciante
+### Função lambda ativacao-comerciante
 
-1. Criar a função lambda _aticavao-comerciante_
+1. Criar a função lambda ativacao-comerciante_
 
 ```
 aws lambda create-function \
-    --function-name aticavao-comerciante \
+    --function-name ativacao-comerciante \
     --runtime nodejs18.x \
-    --zip-file fileb://aticavao-comerciante.zip \
+    --zip-file fileb://ativacao-comerciante.zip \
     --handler index.handler \
     --role arn:aws:iam::ID_CONTA:role/LambdaEventBridgeExecutionRole
 ```
 	
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
 
-:loudspeaker: O arquivo _aticavao-comerciante.zip_ está disponível no nosso projeto do github com os arquivos _javascript_ necessários. 
+:loudspeaker: O arquivo ativacao-comerciante.zip_ está disponível no nosso projeto do github com os arquivos _javascript_ necessários. 
 
 2. Adiciona a variável de ambiente referente ao ID da conta na função lambda
 
 ```
 aws lambda update-function-configuration \
-	--function-name aticavao-comerciante \
+	--function-name ativacao-comerciante \
 	--environment "Variables={AWS_ACCOUNT_NUMBER=ID_CONTA}"
 ```
 
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
 
-:loudspeaker: Entre no console e entre na função _aticavao-comerciante_ no serviço _Lambda_.
+:loudspeaker: Entre no console e entre na função _ativacao-comerciante_ no serviço _Lambda_.
 
 ## API Gateway
 
@@ -157,11 +157,11 @@ aws apigateway import-rest-api \
 
 4. No menu a esquerda, em **resources**, clique no método `POST` do recurso _/ativacoes_
 
-5. Na tela **/ativacoes - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre a rota (_route_) **POST /ativacoes** com a função lambda _aticavao-comerciante_
+5. Na tela **/ativacoes - POST - Setup**, em **Choose the integration point for your new method**, vamos configurar a integração entre a rota (_route_) **POST /ativacoes** com a função lambda _ativacao-comerciante_
 
 	* **Integration type**: Lambda Function
 	* **Lambda Region**: Deixe a mesma região configurada no _AWS CLI_
-	* **Lambda Function**: Adicione o nome da função _aticavao-comerciante_
+	* **Lambda Function**: Adicione o nome da função _ativacao-comerciante_
 	
 	Clique em _Save_
 	
