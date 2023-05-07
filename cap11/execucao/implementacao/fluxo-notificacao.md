@@ -35,11 +35,11 @@ aws iam create-access-key \
 ```
 aws sqs create-queue \
 	--queue-name pedido-entregue \
-	--attributes file://PedidoEntreguePolicy
+	--attributes file://PedidoEntreguePolicy.json
 ```
 
-:loudspeaker: O arquivo _PedidoEntreguePolicy.json_ está disponível na pasta _src_ do nosso projeto do github. Esse arquivo contém a configuração da permissão para que o usuário _postman_ possa publicar o evento de _pedido-entregue_.
+:loudspeaker: O arquivo _PedidoEntreguePolicy.json_ está disponível na pasta _src_ do nosso projeto do github. Esse arquivo contém a configuração da permissão para que o usuário _postman_ possa publicar o evento _pedido-entregue_.
 
 ## Criar Event Bridge Pipe
 
-**Objetivo**: O _Event Bridge pipe_ será responsável por capturar o pedido através do evento _pedido-entregue_ do SQS e enviar para o barramento _default_ do _Event Bridge_. Com as devidas regras configuradas no fluxo de ativação, o comerciante irá receber a devidas notificações via `HTTPS`. 
+**Objetivo**: O _Event Bridge pipe_ será responsável por capturar o pedido através do evento _pedido-entregue_ do SQS e enviar para o barramento _default_ do _Event Bridge_. Com as devidas regras configuradas no barramento _default_ do _Event Bridge_ no fluxo de ativação, o comerciante irá receber a devidas notificações via `HTTPS`. 
