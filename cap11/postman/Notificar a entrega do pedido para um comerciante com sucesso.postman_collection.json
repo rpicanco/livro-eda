@@ -136,13 +136,55 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.environment.set(\"orderId\", \"PED9999\");"
+									"pm.environment.set(\"orderId\", \"PED9999\");\r",
+									"\r",
+									"const paylod = {\r",
+									"\t\"merchantId\": \"{{merchant_id}}\",\r",
+									"\t\"orderId\": \"{{orderId}}\",\r",
+									"\t\"documentNumber\": \"20392562022\",\r",
+									"\t\"name\": \"João\",\r",
+									"\t\"phone\": \"21999368989\",\r",
+									"\t\"deliveryAddress\": {\r",
+									"\t\t\"street\": \"Rua X\",\r",
+									"\t\t\"number\": \"14.85\",\r",
+									"\t\t\"postalCode\": \"24300-000\",\r",
+									"\t\t\"city\": \"Rio de Janeiro\",\r",
+									"\t\t\"state\": \"RJ\"\r",
+									"\t}\r",
+									"};\r",
+									"\r",
+									"pm.environment.set(\"payload\", JSON.stringify(paylod));"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "awsv4",
+							"awsv4": [
+								{
+									"key": "secretKey",
+									"value": "{{SecretKey}}",
+									"type": "string"
+								},
+								{
+									"key": "accessKey",
+									"value": "{{AccessKey}}",
+									"type": "string"
+								},
+								{
+									"key": "service",
+									"value": "{{SERVICE_NAME}}",
+									"type": "string"
+								},
+								{
+									"key": "region",
+									"value": "{{REGIAO}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -161,19 +203,15 @@
 								},
 								{
 									"key": "MessageBody",
-									"value": "{\n\t\"merchantId\": \"{{merchant_id}}\",\n\t\"orderId\": \"{{orderId}}\",\n\t\"documentNumber\": \"20392562022\",\n\t\"name\": \"João\",\n\t\"phone\": \"21999368989\",\n\t\"deliveryAddress\": {\n\t\t\"street\": \"Rua X\",\n\t\t\"number\": \"14.85\",\n\t\t\"postalCode\": \"24300-000\",\n\t\t\"city\": \"Rio de Janeiro\",\n\t\t\"state\": \"RJ\"\n\t}\n}",
+									"value": "{{payload}}",
 									"type": "default"
 								}
 							]
 						},
 						"url": {
-							"raw": "https://{{SQS_URL}}/{{SQS_TOPIC}}",
-							"protocol": "https",
+							"raw": "{{SQS_URL}}",
 							"host": [
 								"{{SQS_URL}}"
-							],
-							"path": [
-								"{{SQS_TOPIC}}"
 							]
 						}
 					},

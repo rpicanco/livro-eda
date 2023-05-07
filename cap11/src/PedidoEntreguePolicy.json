@@ -1,0 +1,6 @@
+{
+	"Policy": "{\"Statement\":[{\"Sid\": \"FilaPedidoEntreguePolicy\",\"Effect\": \"Allow\",\"Principal\": {\"AWS\": [\"arn:aws:iam::ID_CONTA:user/postman\"]},\"Action\": \"sqs:*\",\"Resource\":[\"arn:aws:sqs:REGIAO:ID_CONTA:pedido-entregue\"]}]}"
+}
+
+
+
