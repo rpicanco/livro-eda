@@ -1,0 +1,5 @@
+{
+	"InputTemplate": "{\"merchantId\": <$.messageAttributes.merchantId.stringValue>,\"orderId\": <$.body.orderId>,\"totalAmount\": <$.body.totalAmount>,\"status\": <$.body.status>,\"id\": <$.body.customer.id>,\"first_name\": <$.body.customer.first_name>,\"last_name\": <$.body.customer.last_name>,\"email\": <$.body.customer.email>}"
+}
+
+

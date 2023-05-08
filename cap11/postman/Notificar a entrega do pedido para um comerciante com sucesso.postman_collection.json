@@ -106,13 +106,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{URL_GATEWAY}}/ativacoes",
-							"protocol": "https",
+							"raw": "{{URL_GATEWAY}}",
 							"host": [
 								"{{URL_GATEWAY}}"
-							],
-							"path": [
-								"ativacoes"
 							]
 						}
 					},
@@ -190,6 +186,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
+								"type": "default"
+							},
+							{
+								"key": "MerchantId",
+								"value": "MER1234",
 								"type": "default"
 							}
 						],

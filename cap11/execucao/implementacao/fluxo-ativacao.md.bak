@@ -143,15 +143,13 @@ aws lambda update-function-configuration \
 
 **Objetivo**: Criar a API do sistema de entrega de acordo com o contrato _OpenAPI_. A URL gerada pelo gateway será utilizado no _postman_ para ativação do comerciante. 
 
-1. Criar a API importando o _OpenAPI_ do sistema de entrega
+1. Criar a API importando o _OpenAPI_ do sistema de entrega disponivel no nosso projeto do Github
 
 ```
 aws apigateway import-rest-api \
 	--parameters endpointConfigurationTypes=REGIONAL \
 	--body "fileb://sistema-entrega.yml"
 ```
-
-:loudspeaker: O arquivo _sistema-entrega.yml_ está disponível na pasta _/contrato/opeapi/_ no nosso projeto do github.
 
 2. No console, entre no serviço _API Gateway_
 
