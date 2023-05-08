@@ -43,11 +43,11 @@ aws sqs create-queue \
 * **REGIAO**: us-east-1 (exemplo)
 * **ID_CONTA**: [Seu ID_CONTA]
 
-:loudspeaker: O arquivo _PedidoEntreguePolicy.json_ contém a configuração da permissão para que o usuário _postman_ possa publicar o evento _pedido-entregue_.
+:loudspeaker: O arquivo _PedidoEntreguePolicy.json_ contém a configuração da permissão para que o usuário _postman_ possa publicar o evento _pedido-entregue_. No console, entre no serviço do _SQS_ para verificar a fila _pedido-entregue_ recém criada.
 
 ## Event Bridge Pipe
 
-**Objetivo**: Criar o _Event Bridge pipe_ que será responsável por capturar o pedido, através do evento _pedido-entregue_, do SQS e publicar para o barramento _default_ do _Event Bridge_. Com as devidas regras configuradas no barramento _default_ do _Event Bridge_ no fluxo de ativação, o comerciante irá receber a devidas notificações via `HTTPS`. 
+**Objetivo**: Criar o _Event Bridge pipe_ que será responsável por capturar o pedido, através do evento _pedido-entregue_, do SQS e publicar para o barramento _default_ do _Event Bridge_. Com as devidas regras (rules) configuradas no barramento _default_ do _Event Bridge_ no fluxo de ativação, o comerciante irá receber a devidas notificações via `HTTPS`. 
 
 ### Role
 
