@@ -83,7 +83,7 @@ aws iam create-policy \
 	--policy-document file://LambdaEventBridgeExecutionPolicy.json
 ```
 
-:point_right: Você precisa editar o arquivo _LambdaEventBridgeExecutionPolicy.json_ da pasta _src_ no github do projeto para colocar a região e o ID da sua conta AWS:
+:point_right: Você precisa editar o arquivo _LambdaEventBridgeExecutionPolicy.json_ da pasta _src_ no github do projeto para colocar a região (a mesma configurada no _AWS CLI_) e o ID da sua conta AWS:
 
 * **REGIAO**: us-east-1 (exemplo)
 * **ID_CONTA**: [Seu ID_CONTA]

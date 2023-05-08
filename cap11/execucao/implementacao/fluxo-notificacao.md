@@ -2,9 +2,9 @@
 
 :heavy_check_mark: [Usuário IAM](#usuario-iam)
 
-:heavy_check_mark: [Criar a fila SQS pedido-entregue](#criar-fila-sqs-pedido-entregue)
+:heavy_check_mark: [Fila SQS pedido-entregue](#fila-sqs-pedido-entregue)
 
-:heavy_check_mark: [Criar Event Bridge Pipe](#criar-event-bridge-pipe)
+:heavy_check_mark: [Event Bridge Pipe](#event-bridge-pipe)
 
 ## Usuário IAM
 
@@ -26,7 +26,7 @@ aws iam create-access-key \
 
 :pencil2: Na resposta, guarde os valores dos campos `AccessKeyId` e `SecretAccessKey`, pois iremos utilizá-los como variáveis de ambiente no _Postman_ para executar os testes.
 
-## Criar a fila SQS pedido-entregue
+## Fila SQS pedido-entregue
 
 **Objetivo**: Criar a fila SQS _pedido-entregue_ para simularmos a notificação de um comerciante a partir de um pedido entregue. O usuário _postman_, através da sua chave de API e chave secreta, irá publicar na fila SQS _pedido-entregue_ pelo _Postman_ na execução dos testes.
 
@@ -38,8 +38,68 @@ aws sqs create-queue \
 	--attributes file://PedidoEntreguePolicy.json
 ```
 
-:loudspeaker: O arquivo _PedidoEntreguePolicy.json_ está disponível na pasta _src_ do nosso projeto do github. Esse arquivo contém a configuração da permissão para que o usuário _postman_ possa publicar o evento _pedido-entregue_.
+:point_right: Você precisa editar o arquivo _PedidoEntreguePolicy.json_ da pasta _src_ no github do projeto para colocar a região (a mesma configurada no _AWS CLI_) e o ID da sua conta AWS:
 
-## Criar Event Bridge Pipe
+* **REGIAO**: us-east-1 (exemplo)
+* **ID_CONTA**: [Seu ID_CONTA]
 
-**Objetivo**: O _Event Bridge pipe_ será responsável por capturar o pedido através do evento _pedido-entregue_ do SQS e enviar para o barramento _default_ do _Event Bridge_. Com as devidas regras configuradas no barramento _default_ do _Event Bridge_ no fluxo de ativação, o comerciante irá receber a devidas notificações via `HTTPS`. 
+:loudspeaker: O arquivo _PedidoEntreguePolicy.json_ contém a configuração da permissão para que o usuário _postman_ possa publicar o evento _pedido-entregue_.
+
+## Event Bridge Pipe
+
+**Objetivo**: Criar o _Event Bridge pipe_ que será responsável por capturar o pedido, através do evento _pedido-entregue_, do SQS e publicar para o barramento _default_ do _Event Bridge_. Com as devidas regras configuradas no barramento _default_ do _Event Bridge_ no fluxo de ativação, o comerciante irá receber a devidas notificações via `HTTPS`. 
+
+### Role
+
+**Objetivo**: Criar a _role_ e as devidas políticas com as permissões para que o _Event Bridge pipe_ possa capturar eventos do _SQS_ e publicar para o barramento _default_ do _Event Bridge_.
+
+1. Criar a política de permissão
+
+```
+aws iam create-policy \
+	--policy-name EventBridgePipeExecutionPolicy \
+	--policy-document file://EventBridgePipeExecutionPolicy.json
+```
+
+:point_right: Você precisa editar o arquivo _LambdaEventBridgeExecutionPolicy.json_ da pasta _src_ no github do projeto para colocar a região (a mesma configurada no _AWS CLI_) e o ID da sua conta AWS:
+
+* **REGIAO**: us-east-1 (exemplo)
+* **ID_CONTA**: [Seu ID_CONTA]
+
+2. Crie a _role_
+
+```
+aws iam create-role \
+	--role-name EventBridgePipeSourceTargetRole \
+	--assume-role-policy-document '{"Version": "2012-10-17","Statement": [{ "Effect": "Allow", "Principal": {"Service": "pipes.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'
+```
+
+3. Associar a politica de permissão a role recém criada
+
+```
+aws iam attach-role-policy \
+	--role-name EventBridgePipeSourceTargetRole \
+	--policy-arn arn:aws:iam::ID_CONTA:policy/EventBridgePipeExecutionPolicy
+```
+
+:point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS.
+
+:loudspeaker: Entre no console e pesquise pela _role_ criada no serviço do _IAM_.
+
+## Criar o Event Bridge Pipe
+
+1. No terminal, crie o _Event Bridge Pipe_
+
+```
+aws pipes create-pipe \
+	--name EnvioNotificacao \
+	--role-arn arn:aws:iam::ID_CONTA:role/EventBridgePipeSourceTargetRole \
+	--source arn:aws:sqs:REGIAO:ID_CONTA:pedido-entregue \
+	--target arn:aws:events:REGIAO:ID_CONTA:event-bus/default \
+	--target-parameters {\"InputTemplate\": \"{\"merchantId\": <$.messageAttributes.merchantId.stringValue>,\"orderId\": <$.body.orderId>,\"totalAmount\": <$.body.totalAmount>,\"status\": <$.body.status>,\"id\": <$.body.customer.id>,\"first_name\": <$.body.customer.first_name>,\"last_name\": <$.body.customer.last_name>,\"email\": <$.body.customer.email>}\"}
+```
+
+:point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS e a variável _REGIAO_ pela região configurada no _AWS CLI_.
+
+:loudspeaker: No console, entre no serviço do _Event Bridge_. No menu a esquerda, entre em _Pipes_ para verificar o _pipe_ _EnvioNotificacao_ recém criado.
+

@@ -1,0 +1,27 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+			"Sid": "PipeCapturarEventoDoSQS",
+			"Effect": "Allow",
+			"Action": [
+				"sqs:ReceiveMessage",
+				"sqs:DeleteMessage",
+				"sqs:GetQueueAttributes"
+			],
+			"Resource": [
+				"arn:aws:sqs:REGIAO:ID_CONTA:pedido-entregue"
+			]
+		},
+		{
+			"Sid": "PipePublicarEventBridgeBarramentoDefault",
+			"Effect": "Allow",
+			"Action": [
+				"events:PutEvents"
+			],
+			"Resource": [
+				"arn:aws:events:REGIAO:ID_CONTA:event-bus/default"
+			]
+		}        
+    ]
+}
