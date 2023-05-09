@@ -25,6 +25,9 @@ Projeto 2 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conc
        <a>Teste</a>
 	</li>
 	<ul>
+	  <li>
+        <a href="/cap11/execucao/teste/teste-pre-requisitos.md">Pré-requisitos</a>
+      </li>
       <li>
         <a href="/cap11/execucao/teste/cenarios-de-teste.md">Execução do cenário de teste</a>
       </li>	  
