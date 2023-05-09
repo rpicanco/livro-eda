@@ -28,7 +28,7 @@
 
 7. Clique em _Add Filter_
 
-8. Em **Select a field**, selecione o campo DATAHORA. Aparecerá as informações de data e hora. Cada barra e a data e hora percorrida pelo caminhão.
+8. Em **Select a field**, selecione o campo DATAHORA. Aparecerá as informações de data e hora. Cada barra é a data e hora percorrida pelo caminhão.
 
 <img src="/cap12/imagens/efeito-para-simular-o-caminhao-percorrendo-o-trajeto.png" alt="Simulação do caminhão percorrendo o trajeto no mapa" width="600" height="200">
 
