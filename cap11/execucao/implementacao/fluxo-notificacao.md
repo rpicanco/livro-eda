@@ -98,10 +98,12 @@ aws pipes create-pipe \
 	--role-arn arn:aws:iam::ID_CONTA:role/EventBridgePipeSourceTargetRole \
 	--source arn:aws:sqs:REGIAO:ID_CONTA:pedido-entregue \
 	--target arn:aws:events:REGIAO:ID_CONTA:event-bus/default \
-	--target-parameters {\"InputTemplate\": \"{\"merchantId\": <$.messageAttributes.merchantId.stringValue>,\"orderId\": <$.body.orderId>,\"totalAmount\": <$.body.totalAmount>,\"status\": <$.body.status>,\"id\": <$.body.customer.id>,\"first_name\": <$.body.customer.first_name>,\"last_name\": <$.body.customer.last_name>,\"email\": <$.body.customer.email>}\"}
+	--target-parameters file://PipeInputTemplate.json
 ```
 
 :point_right: Substitua a variável _ID_CONTA_ pelo ID da sua conta AWS e a variável _REGIAO_ pela região configurada no _AWS CLI_.
+
+:point_right: O arquivo _PipeInputTemplate.json_ está disponível na pasta _src_ no github do projeto.
 
 :loudspeaker: No console, entre no serviço do _Event Bridge_. No menu a esquerda, entre em _Pipes_ para verificar o _pipe_ _EnvioNotificacao_ recém criado.
 

@@ -9,3 +9,5 @@
 :two: <a href="fluxo-ativacao.md">Fluxo de ativação do comerciante</a>
 
 :three: <a href="fluxo-notificacao.md">Fluxo de notificação do comerciante</a>
+
+:four: <a href="limpar-recursos-solucao-apos-teste.md">Limpar os recursos da solução após os testes</a>

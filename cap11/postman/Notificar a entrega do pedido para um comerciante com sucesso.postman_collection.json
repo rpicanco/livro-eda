@@ -61,7 +61,7 @@
 								"exec": [
 									"pm.environment.set(\"merchant_id\", \"MER1234\");\r",
 									"\r",
-									"const endpoint = \"https://\" + pm.environment.get(\"URL_WEBHOOK_SITE\") + \"/\" + pm.environment.get(\"token\");\r",
+									"const endpoint = \"https://\" + pm.environment.get(\"URL_BASE_WEBHOOK\") + \"/\" + pm.environment.get(\"token\");\r",
 									"pm.environment.set(\"endpoint\", endpoint);\r",
 									"\r",
 									"\r",
