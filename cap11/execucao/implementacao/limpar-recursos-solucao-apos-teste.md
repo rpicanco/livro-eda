@@ -18,8 +18,6 @@
 
 :heavy_check_mark: Remover a policy _Merchant-<<merchantId>>-invocationPolicy_
 
-:heavy_check_mark: Remover a policy _EventBridgePipeExecutionPolicy_
-
 ### Role
 
 :heavy_check_mark: Remover a role _LambdaEventBridgeExecutionRole_
@@ -27,8 +25,6 @@
 :heavy_check_mark: Remover a role _EventBridgePipeSourceTargetRole_
 
 :heavy_check_mark: Remover a role _Merchant-<<merchantId>>-invocationRole_
-
-:heavy_check_mark: Remover a role _EventBridgePipeSourceTargetRole_
 
 ## Serviço: EC2
 

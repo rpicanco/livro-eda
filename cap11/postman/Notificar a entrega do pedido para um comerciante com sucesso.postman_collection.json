@@ -135,18 +135,15 @@
 									"pm.environment.set(\"orderId\", \"PED9999\");\r",
 									"\r",
 									"const paylod = {\r",
-									"\t\"merchantId\": \"{{merchant_id}}\",\r",
 									"\t\"orderId\": \"{{orderId}}\",\r",
-									"\t\"documentNumber\": \"20392562022\",\r",
-									"\t\"name\": \"João\",\r",
-									"\t\"phone\": \"21999368989\",\r",
-									"\t\"deliveryAddress\": {\r",
-									"\t\t\"street\": \"Rua X\",\r",
-									"\t\t\"number\": \"14.85\",\r",
-									"\t\t\"postalCode\": \"24300-000\",\r",
-									"\t\t\"city\": \"Rio de Janeiro\",\r",
-									"\t\t\"state\": \"RJ\"\r",
-									"\t}\r",
+									"    \"totalAmount\": 300.00,\r",
+									"    \"status\": \"ENTREGUE\",\r",
+									"    \"customer\": {\r",
+									"        \"id\": \"a206df16-f292-4751-86a8-934d8cc8cd36\",\r",
+									"        \"first_name\": \"João\",\r",
+									"        \"last_name\": \"Silva\",\r",
+									"        \"email\": \"joao@gmail.com\"       \r",
+									"    }\r",
 									"};\r",
 									"\r",
 									"pm.environment.set(\"payload\", JSON.stringify(paylod));"
@@ -205,6 +202,21 @@
 								{
 									"key": "MessageBody",
 									"value": "{{payload}}",
+									"type": "default"
+								},
+								{
+									"key": "MessageAttribute.1.Name",
+									"value": "merchantId",
+									"type": "default"
+								},
+								{
+									"key": "MessageAttribute.1.Value.StringValue",
+									"value": "{{merchant_id}}",
+									"type": "default"
+								},
+								{
+									"key": "MessageAttribute.1.Value.DataType",
+									"value": "String",
 									"type": "default"
 								}
 							]
