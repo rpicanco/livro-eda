@@ -48,4 +48,4 @@ Para conseguirmos testar a solução através da coleção do _Postman_, é nece
 
 ### A chave de acesso e a chave secreta do usuário postman
 
-O mesmo par de chaves você gerou no passo 2 do **Usuário IAM** do [fluxo de notificação do comerciante](https://github.com/rpicanco/livro-eda/blob/main/cap11/execucao/implementacao/fluxo-notificacao.md#usu%C3%A1rio-iam).
+O mesmo par de chaves que você gerou no passo 2 do **Usuário IAM** do [fluxo de notificação do comerciante](https://github.com/rpicanco/livro-eda/blob/main/cap11/execucao/implementacao/fluxo-notificacao.md#usu%C3%A1rio-iam).
