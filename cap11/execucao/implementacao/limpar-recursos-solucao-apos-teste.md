@@ -16,7 +16,7 @@
 
 :heavy_check_mark: Remover a policy _EventBridgePipeExecutionPolicy_
 
-:heavy_check_mark: Remover a policy _Merchant-<<merchantId>>-invocationPolicy_
+:heavy_check_mark: Remover a policy _Merchant-**merchantId**-invocationPolicy_
 
 ### Role
 
@@ -24,7 +24,7 @@
 
 :heavy_check_mark: Remover a role _EventBridgePipeSourceTargetRole_
 
-:heavy_check_mark: Remover a role _Merchant-<<merchantId>>-invocationRole_
+:heavy_check_mark: Remover a role _Merchant-**merchantId**-invocationRole_
 
 ## Serviço: EC2
 
@@ -46,11 +46,11 @@
 
 :loudspeaker: Caso tenha criado mais de um comerciante, remover seguindo o padrão de nome de acordo com o ID do comerciante (_merchant_).
 
-:heavy_check_mark: Remover a conexão _<<merchantId>>-conexao_
+:heavy_check_mark: Remover a conexão _**merchantId**-conexao_
 
-:heavy_check_mark: Remover a API destination _<<merchantId>>-apidestination_
+:heavy_check_mark: Remover a API destination _**merchantId**-apidestination_
 
-:heavy_check_mark: Remover a regra _Merchant-<<merchantId>>-rule_
+:heavy_check_mark: Remover a regra _Merchant-**merchantId**-rule_
 
 :heavy_check_mark: Remover a pipe _EnvioNotificacao_
 

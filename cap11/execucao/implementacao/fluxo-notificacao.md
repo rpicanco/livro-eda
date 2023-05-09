@@ -26,8 +26,6 @@ aws iam create-access-key \
 
 :pencil2: Na resposta, guarde os valores dos campos `AccessKeyId` e `SecretAccessKey`, pois iremos utilizá-los para publicar o evento _pedido-entregue_ como variáveis de ambiente _AccessKey_ e _SecretKey_ (_Authorization_) respectivamente no _Postman_ para executar os testes.
 
-:point_right: Copie a URL gerada pelo _API Gateway_ e utilize-a na variável de ambiente _URL_GATEWAY_ do _postman_, disponível no nosso projeto do Github, para testar o fluxo de ativação do comerciante.
-
 ## Fila SQS pedido-entregue
 
 **Objetivo**: Criar a fila SQS _pedido-entregue_ para simularmos a notificação de um comerciante a partir de um pedido entregue. O usuário _postman_, através da sua chave de API e chave secreta, irá publicar na fila SQS _pedido-entregue_ pelo _Postman_ na execução dos testes.
