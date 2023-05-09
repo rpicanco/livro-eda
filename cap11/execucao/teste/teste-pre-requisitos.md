@@ -16,9 +16,7 @@ Para conseguirmos testar a solução através da coleção do _Postman_, é nece
 
 :heavy_check_mark: [A região utilizada para criar fila pedido-entregue](#a-regiao-utilizada-para-criar-fila-pedido-entregue)
 
-:heavy_check_mark: [A chave de acesso do usuário postman)](#a-chave-de-acesso-do-usuario-postman)
-
-:heavy_check_mark: [A chave secreta do usuário postman](#a-chave-secreta-do-usuario-postman)
+:heavy_check_mark: [A chave de acesso e a chave secreta do usuário postman)](#a-chave-de-acesso-e-chave-secreta-do-usuario-postman)
 
 ### URL do API Gateway
 
