@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3ee87bb6-30ec-4ad8-b712-1391462a7c25",
+		"_postman_id": "fcce0bd9-79cd-4461-8bb3-b8127ba84323",
 		"name": "Notificar a entrega do pedido para um comerciante com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -115,7 +115,7 @@
 					"response": []
 				},
 				{
-					"name": "Simula pedido entregue - MER1234",
+					"name": "Simula a solicitação de entrega (já publicando na fila pedido entregue - MER1234)",
 					"event": [
 						{
 							"listen": "test",
@@ -135,14 +135,23 @@
 									"pm.environment.set(\"orderId\", \"PED9999\");\r",
 									"\r",
 									"const paylod = {\r",
-									"\t\"orderId\": \"{{orderId}}\",\r",
+									"\t\"orderId\": \"{{orderId}}\",    \r",
 									"    \"totalAmount\": 300.00,\r",
 									"    \"status\": \"ENTREGUE\",\r",
 									"    \"customer\": {\r",
 									"        \"id\": \"a206df16-f292-4751-86a8-934d8cc8cd36\",\r",
+									"        \"cpf\": \"405.760.580-09\",\r",
 									"        \"first_name\": \"João\",\r",
 									"        \"last_name\": \"Silva\",\r",
-									"        \"email\": \"joao@gmail.com\"       \r",
+									"        \"email\": \"joao@gmail.com\",\r",
+									"        \"phone\": \"9999-5555\"\r",
+									"    },\r",
+									"    \"deliveryAddress\": {\r",
+									"        \"street\": \"Rua X\",\r",
+									"        \"number\": \"14.850\",\r",
+									"        \"postalCode\": \"24300-000\",\r",
+									"        \"city\": \"Rio de Janeiro\",\r",
+									"        \"state\": \"RJ\"\r",
 									"    }\r",
 									"};\r",
 									"\r",

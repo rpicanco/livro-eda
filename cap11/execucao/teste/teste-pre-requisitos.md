@@ -2,7 +2,7 @@
 
 ## Objetivo 
 
-Para conseguirmos testar a solução através da coleção do _Postman_, é necessário definir os valores das variáveis de ambiente no _postman_ correspondente a URL do API Gateway, URL do SQS da fila _pedido-entregue_, a região utilizada para criar fila _pedido-entregue_, a chave de acesso (_AccessKey_) e a chave secreta (_SecretKey_) do usuário _postman_.  
+Para conseguirmos testar a solução através da coleção do _Postman_, é necessário definir os valores das variáveis de ambiente correspondente a URL do API Gateway, URL do SQS da fila _pedido-entregue_, a região utilizada para criar a fila _pedido-entregue_, a chave de acesso (_AccessKey_) e a chave secreta (_SecretKey_) do usuário _postman_.  
   
   **URL_GATEWAY**: a URL do API Gateway<br>
   **SQS_URL**: a URL do SQS para a fila _pedido-entregue_<br>
@@ -14,7 +14,7 @@ Para conseguirmos testar a solução através da coleção do _Postman_, é nece
 
 :heavy_check_mark: [URL do SQS da fila pedido-entregue](#url-do-sqs-da-fila-pedido-entregue)
 
-:heavy_check_mark: [A região utilizada para criar fila pedido-entregue](#a-regiao-utilizada-para-criar-fila-pedido-entregue)
+:heavy_check_mark: [A região utilizada para criar a fila pedido-entregue](#a-regiao-utilizada-para-criar-a-fila-pedido-entregue)
 
 :heavy_check_mark: [A chave de acesso e a chave secreta do usuário postman)](#a-chave-de-acesso-e-chave-secreta-do-usuario-postman)
 
