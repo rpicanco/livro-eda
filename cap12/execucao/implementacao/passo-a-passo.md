@@ -11,3 +11,5 @@
 :three: <a href="confluent-cloud.md">Confluent Cloud</a>
 
 :four: <a href="apache-pinot.md">Apache Pinot</a>
+
+:five: <a href="limpar-recursos-solucao-apos-teste.md">Limpar os recursos da solução após os testes</a>
