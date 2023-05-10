@@ -139,7 +139,9 @@ aws lambda update-function-configuration \
 
 :loudspeaker: Entre no console e entre na função _ativacao-comerciante_ no serviço _Lambda_.
 
-:loudspeaker: A lambda não foi projetada para remover/limpar os recursos da sua conta AWS. Se você ativar um comerciante que já esteja ativado (Tentou executar o postman 2x com o mesmo merchantId), erros do tipo de "recursos/serviços já existe" podem ocorrer. Neste caso, você precisa realizar a [remoção] (https://github.com/rpicanco/livro-eda/blob/main/cap11/execucao/implementacao/limpar-recursos-solucao-apos-teste.md) dos recursos criados na sua conta AWS. 
+:loudspeaker: A lambda não foi projetada para remover/limpar os recursos da sua conta AWS. Se você ativar um comerciante que já esteja ativado (Tentou executar o postman 2x com o mesmo merchantId), erros do tipo de "recursos/serviços já existe" podem ocorrer. 
+
+Neste caso, você precisa realizar a [remoção](https://github.com/rpicanco/livro-eda/blob/main/cap11/execucao/implementacao/limpar-recursos-solucao-apos-teste.md) dos recursos criados na sua conta AWS.
 
 ## API Gateway
 
