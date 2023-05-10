@@ -28,7 +28,9 @@
 
 ## Serviço: EC2
 
-:heavy_check_mark: Caso esteja usando o EC2 para executar os comandos do _AWS CLI_ no Linux.
+:heavy_check_mark: Terminar a instância EC2.
+
+:loudspeaker: Caso esteja usando o EC2 para executar os comandos do _AWS CLI_ no Linux.
 
 ## Serviço: Lambda
 
