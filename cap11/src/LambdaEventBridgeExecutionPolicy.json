@@ -3,13 +3,13 @@
     "Statement": [
         {
             "Sid": "CloudWatchLogGroupCreation",
-			"Effect": "Allow",
+            "Effect": "Allow",
             "Action": "logs:CreateLogGroup",
             "Resource": "arn:aws:logs:REGIAO:ID_CONTA:*"
         },
         {
             "Sid": "CloudWatchLogActions",
-			"Effect": "Allow",
+            "Effect": "Allow",
             "Action": [
                 "logs:CreateLogStream",
                 "logs:PutLogEvents"
@@ -18,44 +18,52 @@
                 "arn:aws:logs:REGIAO:ID_CONTA:log-group:/aws/lambda/ativacao-comerciante:*"
             ]
         },
-		{
+        {
             "Sid": "EventBridgeActions",
-			"Effect": "Allow",
+            "Effect": "Allow",
             "Action": [
                 "events:CreateConnection",
                 "events:CreateApiDestination",
-				"events:PutRule",
-				"events:PutTargets"				
+                "events:PutRule",
+                "events:PutTargets"
             ],
             "Resource": "arn:aws:events:REGIAO:ID_CONTA:*"
         },
-		{
+        {
             "Sid": "IAMActions",
-			"Effect": "Allow",
+            "Effect": "Allow",
             "Action": [
                 "iam:CreatePolicy",
                 "iam:CreateRole",
-				"iam:GetRole",
-				"iam:AttachRolePolicy"				
+                "iam:GetRole",
+                "iam:AttachRolePolicy",
+                "iam:CreateServiceLinkedRole"
             ],
-            "Resource": "arn:aws:iam::ID_CONTA:*"
+            "Resource": "arn:aws:iam::ID_CONTA:role/aws-service-role/lambda.amazonaws.com/*"
         },
-		{
-            "Sid": "IAMPassRoleActions",
-			"Effect": "Allow",
-            "Action": [                
-				"iam:PassRole"				
+        {
+            "Sid": "IAMInvocationActions",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateRole",
+                "iam:CreatePolicy",
+                "iam:GetRole",
+                "iam:AttachRolePolicy",
+                "iam:PassRole"
             ],
-            "Resource": "arn:aws:iam::ID_CONTA:role/Merchant-*-invocationRole"
+            "Resource": [
+                "arn:aws:iam::ID_CONTA:role/Merchant-*-invocationRole",
+                "arn:aws:iam::ID_CONTA:policy/Merchant-*-invocationPolicy"
+            ]
         },
-		{
-		  "Sid": "SecretManagerActions",
-		  "Effect": "Allow",
-		  "Action": [
-			"secretsmanager:CreateSecret",
-			"secretsmanager:ListSecrets"
-		  ],
-		  "Resource": "*"
-		}
+        {
+            "Sid": "SecretManagerActions",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:CreateSecret",
+                "secretsmanager:ListSecrets"
+            ],
+            "Resource": "*"
+        }
     ]
 }
