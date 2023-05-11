@@ -13,6 +13,26 @@ async function createTarget(input) {
 
     const roleArn = await createRole(createRoleInput);
 
+    const inputPathsMap = {
+      "merchantId": "$.detail.merchantId",
+      "orderId": "$.detail.orderId",
+      "totalAmount": "$.detail.totalAmount",
+      "status": "$.detail.status",
+      "customer_id": "$.detail.customer.id",
+      "customer_cpf": "$.detail.customer.cpf",
+      "customer_first_name": "$.detail.customer.first_name",
+      "customer_last_name": "$.detail.customer.last_name",
+      "customer_email": "$.detail.customer.email",
+      "customer_phone": "$.detail.customer.phone",
+      "deliveryAddress_street": "$.detail.deliveryAddress.street",
+      "deliveryAddress_number": "$.detail.deliveryAddress.number",
+      "deliveryAddress_postalCode": "$.detail.deliveryAddress.postalCode",
+      "deliveryAddress_city": "$.detail.deliveryAddress.city",
+      "deliveryAddress_state": "$.detail.deliveryAddress.state"    
+    };
+
+    const inputTemplate = "{\"merchantId\": \"<merchantId>\",\"orderId\": \"<orderId>\",\"totalAmount\":<totalAmount>,\"status\":\"<status>\",\"customer\":{\"id\":\"<customer_id>\",\"cpf\": \"<customer_cpf>\",\"first_name\":\"<customer_first_name>\",\"last_name\": \"<customer_last_name>\",\"email\": \"<customer_email>\",\"phone\": \"<customer_phone>\"},\"deliveryAddress\":{\"street\": \"<deliveryAddress_street>\",\"number\": \"<deliveryAddress_number>\",\"postalCode\": \"<deliveryAddress_postalCode>\",\"city\": \"<deliveryAddress_city>\",\"state\": \"<deliveryAddress_state>\"}}";
+
     const PutTargetsInput = {
       Rule: input.ruleName,
       Targets: [
@@ -20,6 +40,10 @@ async function createTarget(input) {
             Arn: input.apiDestinationArn,
             Id: input.merchantId + "-apidestination-target",
             RoleArn: roleArn,
+            InputTransformer: {
+                "InputPathsMap": JSON.stringify(inputPathsMap, null, 2),
+                "InputTemplate": inputTemplate 
+            }
           },
       ]    
   };
