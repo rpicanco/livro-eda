@@ -26,7 +26,7 @@ Para conseguirmos testar a solução através da coleção do _Postman_, é nece
 
 3. Copie a URL gerada do **Invoke URL**
 
-> O padrão do nome é: XXXXXX
+> O padrão do nome é: https://{ID_GATEWAY}.execute-api.{REGIAO}.amazonaws.com/prd/ativacoes
 
 ### URL do SQS da fila pedido-entregue
 
@@ -36,7 +36,7 @@ Para conseguirmos testar a solução através da coleção do _Postman_, é nece
 
 3. Copie a URL gerada do campo **URL**
 
-> O padrão do nome é: XXXXXX
+> O padrão do nome é: https://sqs.{REGIAO}.amazonaws.com/{ID_CONTA}/pedido-entregue
 
 ### A região utilizada para criar fila pedido-entregue
 
@@ -44,7 +44,7 @@ Para conseguirmos testar a solução através da coleção do _Postman_, é nece
 
 2. Na lista de filas, entre na fila _pedido-entregue_
 
-3. No campo **ARN**, copie o trecho do nome da região arn:aws:sqs:**REGIÃO**:ID_CONTA:pedido-entregue
+3. No campo **ARN**, copie o trecho do nome da região arn:aws:sqs:**REGIAO**:ID_CONTA:pedido-entregue
 
 ### A chave de acesso e a chave secreta do usuário postman
 
