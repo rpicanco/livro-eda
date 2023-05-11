@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "889daf36-f0cc-4b9c-90d1-0b904e0853f2",
+		"_postman_id": "5c53c345-ef83-4d1d-9496-a018b845aeb4",
 		"name": "Notificar a entrega do pedido para um comerciante com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -255,11 +255,11 @@
 									"});\r",
 									"\r",
 									"pm.test('Número do pedido valido', function () {\r",
-									"    pm.expect(jsonReponseNotificacao.detail.orderId).to.eql(pm.environment.get(\"orderId\"));\r",
+									"    pm.expect(jsonReponseNotificacao.orderId).to.eql(pm.environment.get(\"orderId\"));\r",
 									"});\r",
 									"\r",
 									"pm.test('Número do comerciante valido', function () {\r",
-									"    pm.expect(jsonReponseNotificacao.detail.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
+									"    pm.expect(jsonReponseNotificacao.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
 									"});"
 								],
 								"type": "text/javascript"
