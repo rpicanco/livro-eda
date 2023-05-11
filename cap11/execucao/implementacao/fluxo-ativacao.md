@@ -36,11 +36,11 @@
 	
 8. Na lista de usuários, entre no usuário recém criado
 
-9 - Entre na aba **Security Credentials**
+9. Entre na aba **Security Credentials**
 
-10 - Em **Console sign-in**, clique no botão _Enable console access_ e siga os passos para você conseguir logar com esse usuário IAM pelo console.
+10. Em **Console sign-in**, clique no botão _Enable console access_ e siga os passos para você conseguir logar com esse usuário IAM pelo console.
 
-11 - Em **Access keys**, clique no botão _Create access key_
+11. Em **Access keys**, clique no botão _Create access key_
 
 12. Selecione a opção **Command Line Interface (CLI)**
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fcce0bd9-79cd-4461-8bb3-b8127ba84323",
+		"_postman_id": "889daf36-f0cc-4b9c-90d1-0b904e0853f2",
 		"name": "Notificar a entrega do pedido para um comerciante com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -81,12 +81,11 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test('Merchant ID válido', function () {\r",
-									"    pm.expect(jsonData.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
-									"});\r",
+									"const expectedBody = \"Ativação do comerciante \\\"\" + pm.environment.get(\"merchant_id\") + \"\\\" realizado com sucesso.\";\r",
 									"\r",
-									"pm.test('Endpoint válido', function () {\r",
-									"    pm.expect(jsonData.endpoint).to.eql(pm.environment.get(\"endpoint\"));\r",
+									"pm.test('Resposta esperada', function () {\r",
+									"    pm.expect(jsonData.body).to.eql(expectedBody);\r",
+									"    pm.expect(jsonData.statusCode).to.eql(200);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -123,7 +122,9 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -254,11 +255,11 @@
 									"});\r",
 									"\r",
 									"pm.test('Número do pedido valido', function () {\r",
-									"    pm.expect(jsonReponseNotificacao.orderId).to.eql(pm.environment.get(\"orderId\"));\r",
+									"    pm.expect(jsonReponseNotificacao.detail.orderId).to.eql(pm.environment.get(\"orderId\"));\r",
 									"});\r",
 									"\r",
 									"pm.test('Número do comerciante valido', function () {\r",
-									"    pm.expect(jsonReponseNotificacao.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
+									"    pm.expect(jsonReponseNotificacao.detail.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
 									"});"
 								],
 								"type": "text/javascript"
