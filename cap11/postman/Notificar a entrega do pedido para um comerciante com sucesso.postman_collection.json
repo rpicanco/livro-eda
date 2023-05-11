@@ -295,6 +295,297 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Comerciante MER5678",
+			"item": [
+				{
+					"name": "Gera websitehook MER5678",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"token\", jsonData.uuid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"default_status\": 200,\r\n  \"default_content\": \"\",\r\n  \"default_content_type\": \"application/json\",\r\n  \"timeout\": 0,\r\n  \"cors\": false,\r\n  \"expiry\": true,\r\n  \"alias\": \"my-webhook\",\r\n  \"actions\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{URL_BASE_WEBHOOK}}/token",
+							"protocol": "https",
+							"host": [
+								"{{URL_BASE_WEBHOOK}}"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registra MER5678 no sistema de entrega",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"merchant_id\", \"MER5678\");\r",
+									"\r",
+									"const endpoint = \"https://\" + pm.environment.get(\"URL_BASE_WEBHOOK\") + \"/\" + pm.environment.get(\"token\");\r",
+									"pm.environment.set(\"endpoint\", endpoint);\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expectedBody = \"Ativação do comerciante \\\"\" + pm.environment.get(\"merchant_id\") + \"\\\" realizado com sucesso.\";\r",
+									"\r",
+									"pm.test('Resposta esperada', function () {\r",
+									"    pm.expect(jsonData.body).to.eql(expectedBody);\r",
+									"    pm.expect(jsonData.statusCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"endpoint\": \"{{endpoint}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_GATEWAY}}",
+							"host": [
+								"{{URL_GATEWAY}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Simula a solicitação de entrega (já publicando na fila pedido entregue - MER5678)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"orderId\", \"PED9999\");\r",
+									"\r",
+									"const paylod = {\r",
+									"\t\"orderId\": \"{{orderId}}\",    \r",
+									"    \"totalAmount\": 300.00,\r",
+									"    \"status\": \"ENTREGUE\",\r",
+									"    \"customer\": {\r",
+									"        \"id\": \"a206df16-f292-4751-86a8-934d8cc8cd36\",\r",
+									"        \"cpf\": \"405.760.580-09\",\r",
+									"        \"first_name\": \"João\",\r",
+									"        \"last_name\": \"Silva\",\r",
+									"        \"email\": \"joao@gmail.com\",\r",
+									"        \"phone\": \"9999-5555\"\r",
+									"    },\r",
+									"    \"deliveryAddress\": {\r",
+									"        \"street\": \"Rua X\",\r",
+									"        \"number\": \"14.850\",\r",
+									"        \"postalCode\": \"24300-000\",\r",
+									"        \"city\": \"Rio de Janeiro\",\r",
+									"        \"state\": \"RJ\"\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.environment.set(\"payload\", JSON.stringify(paylod));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "awsv4",
+							"awsv4": [
+								{
+									"key": "secretKey",
+									"value": "{{SecretKey}}",
+									"type": "string"
+								},
+								{
+									"key": "accessKey",
+									"value": "{{AccessKey}}",
+									"type": "string"
+								},
+								{
+									"key": "service",
+									"value": "{{SERVICE_NAME}}",
+									"type": "string"
+								},
+								{
+									"key": "region",
+									"value": "{{REGIAO}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "default"
+							},
+							{
+								"key": "MerchantId",
+								"value": "MER1234",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Action",
+									"value": "SendMessage",
+									"type": "default"
+								},
+								{
+									"key": "MessageBody",
+									"value": "{{payload}}",
+									"type": "default"
+								},
+								{
+									"key": "MessageAttribute.1.Name",
+									"value": "merchantId",
+									"type": "default"
+								},
+								{
+									"key": "MessageAttribute.1.Value.StringValue",
+									"value": "{{merchant_id}}",
+									"type": "default"
+								},
+								{
+									"key": "MessageAttribute.1.Value.DataType",
+									"value": "String",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{SQS_URL}}",
+							"host": [
+								"{{SQS_URL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valida cenário - notificação recebida - MER1234",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);\r",
+									"const jsonReponseNotificacao = JSON.parse(jsonData.data[0].content);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('Número do pedido valido', function () {\r",
+									"    pm.expect(jsonReponseNotificacao.orderId).to.eql(pm.environment.get(\"orderId\"));\r",
+									"});\r",
+									"\r",
+									"pm.test('Número do comerciante valido', function () {\r",
+									"    pm.expect(jsonReponseNotificacao.merchantId).to.eql(pm.environment.get(\"merchant_id\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Aguarda 10 segundos para iniciar as validações\r",
+									"setTimeout(function(){}, 10000)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{URL_BASE_WEBHOOK}}/token/{{token}}/requests",
+							"protocol": "https",
+							"host": [
+								"{{URL_BASE_WEBHOOK}}"
+							],
+							"path": [
+								"token",
+								"{{token}}",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
