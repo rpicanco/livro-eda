@@ -1,6 +1,6 @@
 <h1>Envio de notificações de eventos para parceiros</h1>
 
-> :watch: Tempo estimado de execução: XX minutos.
+> :watch: Tempo estimado de execução: 40 minutos.
 
 ### Passos
 
