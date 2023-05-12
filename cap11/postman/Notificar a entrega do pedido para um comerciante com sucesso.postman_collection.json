@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5c53c345-ef83-4d1d-9496-a018b845aeb4",
+		"_postman_id": "1c52a167-8133-45c4-9612-b4a3232ac388",
 		"name": "Notificar a entrega do pedido para um comerciante com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,50 +8,6 @@
 		{
 			"name": "Comerciante MER1234",
 			"item": [
-				{
-					"name": "Gera websitehook MER1234",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const jsonData = JSON.parse(responseBody);\r",
-									"\r",
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.environment.set(\"token\", jsonData.uuid);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"default_status\": 200,\r\n  \"default_content\": \"\",\r\n  \"default_content_type\": \"application/json\",\r\n  \"timeout\": 0,\r\n  \"cors\": false,\r\n  \"expiry\": true,\r\n  \"alias\": \"my-webhook\",\r\n  \"actions\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://{{URL_BASE_WEBHOOK}}/token",
-							"protocol": "https",
-							"host": [
-								"{{URL_BASE_WEBHOOK}}"
-							],
-							"path": [
-								"token"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Registra MER1234 no sistema de entrega",
 					"event": [
@@ -61,7 +17,7 @@
 								"exec": [
 									"pm.environment.set(\"merchant_id\", \"MER1234\");\r",
 									"\r",
-									"const endpoint = \"https://\" + pm.environment.get(\"URL_BASE_WEBHOOK\") + \"/\" + pm.environment.get(\"token\");\r",
+									"const endpoint = \"https://\" + pm.environment.get(\"URL_BASE_WEBHOOK\") + \"/\" + pm.environment.get(\"WEBHOOK_SITE_TOKEN_MER1234\");\r",
 									"pm.environment.set(\"endpoint\", endpoint);\r",
 									"\r",
 									"\r",
@@ -269,8 +225,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// Aguarda 10 segundos para iniciar as validações\r",
-									"setTimeout(function(){}, 10000)"
+									"// Aguarda 5 segundos para iniciar as validações\r",
+									"setTimeout(function(){}, 5000)"
 								],
 								"type": "text/javascript"
 							}
@@ -280,14 +236,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{URL_BASE_WEBHOOK}}/token/{{token}}/requests",
+							"raw": "https://{{URL_BASE_WEBHOOK}}/token/{{WEBHOOK_SITE_TOKEN_MER1234}}/requests",
 							"protocol": "https",
 							"host": [
 								"{{URL_BASE_WEBHOOK}}"
 							],
 							"path": [
 								"token",
-								"{{token}}",
+								"{{WEBHOOK_SITE_TOKEN_MER1234}}",
 								"requests"
 							]
 						}
@@ -300,50 +256,6 @@
 			"name": "Comerciante MER5678",
 			"item": [
 				{
-					"name": "Gera websitehook MER5678",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const jsonData = JSON.parse(responseBody);\r",
-									"\r",
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.environment.set(\"token\", jsonData.uuid);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"default_status\": 200,\r\n  \"default_content\": \"\",\r\n  \"default_content_type\": \"application/json\",\r\n  \"timeout\": 0,\r\n  \"cors\": false,\r\n  \"expiry\": true,\r\n  \"alias\": \"my-webhook\",\r\n  \"actions\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://{{URL_BASE_WEBHOOK}}/token",
-							"protocol": "https",
-							"host": [
-								"{{URL_BASE_WEBHOOK}}"
-							],
-							"path": [
-								"token"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Registra MER5678 no sistema de entrega",
 					"event": [
 						{
@@ -352,7 +264,7 @@
 								"exec": [
 									"pm.environment.set(\"merchant_id\", \"MER5678\");\r",
 									"\r",
-									"const endpoint = \"https://\" + pm.environment.get(\"URL_BASE_WEBHOOK\") + \"/\" + pm.environment.get(\"token\");\r",
+									"const endpoint = \"https://\" + pm.environment.get(\"URL_BASE_WEBHOOK\") + \"/\" + pm.environment.get(\"WEBHOOK_SITE_TOKEN_MER5678\");\r",
 									"pm.environment.set(\"endpoint\", endpoint);\r",
 									"\r",
 									"\r",
@@ -532,7 +444,7 @@
 					"response": []
 				},
 				{
-					"name": "Valida cenário - notificação recebida - MER1234",
+					"name": "Valida cenário - notificação recebida - MER5678",
 					"event": [
 						{
 							"listen": "test",
@@ -560,8 +472,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// Aguarda 10 segundos para iniciar as validações\r",
-									"setTimeout(function(){}, 10000)"
+									"// Aguarda 5 segundos para iniciar as validações\r",
+									"setTimeout(function(){}, 5000)"
 								],
 								"type": "text/javascript"
 							}
@@ -571,14 +483,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{URL_BASE_WEBHOOK}}/token/{{token}}/requests",
+							"raw": "https://{{URL_BASE_WEBHOOK}}/token/{{WEBHOOK_SITE_TOKEN_MER5678}}/requests",
 							"protocol": "https",
 							"host": [
 								"{{URL_BASE_WEBHOOK}}"
 							],
 							"path": [
 								"token",
-								"{{token}}",
+								"{{WEBHOOK_SITE_TOKEN_MER5678}}",
 								"requests"
 							]
 						}
