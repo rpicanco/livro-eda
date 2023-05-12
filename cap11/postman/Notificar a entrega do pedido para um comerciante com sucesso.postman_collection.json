@@ -89,6 +89,9 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"// Aguarda 5 segundos para publicar. Precisamos de um tempo para os recursos criados na ativação ficarem ativos.\r",
+									"setTimeout(function(){}, 5000)\r",
+									"\r",
 									"pm.environment.set(\"orderId\", \"PED9999\");\r",
 									"\r",
 									"const paylod = {\r",
@@ -336,6 +339,9 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"// Aguarda 5 segundos para publicar. Precisamos de um tempo para os recursos criados na ativação ficarem ativos.\r",
+									"setTimeout(function(){}, 5000)\r",
+									"\r",
 									"pm.environment.set(\"orderId\", \"PED9999\");\r",
 									"\r",
 									"const paylod = {\r",
