@@ -43,7 +43,7 @@ sudo apt-get update
 ```
 sudo apt-get install ca-certificates curl gnupg
 ```
-**Do you want to continue? [Y/n]** y
+	**Do you want to continue? [Y/n]** y
 	
 ```
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -71,7 +71,7 @@ sudo apt-get update
 ```
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-**Do you want to continue? [Y/n]** y
+	**Do you want to continue? [Y/n]** y
 
 2. Iniciar o Docker
 
