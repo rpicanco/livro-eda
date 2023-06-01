@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1d5db571-5ecb-4d08-916d-bd2935be5e90",
+		"_postman_id": "a28dcdf0-ab9b-42c6-81df-3065f2b3845a",
 		"name": "Realizar a compra de um produto com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,8 +18,11 @@
 							"const month = dateNow.getMonth()+1;\r",
 							"const year = dateNow.getYear();\r",
 							"\r",
-							"pm.environment.set(\"expiration_month\", (\"00\" + month).slice(-2));\r",
-							"pm.environment.set(\"expiration_year\", (\"00\" + year).slice(-2));"
+							"pm.environment.set(\"expirationMonth\", (\"00\" + month).slice(-2));\r",
+							"pm.environment.set(\"expirationYear\", (\"00\" + year).slice(-2));\r",
+							"\r",
+							"//CardId configurado no Mockon para retornar pagamento autorizado\r",
+							"pm.environment.set(\"cardId\", \"1ec20487-0b63-4002-b486-3e583cef7707\");"
 						],
 						"type": "text/javascript"
 					}
@@ -29,7 +32,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = JSON.parse(responseBody);\r",
-							"pm.environment.set(\"orderId\", jsonData.orderId);\r",
+							"pm.environment.set(\"orderId\", jsonData.id);\r",
 							"\r",
 							"pm.test(\"Status code is 202\", function () {\r",
 							"    pm.response.to.have.status(202);\r",
@@ -44,7 +47,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"9b083d56-f8ac-4336-8f26-f68ad1ba35db\",\r\n      \"count\": 2,\r\n      \"itemPrice\": 100\r\n    }\r\n  ],\r\n  \"customer\": {\r\n    \"id\": \"818723c6-eae7-4949-8cbe-87353200dc8c\",\r\n    \"first_name\": \"João\",\r\n    \"last_name\": \"Silva\",\r\n    \"email\": \"fulano@gmail.com\",\r\n    \"deliveryAddress\": {\r\n      \"street\": \"Rua X\",\r\n      \"number\": \"14.85\",\r\n      \"postalCode\": \"24300-000\",\r\n      \"city\": \"Rio de Janeiro\",\r\n      \"state\": \"RJ\"\r\n    }\r\n  },\r\n  \"payment\": {\r\n    \"cardId\": \"1ec20487-0b63-4002-b486-3e583cef7707\",\r\n    \"bin\": \"515590\",\r\n    \"number_token\": \"huhrefurhfuhrufhurhfurhfurhfur\",\r\n    \"cardholder_name\": \"JOAO SILVA\",\r\n    \"security_code\": \"256\",\r\n    \"brand\": \"Mastercard\",\r\n    \"expiration_month\": \"{{expiration_month}}\",\r\n    \"expiration_year\": \"{{expiration_year}}\"\r\n  }\r\n}",
+					"raw": "{\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"cbab9b0e-b9fd-4e0b-8d34-b9ba2f114537\",\r\n      \"count\": 2,\r\n      \"price\": 100\r\n    }\r\n  ],\r\n  \"customer\": {\r\n    \"id\": \"818723c6-eae7-4949-8cbe-87353200dc8c\",\r\n    \"first_name\": \"João\",\r\n    \"last_name\": \"Silva\",\r\n    \"email\": \"fulano@gmail.com\",\r\n    \"deliveryAddress\": {\r\n      \"street\": \"Rua X\",\r\n      \"number\": \"14.85\",\r\n      \"postalCode\": \"24300-000\",\r\n      \"city\": \"Rio de Janeiro\",\r\n      \"state\": \"RJ\"\r\n    }\r\n  },\r\n  \"payment\": {\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"bin\": \"515590\",\r\n    \"number_token\": \"1ec20487-0b63-4002-b486-3e583cef7798\",\r\n    \"cardholder_name\": \"JOAO SILVA\",\r\n    \"security_code\": \"256\",\r\n    \"brand\": \"Mastercard\",\r\n    \"expiration_month\": \"{{expirationMonth}}\",\r\n    \"expiration_year\": \"{{expirationYear}}\"\r\n  }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "Valida cenário - Pedido recebido",
+			"name": "Valida cenário - Pedido em preparação",
 			"event": [
 				{
 					"listen": "test",
@@ -82,8 +85,18 @@
 							"});\r",
 							"\r",
 							"pm.test('Status do pedido recebido', function () {\r",
-							"    pm.expect(jsonData.status).to.eql(\"recebido\");\r",
+							"    pm.expect(jsonData.status).to.eql(\"em_preparacao\");\r",
 							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Aguarda 5 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 5000)"
 						],
 						"type": "text/javascript"
 					}

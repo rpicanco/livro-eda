@@ -164,7 +164,7 @@ components:
        - customer
        - payment
       properties:
-        orderId:
+        id:
           type: string
           format: uuidv4
           description: "Um identificador exclusivo para o pedido."
@@ -227,7 +227,7 @@ components:
           format: int32
           example: 2
           description: "A quantidade do item do produto"
-        itemPrice:
+        price:
           type: number
           format: double
           description: "O valor do item do produto"
