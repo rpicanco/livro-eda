@@ -1,6 +1,6 @@
 <h2>Para usuários do Windows</h2>
 
-Caso você esteja usando o sistema operacional _Windows_, você pode rodar um ambiente do sistema operacional _Linux_ (_Ubuntu_) para executar os comandos. 
+Caso você esteja usando o sistema operacional _Windows_, você pode rodar um ambiente do sistema operacional _Linux_ (_Ubuntu_) dentro do _Windows_ para executar os comandos. 
 
 ### Baixar e instalar o Windows Subsystem for Linux (WSL) no Microsoft Store
 
