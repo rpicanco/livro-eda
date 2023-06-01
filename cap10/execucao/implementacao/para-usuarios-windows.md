@@ -18,4 +18,4 @@ Caso você esteja usando o sistema operacional _Windows_, você pode rodar um am
 
 2. Aguarde um instante e aparecerá a opção para você definir um usuário e senha.
 
-3. Após a definição do usuário e senha, o terminal de comando do Linux ficará disponível para você executar os comandos.
+:loudspeaker: Após a definição do usuário e senha, o terminal de comando do Linux ficará disponível para você executar os comandos.
