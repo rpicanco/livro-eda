@@ -11,3 +11,5 @@
 :three: <a href="acesse-rabbitmq-administrador.md">[Extra] Visualize as configurações dos eventos no admin do RabbitMQ</a>
 
 :four: <a href="mongo-db.md">[Extra] Visualize as coleções diretamente no MongoDB</a>
+
+:five: <a href="mongo-db.md">[Extra] Visualize os logs dos microsserviços da solução</a>

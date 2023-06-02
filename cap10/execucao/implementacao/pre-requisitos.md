@@ -12,6 +12,12 @@
 
 :heavy_check_mark: [Make](#make)
 
+>
+> **Note**:
+> 
+> Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do sistema operacional _Windows_
+> 
+
 ## Sistema operacional Linux 
 
 ### Java 17
@@ -134,12 +140,6 @@ sudo apt update
 ```
 sudo apt install make
 ```
-
->
-> **Note**:
-> 
-> Clique <a href="para-usuarios-windows.md">aqui</a> para usuários do sistema operacional _Windows_
-> 
 
 #### Ambiente de execução
 
