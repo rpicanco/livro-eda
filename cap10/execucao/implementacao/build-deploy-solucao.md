@@ -30,7 +30,7 @@ sudo make build-start
 
 :loudspeaker: O primeiro build e deploy é sempre mais demorado por precisar baixar todas as imagens nessecárias.
 
-2. Verificar se a solução está rodando
+3. Verificar se a solução está rodando
 
 :loudspeaker: Aparecerá apenas log do tipo _INFO_ e no final a lista dos componentes/containers inicializados e prontos para serem utilizados.
 
