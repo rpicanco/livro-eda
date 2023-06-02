@@ -6,7 +6,7 @@
 
 ## Clone do projeto do Github
 
-**Objetivo**: Baixar o código fonte do capítulo 10 do Github para o seu ambiente local _Linux_.
+**Objetivo**: Baixar o código fonte do capítulo 10 do _Github_ para o seu ambiente local _Linux_.
 
 1. Faça o clone do projeto
 
@@ -14,19 +14,21 @@
 git clone https://github.com/rpicanco/livro-eda.git
 ``` 
 
-2. Copie o código fonte do capítulo 10 (https://github.com/rpicanco/livro-eda/tree/main/cap10/src) na pasta /opt
+2. Copie o código fonte do capítulo 10 (https://github.com/rpicanco/livro-eda/tree/main/cap10/src) em alguma pasta de sua preferência
 
 ## Build e deploy da solução
 
 **Objetivo**: Contruir e deployar todos os componentes da solução no seu ambiente local _Linux_.
 
-1. Realizar o build e inicialização dos componentes através do _Make_
+1. Entre na pasta onde está o código fonte baixado do _Github_
+
+2. Realizar o build e inicialização dos componentes através do _Make_
 
 ```
 sudo make build-start
 ```
 
-:loudspeaker: O primeiro build e deploy é sempre mais demorado por precisar baixar todas as imagens do docker nessecária.
+:loudspeaker: O primeiro build e deploy é sempre mais demorado por precisar baixar todas as imagens nessecárias.
 
 2. Verificar se a solução está rodando
 
@@ -34,6 +36,6 @@ sudo make build-start
 
 <img src="/cap10/imagens/build-start-sucesso.png">
 
-:loudspeaker: Se tudo estiver ok, a solução estará pronta para ser testada no postman.
+:loudspeaker: Se tudo estiver ok, a solução estará pronta para ser testada no _postman_.
 
  
