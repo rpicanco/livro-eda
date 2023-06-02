@@ -34,6 +34,8 @@ java –version
 
 ### Docker
 
+Referência: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
 1. Instalar o Docker
 
 ```
@@ -108,6 +110,10 @@ docker-compose version
 1. Instalar o Maven
 
 ```
+sudo apt-get update
+```
+
+```
 sudo apt-get install maven
 ```
 
@@ -120,6 +126,10 @@ mvn --version
 ### Make
 
 1. Instalar o Make
+
+```
+sudo apt update
+```
 
 ```
 sudo apt install make
