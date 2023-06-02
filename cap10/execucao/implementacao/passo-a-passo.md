@@ -10,6 +10,6 @@
 
 :three: <a href="acesse-rabbitmq-administrador.md">[Opcional] Visualize as configurações dos eventos na interface de gerenciamento do RabbitMQ</a>
 
-:four: <a href="cliente-mongo-db.md">[Opcional] Visualize as coleções diretamente no MongoDB</a>
+:four: <a href="cliente-mongo-db.md">[Opcional] Visualize as coleções no MongoDB via interface gráfica</a>
 
 :five: <a href="visualizar-logs-solucao.md">[Opcional] Visualize os logs dos microsserviços da solução</a>
