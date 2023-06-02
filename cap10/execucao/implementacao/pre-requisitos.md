@@ -141,6 +141,6 @@ sudo apt update
 sudo apt install make
 ```
 
-#### Ambiente de execução
+### Ambiente de execução
 
 <img src="/cap10/imagens/ambiente-execucao.png">
