@@ -23,7 +23,7 @@ paths:
             schema:
               $ref: "#/components/schemas/Pedido"
       responses:
-        "200":
+        "204":
           description: Confirmação de entrega recebida - O pedido foi entregue pelo sistema de entrega de terceiros.
         "400":
           description: Bad Request - Valida os campos de acordo com a definição do contrato.

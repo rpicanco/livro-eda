@@ -10,7 +10,7 @@ servers:
   - url: https://api.abc.com/v1
     description: Production server
 paths:
-  /fulfillments/pedidos/{id}/packaging:
+  /fulfillments/pedidos/{orderId}/packaging:
     patch:
       tags:
       - Fulfillment
@@ -84,7 +84,7 @@ components:
   
   parameters:
     PedidoIDParam:
-      name: id
+      name: orderId
       in: path
       description: "Um identificador exclusivo do pedido."
       example: "06f256c8-1bbf-42bf-93b4-ce2041bfb87e"
@@ -108,7 +108,7 @@ components:
         packagedAt:
           type: string
           format: date
-          description: "A data da criação do pedido no formato YYYY-MM-DD."
+          description: "A data da finalização da embalagem no formato YYYY-MM-DD."
           example: "2023-05-01"
     
     Error:
@@ -121,4 +121,4 @@ components:
         message:
           type: string
           description: "Mensagem de erro."
-          example: "A data da finbalização da embalagem é obrigatória."
+          example: "A data da finalização da embalagem é obrigatória."
