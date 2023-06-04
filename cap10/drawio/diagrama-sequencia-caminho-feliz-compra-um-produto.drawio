@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-06-01T21:07:19.667Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="E-VZSRx7dkIU9yPj_EsG" version="21.2.8" type="device">
+<mxfile host="Electron" modified="2023-06-04T20:48:19.421Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="3e2wa3M1m9Ohy0WTL7YD" version="21.2.8" type="device">
   <diagram name="Página-1" id="JubvbWHoa14YFnH8RNsb">
-    <mxGraphModel dx="2074" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3457" dy="1407" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -405,8 +405,8 @@
         <mxCell id="vOXF3gEUuE6qOiWp-cWu-88" value="Cliente" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="45" y="100" width="50" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="vOXF3gEUuE6qOiWp-cWu-89" value="/fulfillments/pedido/{id}/packaging" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="1375" y="789" width="185" height="20" as="geometry" />
+        <mxCell id="vOXF3gEUuE6qOiWp-cWu-89" value="/fulfillments/pedido/{orderId}/packaging" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1358.5" y="790" width="205" height="20" as="geometry" />
         </mxCell>
         <mxCell id="vOXF3gEUuE6qOiWp-cWu-90" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
