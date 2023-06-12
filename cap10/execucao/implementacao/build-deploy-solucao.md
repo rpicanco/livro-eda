@@ -8,19 +8,19 @@
 
 **Objetivo**: Baixar o código fonte do capítulo 10 do _Github_ para o seu ambiente local _Linux_.
 
-1. Faça o clone do projeto
+1. Faça o clone do projeto em alguma pasta de sua preferência. Por exemplo, `/opt`
 
 ```
 git clone https://github.com/rpicanco/livro-eda.git
 ``` 
 
-2. Copie o código fonte do capítulo 10 (https://github.com/rpicanco/livro-eda/tree/main/cap10/src) em alguma pasta de sua preferência
+2. Entre na pasta **/cap10/src/ecommerce**.
 
 ## Build e deploy da solução
 
 **Objetivo**: Contruir e deployar todos os componentes da solução no seu ambiente local _Linux_.
 
-1. Entre na pasta onde está o código fonte baixado do _Github_
+1. Entre na pasta onde está o código fonte baixado do _Github_ (**/cap10/src/ecommerce**)
 
 2. Realizar o build e inicialização dos componentes através do _Make_
 
