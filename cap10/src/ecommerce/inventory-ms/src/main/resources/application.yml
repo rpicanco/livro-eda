@@ -1,0 +1,55 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_CONNECTION_URL:mongodb://root:secret123@localhost:27017/projeto1?authSource=admin}
+
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:root}
+    password: ${RABBIT_PASSWORD:secret123}
+
+  # https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_consumer_properties
+  cloud:
+    function:
+      definition: pedidoCriado;
+    stream:
+      bindings:
+        pedidoCriado-in-0:
+          destination: pedido-criado
+          group: inventory-ms
+
+        pedidoReservado-out-0:
+          destination: pedido-reservado
+        pedidoRecusado-out-0:
+          destination: pedido-recusado
+      rabbit:
+        bindings:
+          # CONSUMER
+          pedidoCriado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: inventory-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+
+          # PRODUCER
+          pedidoReservado-out-0:
+            producer:
+              exchangeType: fanout
+          pedidoRecusado-out-0:
+            producer:
+              exchangeType: fanout
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBIT_HOST:localhost}
+                port: ${RABBIT_PORT:5672}
+                username: ${RABBIT_USERNAME:root}
+                password: ${RABBIT_PASSWORD:secret123}
+                virtual-host: /

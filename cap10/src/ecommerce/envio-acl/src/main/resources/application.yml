@@ -1,0 +1,54 @@
+spring:
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:root}
+    password: ${RABBIT_PASSWORD:secret123}
+
+  # https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_consumer_properties
+  cloud:
+    function:
+      definition: pedidoEnvioSolicitado;
+    stream:
+      bindings:
+        pedidoEnvioSolicitado-in-0:
+          destination: pedido-envio-solicitado
+          group: envio-acl
+
+        pedidoEnvioConfirmado-out-0:
+          destination: pedido-envio-confirmado
+        pedidoEntregue-out-0:
+          destination: pedido-entregue
+      rabbit:
+        bindings:
+          # CONSUMER
+          pedidoEnvioSolicitado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: envio-acl-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+
+          # PRODUCER
+          pedidoEnvioConfirmado-out-0:
+            producer:
+              exchangeType: fanout
+          pedidoEntregue-out-0:
+            producer:
+              exchangeType: fanout
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBIT_HOST:localhost}
+                port: ${RABBIT_PORT:5672}
+                username: ${RABBIT_USERNAME:root}
+                password: ${RABBIT_PASSWORD:secret123}
+                virtual-host: /
+
+deliverySystem:
+  url: ${DELIVERY_SYSTEM_URL:http://localhost:3000}

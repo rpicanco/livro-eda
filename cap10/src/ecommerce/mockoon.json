@@ -1,0 +1,192 @@
+{
+  "uuid": "92336ddb-67c9-4121-a2aa-5a74d3e7f4a5",
+  "lastMigration": 27,
+  "name": "Mockoon",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "49692a6d-d782-4276-9b32-ef1a18aabb97",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "pagamentos",
+      "responses": [
+        {
+          "uuid": "88ce4a25-c754-46b1-bc1b-b8734767c536",
+          "body": "{\n  \"paymentId\": \"{{guid}}\",\n  \"status\": \"AUTHORIZED\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Pagamento Autorizado",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "cardId",
+              "value": "1ec20487-0b63-4002-b486-3e583cef7707",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4f75fea2-35ac-4ccb-b7c5-f14cd3c3c21a",
+          "body": "{\n  \"paymentId\": \"{{guid}}\",\n  \"status\": \"DENIED\",\n  \"detail\": {\n    \"message\": \"Saldo Insuficiente\",\n    \"description\": \"Cliente não possuí saldo suficiente para efetuar a transação\",\n    \"code\": \"saldo_insuficiente\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Pagamento Negado - Saldo Insuficiente",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "cardId",
+              "value": "92ff7af9-2028-4a0e-b25a-3bad64dde93c",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "fe350528-4116-434d-bbfa-5420d5fdb29f",
+          "body": "{\n  \"paymentId\": \"{{guid}}\",\n  \"status\": \"DENIED\",\n  \"detail\": {\n    \"message\": \"Cartão inválido\",\n    \"description\": \"Dados do cartão é inválido\",\n    \"code\": \"invalid_card\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Pagamento Negado - Cartão Inválido",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "e6f5d289-df2c-466e-9e51-97e9279c4728",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "entregas",
+      "responses": [
+        {
+          "uuid": "7ab7369a-cee3-479e-8401-b3273f63c91b",
+          "body": "{\n  \"id\": \"{{guid}}\",\n  \"status\": \"RECEIVED\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "3e5fed78-094b-4a9a-a1a6-0c60e5002811",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "notifications",
+      "responses": [
+        {
+          "uuid": "17a1b13c-ca74-44bc-a536-387ba4e9eeb5",
+          "body": "{\n  \"id\": \"{{guid}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "49692a6d-d782-4276-9b32-ef1a18aabb97"
+    },
+    {
+      "type": "route",
+      "uuid": "e6f5d289-df2c-466e-9e51-97e9279c4728"
+    },
+    {
+      "type": "route",
+      "uuid": "3e5fed78-094b-4a9a-a1a6-0c60e5002811"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}

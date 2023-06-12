@@ -1,0 +1,5 @@
+Olá %s,
+
+Ebaaa! O seu pedido [%s] foi enviado para entrega!
+
+Equipe Ecommerce ABC

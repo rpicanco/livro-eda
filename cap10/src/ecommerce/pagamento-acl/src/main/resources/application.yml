@@ -1,0 +1,2 @@
+payment-gateway:
+  url: ${PAYMENT_GATEWAY:http://localhost:3000}

@@ -1,0 +1,138 @@
+version: "3.3"  # optional since v1.27.0
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: projeto1
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret123
+    networks:
+      - projeto1
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.10.23-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: secret123
+    networks:
+      - projeto1
+
+  mockoon:
+    image: mockoon/cli:latest
+    command: [ "--data", "data", "--port", "3000" ]
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./mockoon.json:/data
+    networks:
+      - projeto1
+
+  envio-ms:
+    build: envio-ms
+    ports:
+      - "8081:8081"
+    environment:
+      SERVER_PORT: 8081
+      RABBIT_HOST: rabbitmq
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+    networks:
+      - projeto1
+
+  envio-acl:
+    build: envio-acl
+    ports:
+      - "9091:9091"
+    environment:
+      SERVER_PORT: 9091
+      RABBIT_HOST: rabbitmq
+      DELIVERY_SYSTEM_URL: http://mockoon:3000
+    networks:
+      - projeto1
+
+  fulfillment-ms:
+    build: fulfillment-ms
+    ports:
+      - "8082:8082"
+    environment:
+      SERVER_PORT: 8082
+      RABBIT_HOST: rabbitmq
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+    networks:
+      - projeto1
+
+  inventory-ms:
+    build: inventory-ms
+    ports:
+      - "8083:8083"
+    environment:
+      SERVER_PORT: 8083
+      RABBIT_HOST: rabbitmq
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+    networks:
+      - projeto1
+
+  notificacao-acl:
+    build: notificacao-acl
+    ports:
+      - "9092:9092"
+    environment:
+      SERVER_PORT: 9092
+      RABBIT_HOST: rabbitmq
+      NOTIFICATION_SYSTEM_URL: http://mockoon:3000
+    networks:
+      - projeto1
+
+  pagamento-ms:
+    build: pagamento-ms
+    ports:
+      - "8084:8084"
+    environment:
+      SERVER_PORT: 8084
+      RABBIT_HOST: rabbitmq
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+      MS_PAGAMENTO_ACL_URL: http://pagamento-acl:9093
+    networks:
+      - projeto1
+
+  pagamento-acl:
+    build: pagamento-acl
+    ports:
+      - "9093:9093"
+    environment:
+      SERVER_PORT: 9093
+      PAYMENT_GATEWAY: http://mockoon:3000
+    networks:
+      - projeto1
+
+  pedido-ms:
+    build: pedido-ms
+    ports:
+      - "8085:8085"
+    environment:
+      SERVER_PORT: 8085
+      RABBIT_HOST: rabbitmq
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+    networks:
+      - projeto1
+
+  qualificacao-ms:
+    build: qualificacao-ms
+    ports:
+      - "8086:8086"
+    environment:
+      SERVER_PORT: 8086
+      RABBIT_HOST: rabbitmq
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+    networks:
+      - projeto1
+
+networks:
+  projeto1:
+    driver: bridge

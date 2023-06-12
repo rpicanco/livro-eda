@@ -1,0 +1,5 @@
+Olá %s,
+
+Infelizmente o seu pedido [%s] foi negado porque: "%s".
+
+Equipe Ecommerce ABC

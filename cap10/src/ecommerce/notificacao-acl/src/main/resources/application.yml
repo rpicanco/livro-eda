@@ -1,0 +1,65 @@
+spring:
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:root}
+    password: ${RABBIT_PASSWORD:secret123}
+
+  # https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_consumer_properties
+  cloud:
+    function:
+      definition: pedidoRecusado;pagamentoNegado;pedidoEnviado;
+    stream:
+      bindings:
+        pedidoRecusado-in-0:
+          destination: pedido-recusado
+          group: notificacao-acl
+        pagamentoNegado-in-0:
+          destination: pagamento-negado
+          group: notificacao-acl
+        pedidoEnviado-in-0:
+          destination: pedido-enviado
+          group: notificacao-acl
+
+      rabbit:
+        bindings:
+          # CONSUMER
+          pedidoRecusado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: notificacao-acl-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pagamentoNegado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: notificacao-acl-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pedidoEnviado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: notificacao-acl-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBIT_HOST:localhost}
+                port: ${RABBIT_PORT:5672}
+                username: ${RABBIT_USERNAME:root}
+                password: ${RABBIT_PASSWORD:secret123}
+                virtual-host: /
+
+notificationSystem:
+  url: ${NOTIFICATION_SYSTEM_URL:http://localhost:3000}

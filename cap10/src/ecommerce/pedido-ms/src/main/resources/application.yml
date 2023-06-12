@@ -1,0 +1,121 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_CONNECTION_URL:mongodb://root:secret123@localhost:27017/projeto1?authSource=admin}
+
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:root}
+    password: ${RABBIT_PASSWORD:secret123}
+
+  # https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_consumer_properties
+  cloud:
+    function:
+      definition: pedidoQualificado;pedidoReservado;pedidoRecusado;pagamentoAutorizado;pagamentoNegado;pedidoEnviado;pedidoEntregue
+    stream:
+      bindings:
+        pedidoQualificado-in-0:
+          destination: pedido-qualificado
+          group: pedido-ms
+        pedidoReservado-in-0:
+          destination: pedido-reservado
+          group: pedido-ms
+        pedidoRecusado-in-0:
+          destination: pedido-recusado
+          group: pedido-ms
+        pagamentoAutorizado-in-0:
+          destination: pagamento-autorizado
+          group: pedido-ms
+        pagamentoNegado-in-0:
+          destination: pagamento-negado
+          group: pedido-ms
+        pedidoEnviado-in-0:
+          destination: pedido-enviado
+          group: pedido-ms
+        pedidoEntregue-in-0:
+          destination: pedido-entregue
+          group: pedido-ms
+
+        pedidoCriado-out-0:
+          destination: pedido-criado
+        pedidoConfirmado-out-0:
+          destination: pedido-confirmado
+      rabbit:
+        bindings:
+          # CONSUMER
+          pedidoQualificado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pedido-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pedidoReservado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pedido-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pedidoRecusado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pedido-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pagamentoAutorizado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pedido-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pagamentoNegado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pedido-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pedidoEnviado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pedido-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pedidoEntregue-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pedido-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+
+          # PRODUCER
+          pedidoCriado-out-0:
+            producer:
+              exchangeType: fanout
+          pedidoConfirmado-out-0:
+            producer:
+              exchangeType: fanout
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBIT_HOST:localhost}
+                port: ${RABBIT_PORT:5672}
+                username: ${RABBIT_USERNAME:root}
+                password: ${RABBIT_PASSWORD:secret123}
+                virtual-host: /

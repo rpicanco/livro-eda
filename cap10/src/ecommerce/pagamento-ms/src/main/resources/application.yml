@@ -1,0 +1,58 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_CONNECTION_URL:mongodb://root:secret123@localhost:27017/projeto1?authSource=admin}
+
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:root}
+    password: ${RABBIT_PASSWORD:secret123}
+
+  # https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_consumer_properties
+  cloud:
+    function:
+      definition: pedidoConfirmado;
+    stream:
+      bindings:
+        pedidoConfirmado-in-0:
+          destination: pedido-confirmado
+          group: pagamento-ms
+
+        pagamentoNegado-out-0:
+          destination: pagamento-negado
+        pagamentoAutorizado-out-0:
+          destination: pagamento-autorizado
+      rabbit:
+        bindings:
+          # CONSUMER
+          pedidoConfirmado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: pagamento-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+
+          # PRODUCER
+          pagamentoNegado-out-0:
+            producer:
+              exchangeType: fanout
+          pagamentoAutorizado-out-0:
+            producer:
+              exchangeType: fanout
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBIT_HOST:localhost}
+                port: ${RABBIT_PORT:5672}
+                username: ${RABBIT_USERNAME:root}
+                password: ${RABBIT_PASSWORD:secret123}
+                virtual-host: /
+
+pagamento-acl:
+  url: ${MS_PAGAMENTO_ACL_URL:http://localhost:3000}

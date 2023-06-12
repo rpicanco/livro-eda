@@ -1,0 +1,5 @@
+Olá %s,
+
+O seu pedido [%s] foi cancelado porque o pagamento não foi autorizado.
+
+Equipe Ecommerce ABC

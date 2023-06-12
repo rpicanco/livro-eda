@@ -1,0 +1,66 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_CONNECTION_URL:mongodb://root:secret123@localhost:27017/projeto1?authSource=admin}
+
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:root}
+    password: ${RABBIT_PASSWORD:secret123}
+
+  # https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_consumer_properties
+  cloud:
+    function:
+      definition: pedidoEmbalado;pedidoEnvioConfirmado;
+    stream:
+      bindings:
+        pedidoEmbalado-in-0:
+          destination: pedido-embalado
+          group: envio-ms
+        pedidoEnvioConfirmado-in-0:
+          destination: pedido-envio-confirmado
+          group: envio-ms
+
+        pedidoEnvioSolicitado-out-0:
+          destination: pedido-envio-solicitado
+        pedidoEnviado-out-0:
+          destination: pedido-enviado
+      rabbit:
+        bindings:
+          # CONSUMER
+          pedidoEmbalado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: envio-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+          pedidoEnvioConfirmado-in-0:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              deadLetterExchange: envio-processing-error
+              deadLetterExchangeType: fanout
+              dlqMaxLength: 100
+              dlqTtl: 120000
+
+          # PRODUCER
+          pedidoEnvioSolicitado-out-0:
+            producer:
+              exchangeType: fanout
+          pedidoEnviado-out-0:
+            producer:
+              exchangeType: fanout
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBIT_HOST:localhost}
+                port: ${RABBIT_PORT:5672}
+                username: ${RABBIT_USERNAME:root}
+                password: ${RABBIT_PASSWORD:secret123}
+                virtual-host: /
