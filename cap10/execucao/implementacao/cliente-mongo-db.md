@@ -18,10 +18,12 @@
 	
 	* **Username**: root
 	* **Password**: secret123
+
+	Clique em _Connect_
 	
 :loudspeaker: Tanto a porta, para conectar no _MongoDB_ local, quanto o usuário e senha foram definidos no `docker-compose.yml`.
 
 <img src="/cap10/imagens/acesso-mongodb-interface-grafica.png">
 
-:loudspeaker: Você conseguirá visualizar os dados utilizados no teste, como o `produtoId` que estamos usando e que tem disponível no estoque.
+:loudspeaker: Na configuração inicial, teremos a coleção _inventory_ com as informações dos produtos em estoque e a coleção _state_ com as informações das cidades elegíveis para entrega dos pedidos. As outras coleções serão criadas dinamicamente conforme a utilização do sistema/solução.
 

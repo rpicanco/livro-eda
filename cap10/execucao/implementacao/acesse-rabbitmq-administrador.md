@@ -11,6 +11,8 @@
 	* **Username**: root
 	* **Password**: secret123
 	
+2. No menu, clique em **Exchanges** para visualizar as exchanges/tópicos/eventos
+	
 :loudspeaker: Tanto a porta, para acessar a interface, quanto o usuário e senha foram definidos no `docker-compose.yml`.
 
 <img src="/cap10/imagens/interface-gerenciamento-rabbitmq.png">
