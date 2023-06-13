@@ -6,11 +6,11 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_DATABASE: projeto1
+      MONGO_INITDB_DATABASE: ecommerce
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: secret123
     networks:
-      - projeto1
+      - ecommerce
 
   rabbitmq:
     container_name: rabbitmq
@@ -22,7 +22,7 @@ services:
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: secret123
     networks:
-      - projeto1
+      - ecommerce
 
   mockoon:
     image: mockoon/cli:latest
@@ -32,7 +32,7 @@ services:
     volumes:
       - ./mockoon.json:/data
     networks:
-      - projeto1
+      - ecommerce
 
   envio-ms:
     build: envio-ms
@@ -41,9 +41,9 @@ services:
     environment:
       SERVER_PORT: 8081
       RABBIT_HOST: rabbitmq
-      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/ecommerce?authSource=admin
     networks:
-      - projeto1
+      - ecommerce
 
   envio-acl:
     build: envio-acl
@@ -54,7 +54,7 @@ services:
       RABBIT_HOST: rabbitmq
       DELIVERY_SYSTEM_URL: http://mockoon:3000
     networks:
-      - projeto1
+      - ecommerce
 
   fulfillment-ms:
     build: fulfillment-ms
@@ -63,9 +63,9 @@ services:
     environment:
       SERVER_PORT: 8082
       RABBIT_HOST: rabbitmq
-      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/ecommerce?authSource=admin
     networks:
-      - projeto1
+      - ecommerce
 
   inventory-ms:
     build: inventory-ms
@@ -74,9 +74,9 @@ services:
     environment:
       SERVER_PORT: 8083
       RABBIT_HOST: rabbitmq
-      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/ecommerce?authSource=admin
     networks:
-      - projeto1
+      - ecommerce
 
   notificacao-acl:
     build: notificacao-acl
@@ -87,7 +87,7 @@ services:
       RABBIT_HOST: rabbitmq
       NOTIFICATION_SYSTEM_URL: http://mockoon:3000
     networks:
-      - projeto1
+      - ecommerce
 
   pagamento-ms:
     build: pagamento-ms
@@ -96,10 +96,10 @@ services:
     environment:
       SERVER_PORT: 8084
       RABBIT_HOST: rabbitmq
-      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/ecommerce?authSource=admin
       MS_PAGAMENTO_ACL_URL: http://pagamento-acl:9093
     networks:
-      - projeto1
+      - ecommerce
 
   pagamento-acl:
     build: pagamento-acl
@@ -109,7 +109,7 @@ services:
       SERVER_PORT: 9093
       PAYMENT_GATEWAY: http://mockoon:3000
     networks:
-      - projeto1
+      - ecommerce
 
   pedido-ms:
     build: pedido-ms
@@ -118,9 +118,9 @@ services:
     environment:
       SERVER_PORT: 8085
       RABBIT_HOST: rabbitmq
-      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/ecommerce?authSource=admin
     networks:
-      - projeto1
+      - ecommerce
 
   qualificacao-ms:
     build: qualificacao-ms
@@ -129,10 +129,10 @@ services:
     environment:
       SERVER_PORT: 8086
       RABBIT_HOST: rabbitmq
-      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/projeto1?authSource=admin
+      MONGODB_CONNECTION_URL: mongodb://root:secret123@mongo:27017/ecommerce?authSource=admin
     networks:
-      - projeto1
+      - ecommerce
 
 networks:
-  projeto1:
+  ecommerce:
     driver: bridge
