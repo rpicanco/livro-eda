@@ -36,8 +36,6 @@ sudo make build-start
 
 <img src="/cap10/imagens/build-start-sucesso.png">
 
-:point_right: Além dos microsserviços que contemplam a solução, temos o _rabbitmq_ (https://rabbitmq.com/), que é nossa solução de broker de eventos, o _Mockoon_ (https://mockoon.com/), que é a nossa solução de mock para REST API para simular o gateway de pagamento e temos o _mongo_ (https://www.mongodb.com/), que é nossa solução de banco de dados NoSQL.
+:point_right: Além dos microsserviços que contemplam a solução, temos o _rabbitmq_ (https://rabbitmq.com/), que é nossa solução de broker de eventos, o _mockoon_ (https://mockoon.com/), que é a nossa solução de mock para REST API para simular o gateway de pagamento e temos o _mongo_ (https://www.mongodb.com/), que é nossa solução de banco de dados NoSQL.
 
 :loudspeaker: Se tudo estiver ok, a solução estará pronta para ser testada no _postman_.
-
- 
