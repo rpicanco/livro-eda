@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a28dcdf0-ab9b-42c6-81df-3065f2b3845a",
+		"_postman_id": "4f6c3efd-0199-4c12-b892-b449e02a26db",
 		"name": "Realizar a compra de um produto com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -95,8 +95,8 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"// Aguarda 15 segundos para iniciar as validações\r",
-							"setTimeout(function(){}, 15000)"
+							"// Aguarda 7 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 7000)"
 						],
 						"type": "text/javascript"
 					}
@@ -205,8 +205,8 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"// Aguarda 10 segundos para iniciar as validações\r",
-							"setTimeout(function(){}, 10000)"
+							"// Aguarda 5 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 5)"
 						],
 						"type": "text/javascript"
 					}
@@ -305,8 +305,8 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"// Aguarda 10 segundos para iniciar as validações\r",
-							"setTimeout(function(){}, 10000)"
+							"// Aguarda 5 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 5000)"
 						],
 						"type": "text/javascript"
 					}
