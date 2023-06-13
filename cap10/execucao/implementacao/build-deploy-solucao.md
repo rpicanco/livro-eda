@@ -32,7 +32,7 @@ sudo make build-start
 
 3. Verificar se a solução está rodando
 
-:loudspeaker: Aparecerá apenas log do tipo _INFO_ e no final a lista dos componentes/containers inicializados e prontos para serem utilizados.
+:point_right: Aparecerá apenas log do tipo _INFO_ e no final a lista dos componentes/containers inicializados e prontos para serem utilizados.
 
 <img src="/cap10/imagens/build-start-sucesso.png">
 
