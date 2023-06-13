@@ -200,6 +200,16 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Aguarda 10 segundos para iniciar as validações\r",
+							"setTimeout(function(){}, 10000)"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
