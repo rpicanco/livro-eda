@@ -25,5 +25,5 @@
 
 <img src="/cap10/imagens/acesso-mongodb-interface-grafica.png">
 
-:loudspeaker: Na configuração inicial, teremos a coleção _inventory_ com as informações dos produtos em estoque e a coleção _state_ com as informações das cidades elegíveis para entrega dos pedidos. As outras coleções serão criadas dinamicamente conforme a utilização do sistema/solução.
+:loudspeaker: Na configuração inicial, teremos a coleção _inventory_ com as informações dos produtos em estoque e a coleção _state_ com as informações das cidades elegíveis para entrega dos pedidos. As outras coleções da solução (_order_, _fulfillment_, _envio_ e _payment_) serão criadas dinamicamente conforme a utilização do sistema/solução.
 
