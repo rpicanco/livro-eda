@@ -11,7 +11,7 @@
 1. Faça o clone do projeto em alguma pasta de sua preferência. Por exemplo, `/opt`
 
 ```
-git clone https://github.com/rpicanco/livro-eda.git
+sudo git clone https://github.com/rpicanco/livro-eda.git
 ``` 
 
 2. Entre na pasta **/cap10/src/ecommerce**.
@@ -28,7 +28,7 @@ git clone https://github.com/rpicanco/livro-eda.git
 sudo make build-start
 ```
 
-:loudspeaker: O primeiro build e deploy é sempre mais demorado por precisar baixar todas as imagens nessecárias.
+:loudspeaker: O primeiro build e deploy é sempre mais demorado por precisar baixar todas as imagens necessárias.
 
 3. Verificar se a solução está rodando
 

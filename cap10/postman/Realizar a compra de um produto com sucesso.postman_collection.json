@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4f6c3efd-0199-4c12-b892-b449e02a26db",
+		"_postman_id": "d8ee1c4b-0232-4fa0-b51b-ac247bf8a3b6",
 		"name": "Realizar a compra de um produto com sucesso",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -206,7 +206,7 @@
 					"script": {
 						"exec": [
 							"// Aguarda 5 segundos para iniciar as validações\r",
-							"setTimeout(function(){}, 5)"
+							"setTimeout(function(){}, 5000)"
 						],
 						"type": "text/javascript"
 					}

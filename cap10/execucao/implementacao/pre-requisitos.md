@@ -31,8 +31,9 @@ sudo apt update
 ```
 sudo apt install openjdk-17-jdk
 ```
+**Do you want to continue? [Y/n]** y
 
-2. Verifica se a instalação do java 17 está ok
+2. Aguarde um tempinho e verifique se a instalação do java 17 está ok
 
 ```
 java –version
@@ -122,6 +123,7 @@ sudo apt-get update
 ```
 sudo apt-get install maven
 ```
+**Do you want to continue? [Y/n]** y
 
 2. Verifique se a instalação do maven está ok
 
