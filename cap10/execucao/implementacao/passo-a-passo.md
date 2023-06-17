@@ -1,6 +1,6 @@
 <h1>Plataforma de e-commerce simplificado</h1>
 
-> :watch: Tempo estimado de execução: XX minutos.
+> :watch: Tempo estimado de execução: 30 minutos.
 
 ### Passos
 
