@@ -1,4 +1,4 @@
-# Plataforma de e-commerce simplificado
+# Plataforma de e-commerce
 
 ## Sobre
 
