@@ -1,0 +1,347 @@
+openapi: 3.0.0
+info:
+  title: Pedido API
+  version: 1.0.0
+servers:
+  - url: https://api.development.abc.com/v1
+    description: Development server
+  - url: https://api.staging.abc.com/v1
+    description: Staging server
+  - url: https://api.abc.com/v1
+    description: Production server
+paths:
+  /pedidos:
+    post:
+      tags:
+       - Pedido
+      summary: Adiciona um pedido.
+      description: Adiciona um pedido.
+      operationId: addPedido
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pedido"
+        description: Os dados do pedido.
+      responses:
+        "202":
+          description: Aceito - O pedido foi recebido.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pedido"
+        "400":
+          description: Bad Request - Valida os campos de acordo com a definição do contrato.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Não autorizado - O cliente não tem as credenciais necessárias de autenticação.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden - O servidor se recusa a responder. Isso geralmente é causado por escopos de acesso incorretos.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found - O recurso solicitado não foi encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: Unprocessable Entity - O corpo da solicitação contém erros semânticos. Isso geralmente é causado por não atender à regra de negócios do domínio.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error - Ocorreu um erro interno.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: Serviço indisponível - O servidor não está disponível no momento.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "504":
+          description: Gateway Timeout - A solicitação não pôde ser concluída a tempo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /pedidos/{id}:
+    get:
+      tags:
+      - Pedido
+      summary: Obter detalhes de um pedido.
+      description: Obter detalhes de um pedido.
+      operationId: getPedidoById
+      parameters:
+        - $ref: '#/components/parameters/PedidoIDParam'
+      responses:
+        "200":
+          description: Os dados do pedido.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pedido"
+        "400":
+          description: Bad Request - Valida os campos de acordo com a definição do contrato.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Não autorizado - O cliente não tem as credenciais necessárias de autenticação.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden - O servidor se recusa a responder. Isso geralmente é causado por escopos de acesso incorretos.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found - O recurso solicitado não foi encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: Unprocessable Entity - O corpo da solicitação contém erros semânticos. Isso geralmente é causado por não atender à regra de negócios do domínio.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error - Ocorreu um erro interno.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: Serviço indisponível - O servidor não está disponível no momento.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "504":
+          description: Gateway Timeout - A solicitação não pôde ser concluída a tempo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+components:
+  
+  parameters:
+    PedidoIDParam:
+      name: id
+      in: path
+      description: "Um identificador exclusivo para o pedido."
+      example: "06f256c8-1bbf-42bf-93b4-ce2041bfb87e"
+      required: true
+      schema:
+        type: string
+        format: uuidv4
+  
+  schemas:
+    Pedido:
+      type: object
+      required:
+       - items
+       - customer
+       - payment
+      properties:
+        id:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o pedido."
+          example: "6e444fb5-f5c8-4d55-91eb-04b3abadf64b"
+          readOnly: true
+        totalAmount:
+          type: number
+          format: double
+          description: "O valor total do pedido"
+          example: "200.00"
+          readOnly: true
+        status:
+          type: string
+          enum:
+            - recebido
+            - cancelado
+            - confirmado
+            - em_preparacao
+            - enviado
+            - entregue
+          description: >-
+            Status do pedido: <br>recebido - O cliente realizou um pedido e recebeu uma mensagem que ele será notificado quando o pedido for enviado.  <br>cancelado - O endereço do cliente não é elegível ou o produto não tem em estoque. <br>confirmado - O endereço do cliente é elegível e o produto tem em estoque. <br>em_preparacao - O pagamento foi autorizado.
+            <br>enviado - O pedido foi enviado pela transportadora. <br>entregue - O pedido foi entregue no endereço do cliente.
+          readOnly: true
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderItem"
+        customer:
+          $ref: "#/components/schemas/Customer"
+        payment:
+          $ref: "#/components/schemas/Payment"
+        createdAt:
+          type: string
+          readOnly: true
+          format: date
+          description: "A data da criação do pedido no formato YYYY-MM-DD."
+          example: "2023-05-01"
+        updatedAt:
+          type: string
+          readOnly: true
+          format: date
+          description: "A data da atualização do pedido no formato YYYY-MM-DD."
+          example: "2023-05-10"
+    
+    OrderItem:
+      type: object
+      required:
+       - productId
+       - count
+       - itemPrice
+      properties:
+        productId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o produto."
+          example: "9b083d56-f8ac-4336-8f26-f68ad1ba35db"
+        count:
+          type: integer
+          format: int32
+          example: 2
+          description: "A quantidade do item do produto"
+        price:
+          type: number
+          format: double
+          description: "O valor do item do produto"
+          example: "100.00"
+          
+    Customer:
+      type: object
+      required:
+       - id
+       - email
+       - deliveryAddress
+      properties:
+        id:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo para o cliente."
+          example: "818723c6-eae7-4949-8cbe-87353200dc8c"
+        first_name:
+          type: string
+          description: "O nome do cliente."
+          example: "João"
+        last_name:
+          type: string
+          description: "O sobrenome do cliente."
+          example: "Silva"
+        email:
+          type: string
+          format: email
+          description: "O email do do cliente."
+          example: "fulano@gmail.com"
+        deliveryAddress:
+          $ref: "#/components/schemas/Address"
+    
+    Address:
+      type: object
+      required:
+       - street
+       - number
+       - postalCode
+       - city
+       - state
+      properties:
+        street:
+          type: string
+          format: int32
+          example: Rua X
+          description: "O nome da rua do cliente."
+        number:
+          type: string
+          format: int32
+          example: 14.850
+          description: "O número da casa do cliente."
+        postalCode:
+          type: string
+          example: "24300-000"
+          description: "O CEP do endereço de entrega."
+        city:
+          type: string
+          example: "Rio de Janeiro"
+          description: "A cidade onde o pedido será entregue."
+        state:
+          type: string
+          example: "RJ"
+          description: "O estado onde o pedido será entregue."
+          
+    Payment:
+      type: object
+      required:
+        - card_id
+        - number_token
+      properties:
+        cardId:
+          type: string
+          format: uuidv4
+          description: "Um identificador exclusivo do cartão."
+          example: "1ec20487-0b63-4002-b486-3e583cef7707"
+        bin:
+          type: string
+          description: "Os seis primeiros digitos do cartão - BIN (Número de Identificação Bancária)."
+          example: "515590"
+        number_token:
+          type: string
+          description: "Número do cartão tokenizado."
+        cardholder_name:
+          type: string
+          description: "Nome do comprador impresso no cartão."
+        security_code:
+          type: string
+          description: "Código de segurança. CVV ou CVC."
+        brand:
+          type: string
+          enum:
+            - Mastercard
+            - Visa
+            - Amex
+            - Elo
+            - Hipercard
+        expiration_month:
+          type: string
+          description: "Mês de expiração do cartão com dois dígitos."
+          example: "10"
+        expiration_year:
+          type: string
+          description: "Ano de expiração do cartão com dois dígitos."
+          example: "26"
+    
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "error_required_field"
+          description: O código do erro.
+        message:
+          type: string
+          description: "Mensagem de erro."
+          example: "A informação dos dados de pagamento são obrigatória."

@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Projeto 2 da parte 4 do livro **Arquitetura Orientada a Eventos - Domine os conceitos, da estratégia à execução** publicado pela [Casa do Código](https://www.casadocodigo.com.br/).
+Projeto 2 da parte 4 do livro **Arquitetura Orientada a Eventos: Soluções escaláveis e em tempo real com EDA** publicado pela [Casa do Código](https://www.casadocodigo.com.br/).
 
 ## Execução
 
